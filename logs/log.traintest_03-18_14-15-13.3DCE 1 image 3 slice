@@ -1,0 +1,16 @@
++ echo Logging output to '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_03-18_14-15-13.3DCE 1 image 3 slice'
+Logging output to /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_03-18_14-15-13.3DCE 1 image 3 slice
++ python /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py
+Traceback (most recent call last):
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py", line 15, in <module>
+    from rcnn.core import callback, metric
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/core/callback.py", line 6, in <module>
+    from rcnn.tools.validate import validate
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/tools/validate.py", line 4, in <module>
+    from rcnn.tools.test import test_rcnn
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/tools/test.py", line 15, in <module>
+    from rcnn.utils.load_data import filter_roidb
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/utils/load_data.py", line 55
+    def sample_roidb(roidb, target)
+                                  ^
+SyntaxError: invalid syntax

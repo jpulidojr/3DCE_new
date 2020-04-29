@@ -1,0 +1,22 @@
++ echo Logging output to '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-15_23-05-43.3DCE 1 image 3 slice'
+Logging output to /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-15_23-05-43.3DCE 1 image 3 slice
++ python /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py
+Traceback (most recent call last):
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py", line 7, in <module>
+    import mxnet as mx
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/__init__.py", line 29, in <module>
+    from . import contrib
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/contrib/__init__.py", line 27, in <module>
+    from . import autograd
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/contrib/autograd.py", line 29, in <module>
+    from ..ndarray import NDArray, zeros_like, _GRAD_REQ_MAP
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/ndarray/__init__.py", line 26, in <module>
+    from . import register
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/ndarray/register.py", line 170, in <module>
+    _init_op_module('mxnet', 'ndarray', _make_ndarray_function)
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/base.py", line 634, in _init_op_module
+    function = make_op_func(hdl, name, func_name)
+  File "/home/pulido/.local/lib/python2.7/site-packages/mxnet/ndarray/register.py", line 163, in _make_ndarray_function
+    exec(code, None, local)  # pylint: disable=exec-used
+  File "<string>", line 2, in <module>
+KeyboardInterrupt

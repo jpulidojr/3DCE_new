@@ -1,0 +1,161 @@
++ echo Logging output to '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-15_16-56-12.3DCE 1 image 3 slice'
+Logging output to /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-15_16-56-12.3DCE 1 image 3 slice
++ python /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py
+/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/config.py:176: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  yaml_cfg = edict(yaml.load(f))
+INFO:root:{'ANCHOR_RATIOS': [0.5, 1, 2],
+ 'ANCHOR_SCALES': [2, 3, 4, 6, 12],
+ 'CLASS_NAMES': ['bg', 'lesion'],
+ 'FIXED_PARAMS': [],
+ 'FIXED_PARAMS_SHARED': ['conv1', 'conv2', 'conv3', 'conv4', 'conv5'],
+ 'FRAMEWORK': '3DCE',
+ 'GT_MARGIN': 0,
+ 'IMAGE_STRIDE': 0,
+ 'IMG_DO_CLIP': True,
+ 'MAX_SIZE': 512,
+ 'NORM_SPACING': 0.8,
+ 'NUM_ANCHORS': 15,
+ 'NUM_CLASSES': 2,
+ 'NUM_IMAGES_3DCE': 1,
+ 'NUM_SLICES': 3,
+ 'PIXEL_MEANS': array([50]),
+ 'RCNN_FEAT_STRIDE': 8,
+ 'RPN_FEAT_STRIDE': 8,
+ 'SCALE': 512,
+ 'SLICE_INTV': 2,
+ 'TEST': {'CXX_PROPOSAL': False,
+          'HAS_RPN': False,
+          'NMS': 0.3,
+          'PROPOSAL_MIN_SIZE': 8,
+          'PROPOSAL_NMS_THRESH': 0.7,
+          'PROPOSAL_POST_NMS_TOP_N': 2000,
+          'PROPOSAL_PRE_NMS_TOP_N': 20000,
+          'RPN_MIN_SIZE': 8,
+          'RPN_NMS_THRESH': 0.7,
+          'RPN_POST_NMS_TOP_N': 300,
+          'RPN_PRE_NMS_TOP_N': 6000,
+          'SAMPLES_PER_BATCH': 1},
+ 'TRAIN': {'ASPECT_GROUPING': False,
+           'BATCH_ROIS': 32,
+           'BBOX_MEANS': [0.0, 0.0, 0.0, 0.0],
+           'BBOX_NORMALIZATION_PRECOMPUTED': True,
+           'BBOX_NORMALIZE_TARGETS': False,
+           'BBOX_REGRESSION_THRESH': 0.5,
+           'BBOX_STDS': [0.1, 0.1, 0.2, 0.2],
+           'BBOX_WEIGHTS': array([1., 1., 1., 1.]),
+           'BG_THRESH_HI': 0.5,
+           'BG_THRESH_LO': 0.0,
+           'CXX_PROPOSAL': False,
+           'END2END': True,
+           'FG_FRACTION': 0.25,
+           'FG_THRESH': 0.5,
+           'RCNN_POS_UPSAMPLE': False,
+           'RCNN_REG_LOSS_WEIGHT': 10,
+           'RPN_BATCH_SIZE': 32,
+           'RPN_BBOX_WEIGHTS': [1.0, 1.0, 1.0, 1.0],
+           'RPN_CLOBBER_POSITIVES': False,
+           'RPN_FG_FRACTION': 0.5,
+           'RPN_MIN_SIZE': 8,
+           'RPN_NEGATIVE_OVERLAP': 0.3,
+           'RPN_NMS_THRESH': 0.7,
+           'RPN_POSITIVE_OVERLAP': 0.7,
+           'RPN_POSITIVE_WEIGHT': -1.0,
+           'RPN_POST_NMS_TOP_N': 2000,
+           'RPN_PRE_NMS_TOP_N': 12000,
+           'RPN_REG_LOSS_WEIGHT': 1,
+           'SAMPLES_PER_BATCH': 1},
+ 'WINDOWING': [-1024, 3071]}
+INFO:root:{'accs': {},
+ 'base_lr': 0.001,
+ 'begin_epoch': 0,
+ 'dataset': 'DeepLesion',
+ 'dataset_path': '/home/pulido/CADLab/lesion_detector_3DCE/images/',
+ 'e2e_epoch': 10,
+ 'e2e_lr': 0.001,
+ 'e2e_lr_step': '4,5',
+ 'e2e_prefix': 'model/3DCE 1 image 3 slice',
+ 'exp_name': '3DCE 1 image 3 slice',
+ 'flip': False,
+ 'frequent': 100,
+ 'gpus': '0',
+ 'groundtruth_file': '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data/DeepLesion/DL_info.csv',
+ 'image_path': '/home/pulido/CADLab/lesion_detector_3DCE/images/Images_png/',
+ 'image_set': 'train',
+ 'iter_size': 1,
+ 'keep_best_model': True,
+ 'kvstore': 'device',
+ 'lr_factor': 0.1,
+ 'network': 'vgg',
+ 'prefetch_thread_num': 4,
+ 'pretrained': '/home/pulido/CADLab/lesion_detector_3DCE/vgg16',
+ 'pretrained_epoch': 0,
+ 'proposal': 'rpn',
+ 'rand_seed': 23,
+ 'resume': False,
+ 'root_path': '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data',
+ 'show_avg_loss': 100,
+ 'shuffle': True,
+ 'test_image_set': 'test',
+ 'testing': False,
+ 'use_roidb_cache': True,
+ 'val_avg_fp': [0.5, 1, 2, 4, 8, 16],
+ 'val_gpu': '0',
+ 'val_has_rpn': True,
+ 'val_image_set': 'val',
+ 'val_iou_th': 0.5,
+ 'val_max_box': 5,
+ 'val_shuffle': False,
+ 'val_thresh': 0,
+ 'val_vis': False,
+ 'validate_at_begin': False,
+ 'weight_decay': 0.0005,
+ 'work_load_list': None}
+INFO:root:DeepLesion_train num_images 22496
+INFO:root:DeepLesion_train gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_train_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 22496 -> 22478, bboxes: 22919 -> 22901
+INFO:root:sample boxes filtered, images: 22478 -> 224, bboxes: 22901 -> 22901
+INFO:root:Sampling 1 pcnt : 224 training slices
+INFO:root:Loading images with 4 threads.
+INFO:root:providing maximum shape [('data', (1, 3, 512, 512)), ('gt_boxes', (1, 5, 5))] [('label', (1, 61440)), ('bbox_target', (1, 60, 64, 64)), ('bbox_weight', (1, 60, 64, 64))]
+INFO:root:output shape {'bbox_loss_reshape_output': (1, 32, 8),
+ 'blockgrad0_output': (1, 32),
+ 'cls_prob_reshape_output': (1, 32, 2),
+ 'rpn_bbox_loss_output': (1, 60, 27, 16),
+ 'rpn_cls_prob_output': (1, 2, 405, 16)}
+INFO:root:loading parameters from /home/pulido/CADLab/lesion_detector_3DCE/vgg16-0000.params
+INFO:root:load param done
+INFO:root:lr 0.001000 lr_epoch_diff [4.0, 5.0] lr_iters [896, 1120]
+INFO:root:Epoch 0 Batch 0	19972876.2 smp/sec	RPNLogLoss=0.743,	RPNL1Loss=0.0142,	RCNNLogLoss=0.694,	RCNNL1Loss=1.44e-07,	
+INFO:root:Epoch 0 Batch 100	10.0 smp/sec	RPNLogLoss=0.288,	RPNL1Loss=0.033,	RCNNLogLoss=0.407,	RCNNL1Loss=0.0395,	
+INFO:root:Epoch 0 Batch 200	10.1 smp/sec	RPNLogLoss=0.169,	RPNL1Loss=0.0284,	RCNNLogLoss=0.394,	RCNNL1Loss=0.0752,	
+INFO:root:Epoch[0] Train-RPNLogLoss=0.161003
+INFO:root:Epoch[0] Train-RPNL1Loss=0.021988
+INFO:root:Epoch[0] Train-RCNNLogLoss=0.408131
+INFO:root:Epoch[0] Train-RCNNL1Loss=0.079635
+INFO:root:Epoch[0] Time cost=22.339
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0001.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0001.params
+INFO:root:im_detect: 0/4791 data 0.065s im_detect 0.051s misc 0.004s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.047s misc 0.004s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.047s misc 0.004s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.00552486 0.01023123 0.0200532  0.0317168  0.05361162 0.08921629]
+Iter 1: 0.0317
+INFO:root:Validate callback: 0.031717
+INFO:root:Returned Validation=0.031717
+INFO:root:Retraining data=0.031717
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria=1
+Traceback (most recent call last):
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py", line 255, in <module>
+    train_net(default)
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py", line 225, in train_net
+    begin_epoch=args.begin_epoch, num_epoch=args.e2e_epoch)
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/core/module.py", line 341, in fit
+    sroidb = sample_roidb(ogdb, 10)
+NameError: global name 'sample_roidb' is not defined

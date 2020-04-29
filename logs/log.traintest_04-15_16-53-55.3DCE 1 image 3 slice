@@ -1,0 +1,17 @@
++ echo Logging output to '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-15_16-53-55.3DCE 1 image 3 slice'
+Logging output to /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-15_16-53-55.3DCE 1 image 3 slice
++ python /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py
+Traceback (most recent call last):
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py", line 15, in <module>
+    from rcnn.core import callback, metric
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/core/callback.py", line 6, in <module>
+    from rcnn.tools.validate import validate
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/tools/validate.py", line 4, in <module>
+    from rcnn.tools.test import test_rcnn
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/tools/test.py", line 12, in <module>
+    from rcnn.core.tester import Predictor, pred_eval
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/core/tester.py", line 9, in <module>
+    from module import MutableModule
+  File "/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/core/module.py", line 230
+    def fit(self, train_data,ogdb, eval_data=None, eval_metric='acc',
+SyntaxError: duplicate argument 'ogdb' in function definition

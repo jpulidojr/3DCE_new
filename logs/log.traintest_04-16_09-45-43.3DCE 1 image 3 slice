@@ -1,0 +1,2107 @@
++ echo Logging output to '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-16_09-45-43.3DCE 1 image 3 slice'
+Logging output to /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./log.traintest_04-16_09-45-43.3DCE 1 image 3 slice
++ python /home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/./rcnn/tools/train.py
+/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/rcnn/tools/../../rcnn/config.py:176: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  yaml_cfg = edict(yaml.load(f))
+INFO:root:{'ANCHOR_RATIOS': [0.5, 1, 2],
+ 'ANCHOR_SCALES': [2, 3, 4, 6, 12],
+ 'CLASS_NAMES': ['bg', 'lesion'],
+ 'FIXED_PARAMS': [],
+ 'FIXED_PARAMS_SHARED': ['conv1', 'conv2', 'conv3', 'conv4', 'conv5'],
+ 'FRAMEWORK': '3DCE',
+ 'GT_MARGIN': 0,
+ 'IMAGE_STRIDE': 0,
+ 'IMG_DO_CLIP': True,
+ 'MAX_SIZE': 512,
+ 'NORM_SPACING': 0.8,
+ 'NUM_ANCHORS': 15,
+ 'NUM_CLASSES': 2,
+ 'NUM_IMAGES_3DCE': 1,
+ 'NUM_SLICES': 3,
+ 'PIXEL_MEANS': array([50]),
+ 'RCNN_FEAT_STRIDE': 8,
+ 'RPN_FEAT_STRIDE': 8,
+ 'SCALE': 512,
+ 'SLICE_INTV': 2,
+ 'TEST': {'CXX_PROPOSAL': False,
+          'HAS_RPN': False,
+          'NMS': 0.3,
+          'PROPOSAL_MIN_SIZE': 8,
+          'PROPOSAL_NMS_THRESH': 0.7,
+          'PROPOSAL_POST_NMS_TOP_N': 2000,
+          'PROPOSAL_PRE_NMS_TOP_N': 20000,
+          'RPN_MIN_SIZE': 8,
+          'RPN_NMS_THRESH': 0.7,
+          'RPN_POST_NMS_TOP_N': 300,
+          'RPN_PRE_NMS_TOP_N': 6000,
+          'SAMPLES_PER_BATCH': 1},
+ 'TRAIN': {'ASPECT_GROUPING': False,
+           'BATCH_ROIS': 32,
+           'BBOX_MEANS': [0.0, 0.0, 0.0, 0.0],
+           'BBOX_NORMALIZATION_PRECOMPUTED': True,
+           'BBOX_NORMALIZE_TARGETS': False,
+           'BBOX_REGRESSION_THRESH': 0.5,
+           'BBOX_STDS': [0.1, 0.1, 0.2, 0.2],
+           'BBOX_WEIGHTS': array([1., 1., 1., 1.]),
+           'BG_THRESH_HI': 0.5,
+           'BG_THRESH_LO': 0.0,
+           'CXX_PROPOSAL': False,
+           'END2END': True,
+           'FG_FRACTION': 0.25,
+           'FG_THRESH': 0.5,
+           'RCNN_POS_UPSAMPLE': False,
+           'RCNN_REG_LOSS_WEIGHT': 10,
+           'RPN_BATCH_SIZE': 32,
+           'RPN_BBOX_WEIGHTS': [1.0, 1.0, 1.0, 1.0],
+           'RPN_CLOBBER_POSITIVES': False,
+           'RPN_FG_FRACTION': 0.5,
+           'RPN_MIN_SIZE': 8,
+           'RPN_NEGATIVE_OVERLAP': 0.3,
+           'RPN_NMS_THRESH': 0.7,
+           'RPN_POSITIVE_OVERLAP': 0.7,
+           'RPN_POSITIVE_WEIGHT': -1.0,
+           'RPN_POST_NMS_TOP_N': 2000,
+           'RPN_PRE_NMS_TOP_N': 12000,
+           'RPN_REG_LOSS_WEIGHT': 1,
+           'SAMPLES_PER_BATCH': 1},
+ 'WINDOWING': [-1024, 3071]}
+INFO:root:{'accs': {},
+ 'base_lr': 0.001,
+ 'begin_epoch': 0,
+ 'dataset': 'DeepLesion',
+ 'dataset_path': '/home/pulido/CADLab/lesion_detector_3DCE/images/',
+ 'e2e_epoch': 30,
+ 'e2e_lr': 0.001,
+ 'e2e_lr_step': '4,5',
+ 'e2e_prefix': 'model/3DCE 1 image 3 slice',
+ 'exp_name': '3DCE 1 image 3 slice',
+ 'flip': False,
+ 'frequent': 100,
+ 'gpus': '0',
+ 'groundtruth_file': '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data/DeepLesion/DL_info.csv',
+ 'image_path': '/home/pulido/CADLab/lesion_detector_3DCE/images/Images_png/',
+ 'image_set': 'train',
+ 'iter_size': 1,
+ 'keep_best_model': True,
+ 'kvstore': 'device',
+ 'lr_factor': 0.1,
+ 'network': 'vgg',
+ 'prefetch_thread_num': 4,
+ 'pretrained': '/home/pulido/CADLab/lesion_detector_3DCE/vgg16',
+ 'pretrained_epoch': 0,
+ 'proposal': 'rpn',
+ 'rand_seed': 23,
+ 'resume': False,
+ 'root_path': '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data',
+ 'show_avg_loss': 100,
+ 'shuffle': True,
+ 'test_image_set': 'test',
+ 'testing': False,
+ 'use_roidb_cache': True,
+ 'val_avg_fp': [0.5, 1, 2, 4, 8, 16],
+ 'val_gpu': '0',
+ 'val_has_rpn': True,
+ 'val_image_set': 'val',
+ 'val_iou_th': 0.5,
+ 'val_max_box': 5,
+ 'val_shuffle': False,
+ 'val_thresh': 0,
+ 'val_vis': False,
+ 'validate_at_begin': False,
+ 'weight_decay': 0.0005,
+ 'work_load_list': None}
+INFO:root:DeepLesion_train num_images 22496
+INFO:root:DeepLesion_train gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_train_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 22496 -> 22478, bboxes: 22919 -> 22901
+INFO:root:sample boxes filtered, images: 22478 -> 2265, bboxes: 22901 -> 22901
+INFO:root:Sampling 10 pcnt : 2265 training slices
+INFO:root:Loading images with 4 threads.
+INFO:root:providing maximum shape [('data', (1, 3, 512, 512)), ('gt_boxes', (1, 5, 5))] [('label', (1, 61440)), ('bbox_target', (1, 60, 64, 64)), ('bbox_weight', (1, 60, 64, 64))]
+INFO:root:output shape {'bbox_loss_reshape_output': (1, 32, 8),
+ 'blockgrad0_output': (1, 32),
+ 'cls_prob_reshape_output': (1, 32, 2),
+ 'rpn_bbox_loss_output': (1, 60, 41, 42),
+ 'rpn_cls_prob_output': (1, 2, 615, 42)}
+INFO:root:loading parameters from /home/pulido/CADLab/lesion_detector_3DCE/vgg16-0000.params
+INFO:root:load param done
+INFO:root:lr 0.001000 lr_epoch_diff [4.0, 5.0] lr_iters [9060, 11325]
+INFO:root:Epoch 0 Batch 0	24672376.5 smp/sec	RPNLogLoss=0.683,	RPNL1Loss=0.00635,	RCNNLogLoss=0.694,	RCNNL1Loss=0.0286,	
+INFO:root:Epoch 0 Batch 100	10.1 smp/sec	RPNLogLoss=0.311,	RPNL1Loss=0.0544,	RCNNLogLoss=0.419,	RCNNL1Loss=0.0387,	
+INFO:root:Epoch 0 Batch 200	9.6 smp/sec	RPNLogLoss=0.155,	RPNL1Loss=0.0235,	RCNNLogLoss=0.393,	RCNNL1Loss=0.0791,	
+INFO:root:Epoch 0 Batch 300	9.9 smp/sec	RPNLogLoss=0.141,	RPNL1Loss=0.0172,	RCNNLogLoss=0.433,	RCNNL1Loss=0.1,	
+INFO:root:Epoch 0 Batch 400	10.2 smp/sec	RPNLogLoss=0.232,	RPNL1Loss=0.048,	RCNNLogLoss=0.404,	RCNNL1Loss=0.074,	
+INFO:root:Epoch 0 Batch 500	9.8 smp/sec	RPNLogLoss=0.172,	RPNL1Loss=0.0222,	RCNNLogLoss=0.386,	RCNNL1Loss=0.0769,	
+INFO:root:Epoch 0 Batch 600	9.8 smp/sec	RPNLogLoss=0.152,	RPNL1Loss=0.032,	RCNNLogLoss=0.391,	RCNNL1Loss=0.0812,	
+INFO:root:Epoch 0 Batch 700	9.8 smp/sec	RPNLogLoss=0.171,	RPNL1Loss=0.0347,	RCNNLogLoss=0.389,	RCNNL1Loss=0.0801,	
+INFO:root:Epoch 0 Batch 800	9.8 smp/sec	RPNLogLoss=0.158,	RPNL1Loss=0.0304,	RCNNLogLoss=0.411,	RCNNL1Loss=0.0937,	
+INFO:root:Epoch 0 Batch 900	9.9 smp/sec	RPNLogLoss=0.152,	RPNL1Loss=0.0223,	RCNNLogLoss=0.392,	RCNNL1Loss=0.0893,	
+INFO:root:Epoch 0 Batch 1000	9.8 smp/sec	RPNLogLoss=0.145,	RPNL1Loss=0.0169,	RCNNLogLoss=0.421,	RCNNL1Loss=0.104,	
+INFO:root:Epoch 0 Batch 1100	10.0 smp/sec	RPNLogLoss=0.142,	RPNL1Loss=0.0239,	RCNNLogLoss=0.41,	RCNNL1Loss=0.111,	
+INFO:root:Epoch 0 Batch 1200	9.6 smp/sec	RPNLogLoss=0.15,	RPNL1Loss=0.0182,	RCNNLogLoss=0.447,	RCNNL1Loss=0.125,	
+INFO:root:Epoch 0 Batch 1300	10.0 smp/sec	RPNLogLoss=0.15,	RPNL1Loss=0.0188,	RCNNLogLoss=0.405,	RCNNL1Loss=0.11,	
+INFO:root:Epoch 0 Batch 1400	10.0 smp/sec	RPNLogLoss=0.126,	RPNL1Loss=0.016,	RCNNLogLoss=0.413,	RCNNL1Loss=0.124,	
+INFO:root:Epoch 0 Batch 1500	9.7 smp/sec	RPNLogLoss=0.133,	RPNL1Loss=0.0233,	RCNNLogLoss=0.44,	RCNNL1Loss=0.126,	
+INFO:root:Epoch 0 Batch 1600	9.7 smp/sec	RPNLogLoss=0.148,	RPNL1Loss=0.0215,	RCNNLogLoss=0.408,	RCNNL1Loss=0.0983,	
+INFO:root:Epoch 0 Batch 1700	9.8 smp/sec	RPNLogLoss=0.124,	RPNL1Loss=0.0173,	RCNNLogLoss=0.391,	RCNNL1Loss=0.107,	
+INFO:root:Epoch 0 Batch 1800	10.0 smp/sec	RPNLogLoss=0.17,	RPNL1Loss=0.0368,	RCNNLogLoss=0.413,	RCNNL1Loss=0.135,	
+INFO:root:Epoch 0 Batch 1900	9.6 smp/sec	RPNLogLoss=0.107,	RPNL1Loss=0.0134,	RCNNLogLoss=0.432,	RCNNL1Loss=0.125,	
+INFO:root:Epoch 0 Batch 2000	9.8 smp/sec	RPNLogLoss=0.214,	RPNL1Loss=0.0853,	RCNNLogLoss=0.388,	RCNNL1Loss=0.1,	
+INFO:root:Epoch 0 Batch 2100	9.8 smp/sec	RPNLogLoss=0.134,	RPNL1Loss=0.024,	RCNNLogLoss=0.408,	RCNNL1Loss=0.104,	
+INFO:root:Epoch 0 Batch 2200	9.9 smp/sec	RPNLogLoss=0.134,	RPNL1Loss=0.0218,	RCNNLogLoss=0.391,	RCNNL1Loss=0.132,	
+INFO:root:Epoch[0] Train-RPNLogLoss=0.142469
+INFO:root:Epoch[0] Train-RPNL1Loss=0.026521
+INFO:root:Epoch[0] Train-RCNNLogLoss=0.363711
+INFO:root:Epoch[0] Train-RCNNL1Loss=0.118283
+INFO:root:Epoch[0] Time cost=230.390
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0001.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0001.params
+INFO:root:im_detect: 0/4791 data 0.011s im_detect 0.072s misc 0.006s
+INFO:root:im_detect: 200/4791 data 0.011s im_detect 0.048s misc 0.004s
+INFO:root:im_detect: 400/4791 data 0.011s im_detect 0.047s misc 0.004s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.11111111 0.13750767 0.17413546 0.21894823 0.28197258 0.37098424]
+=============================>PR<============================
+precision:
+[0.18478816 0.12300934 0.0815681  0.05288129 0.03470508 0.02310467]
+recall:
+[0.11111111 0.13750767 0.17413546 0.21894823 0.28197258 0.37098424]
+f-measure:
+[0.13877708 0.12985507 0.11109661 0.08518769 0.06180342 0.04350017]
+=============================>PR<============================
+Iter 1: 0.2189
+INFO:root:Validate callback: 0.218948
+INFO:root:Returned Validation=0.118283
+INFO:root:Retraining data=0.118283
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 1
+INFO:root:sample boxes filtered, images: 22478 -> 2264, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 1 Batch 0	0.3 smp/sec	RPNLogLoss=0.144,	RPNL1Loss=0.0271,	RCNNLogLoss=0.366,	RCNNL1Loss=0.12,	
+INFO:root:Epoch 1 Batch 100	9.7 smp/sec	RPNLogLoss=0.112,	RPNL1Loss=0.0165,	RCNNLogLoss=0.378,	RCNNL1Loss=0.128,	
+INFO:root:Epoch 1 Batch 200	9.4 smp/sec	RPNLogLoss=0.0914,	RPNL1Loss=0.0139,	RCNNLogLoss=0.372,	RCNNL1Loss=0.117,	
+INFO:root:Epoch 1 Batch 300	9.4 smp/sec	RPNLogLoss=0.128,	RPNL1Loss=0.0227,	RCNNLogLoss=0.373,	RCNNL1Loss=0.103,	
+INFO:root:Epoch 1 Batch 400	9.5 smp/sec	RPNLogLoss=0.139,	RPNL1Loss=0.019,	RCNNLogLoss=0.392,	RCNNL1Loss=0.111,	
+INFO:root:Epoch 1 Batch 500	10.0 smp/sec	RPNLogLoss=0.157,	RPNL1Loss=0.0253,	RCNNLogLoss=0.386,	RCNNL1Loss=0.114,	
+INFO:root:Epoch 1 Batch 600	9.3 smp/sec	RPNLogLoss=0.0985,	RPNL1Loss=0.0156,	RCNNLogLoss=0.358,	RCNNL1Loss=0.111,	
+INFO:root:Epoch 1 Batch 700	9.6 smp/sec	RPNLogLoss=0.116,	RPNL1Loss=0.0199,	RCNNLogLoss=0.335,	RCNNL1Loss=0.104,	
+INFO:root:Epoch 1 Batch 800	9.5 smp/sec	RPNLogLoss=0.119,	RPNL1Loss=0.0347,	RCNNLogLoss=0.349,	RCNNL1Loss=0.105,	
+INFO:root:Epoch 1 Batch 900	9.4 smp/sec	RPNLogLoss=0.108,	RPNL1Loss=0.016,	RCNNLogLoss=0.369,	RCNNL1Loss=0.106,	
+INFO:root:Epoch 1 Batch 1000	9.6 smp/sec	RPNLogLoss=0.114,	RPNL1Loss=0.0226,	RCNNLogLoss=0.363,	RCNNL1Loss=0.104,	
+INFO:root:Epoch 1 Batch 1100	9.8 smp/sec	RPNLogLoss=0.0949,	RPNL1Loss=0.0188,	RCNNLogLoss=0.316,	RCNNL1Loss=0.106,	
+INFO:root:Epoch 1 Batch 1200	9.5 smp/sec	RPNLogLoss=0.144,	RPNL1Loss=0.0226,	RCNNLogLoss=0.348,	RCNNL1Loss=0.102,	
+INFO:root:Epoch 1 Batch 1300	9.7 smp/sec	RPNLogLoss=0.105,	RPNL1Loss=0.0219,	RCNNLogLoss=0.365,	RCNNL1Loss=0.112,	
+INFO:root:Epoch 1 Batch 1400	9.8 smp/sec	RPNLogLoss=0.104,	RPNL1Loss=0.0151,	RCNNLogLoss=0.356,	RCNNL1Loss=0.106,	
+INFO:root:Epoch 1 Batch 1500	9.7 smp/sec	RPNLogLoss=0.111,	RPNL1Loss=0.0227,	RCNNLogLoss=0.357,	RCNNL1Loss=0.114,	
+INFO:root:Epoch 1 Batch 1600	9.4 smp/sec	RPNLogLoss=0.112,	RPNL1Loss=0.0185,	RCNNLogLoss=0.376,	RCNNL1Loss=0.119,	
+INFO:root:Epoch 1 Batch 1700	9.7 smp/sec	RPNLogLoss=0.114,	RPNL1Loss=0.0206,	RCNNLogLoss=0.343,	RCNNL1Loss=0.101,	
+INFO:root:Epoch 1 Batch 1800	9.7 smp/sec	RPNLogLoss=0.0895,	RPNL1Loss=0.014,	RCNNLogLoss=0.333,	RCNNL1Loss=0.113,	
+INFO:root:Epoch 1 Batch 1900	9.4 smp/sec	RPNLogLoss=0.077,	RPNL1Loss=0.0147,	RCNNLogLoss=0.351,	RCNNL1Loss=0.104,	
+INFO:root:Epoch 1 Batch 2000	9.5 smp/sec	RPNLogLoss=0.0868,	RPNL1Loss=0.0258,	RCNNLogLoss=0.35,	RCNNL1Loss=0.1,	
+INFO:root:Epoch 1 Batch 2100	9.5 smp/sec	RPNLogLoss=0.103,	RPNL1Loss=0.0174,	RCNNLogLoss=0.319,	RCNNL1Loss=0.0948,	
+INFO:root:Epoch 1 Batch 2200	9.6 smp/sec	RPNLogLoss=0.0848,	RPNL1Loss=0.0162,	RCNNLogLoss=0.356,	RCNNL1Loss=0.111,	
+INFO:root:Epoch[1] Train-RPNLogLoss=0.109825
+INFO:root:Epoch[1] Train-RPNL1Loss=0.024198
+INFO:root:Epoch[1] Train-RCNNLogLoss=0.400341
+INFO:root:Epoch[1] Train-RCNNL1Loss=0.115233
+INFO:root:Epoch[1] Time cost=237.030
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0002.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0002.params
+INFO:root:im_detect: 0/4791 data 0.024s im_detect 0.060s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.047s misc 0.002s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.046s misc 0.002s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.16103949 0.22263147 0.30591365 0.41170452 0.52547575 0.62124002]
+=============================>PR<============================
+precision:
+[0.24728987 0.18506549 0.13496434 0.09501322 0.06279343 0.03809667]
+recall:
+[0.16103949 0.22263147 0.30591365 0.41170452 0.52547575 0.62124002]
+f-measure:
+[0.19505546 0.20211778 0.18729642 0.15439512 0.11218138 0.07179087]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+model/3DCE 1 image 3 slice-0001.params deleted to keep only the best model
+INFO:root:Validate callback: 0.411705
+INFO:root:Returned Validation=0.115233
+INFO:root:Retraining data=0.115233
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 2
+INFO:root:sample boxes filtered, images: 22478 -> 2222, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 2 Batch 0	0.3 smp/sec	RPNLogLoss=0.11,	RPNL1Loss=0.0242,	RCNNLogLoss=0.398,	RCNNL1Loss=0.114,	
+INFO:root:Epoch 2 Batch 100	9.6 smp/sec	RPNLogLoss=0.101,	RPNL1Loss=0.0186,	RCNNLogLoss=0.347,	RCNNL1Loss=0.092,	
+INFO:root:Epoch 2 Batch 200	9.3 smp/sec	RPNLogLoss=0.116,	RPNL1Loss=0.0166,	RCNNLogLoss=0.344,	RCNNL1Loss=0.0958,	
+INFO:root:Epoch 2 Batch 300	9.6 smp/sec	RPNLogLoss=0.107,	RPNL1Loss=0.0217,	RCNNLogLoss=0.312,	RCNNL1Loss=0.083,	
+INFO:root:Epoch 2 Batch 400	9.5 smp/sec	RPNLogLoss=0.118,	RPNL1Loss=0.0201,	RCNNLogLoss=0.311,	RCNNL1Loss=0.1,	
+INFO:root:Epoch 2 Batch 500	9.6 smp/sec	RPNLogLoss=0.105,	RPNL1Loss=0.0186,	RCNNLogLoss=0.332,	RCNNL1Loss=0.0973,	
+INFO:root:Epoch 2 Batch 600	9.9 smp/sec	RPNLogLoss=0.113,	RPNL1Loss=0.0264,	RCNNLogLoss=0.299,	RCNNL1Loss=0.0931,	
+INFO:root:Epoch 2 Batch 700	9.8 smp/sec	RPNLogLoss=0.0893,	RPNL1Loss=0.0123,	RCNNLogLoss=0.312,	RCNNL1Loss=0.0891,	
+INFO:root:Epoch 2 Batch 800	9.8 smp/sec	RPNLogLoss=0.082,	RPNL1Loss=0.0174,	RCNNLogLoss=0.323,	RCNNL1Loss=0.0954,	
+INFO:root:Epoch 2 Batch 900	9.5 smp/sec	RPNLogLoss=0.112,	RPNL1Loss=0.0137,	RCNNLogLoss=0.331,	RCNNL1Loss=0.0944,	
+INFO:root:Epoch 2 Batch 1000	9.7 smp/sec	RPNLogLoss=0.083,	RPNL1Loss=0.0274,	RCNNLogLoss=0.312,	RCNNL1Loss=0.0842,	
+INFO:root:Epoch 2 Batch 1100	9.4 smp/sec	RPNLogLoss=0.0805,	RPNL1Loss=0.0187,	RCNNLogLoss=0.315,	RCNNL1Loss=0.0961,	
+INFO:root:Epoch 2 Batch 1200	9.7 smp/sec	RPNLogLoss=0.0826,	RPNL1Loss=0.0109,	RCNNLogLoss=0.3,	RCNNL1Loss=0.0972,	
+INFO:root:Epoch 2 Batch 1300	9.8 smp/sec	RPNLogLoss=0.0928,	RPNL1Loss=0.0198,	RCNNLogLoss=0.328,	RCNNL1Loss=0.0967,	
+INFO:root:Epoch 2 Batch 1400	9.8 smp/sec	RPNLogLoss=0.0744,	RPNL1Loss=0.0161,	RCNNLogLoss=0.315,	RCNNL1Loss=0.0961,	
+INFO:root:Epoch 2 Batch 1500	9.7 smp/sec	RPNLogLoss=0.0762,	RPNL1Loss=0.011,	RCNNLogLoss=0.323,	RCNNL1Loss=0.0957,	
+INFO:root:Epoch 2 Batch 1600	9.6 smp/sec	RPNLogLoss=0.105,	RPNL1Loss=0.0226,	RCNNLogLoss=0.323,	RCNNL1Loss=0.0889,	
+INFO:root:Epoch 2 Batch 1700	9.9 smp/sec	RPNLogLoss=0.084,	RPNL1Loss=0.0138,	RCNNLogLoss=0.32,	RCNNL1Loss=0.0967,	
+INFO:root:Epoch 2 Batch 1800	9.9 smp/sec	RPNLogLoss=0.0773,	RPNL1Loss=0.0155,	RCNNLogLoss=0.334,	RCNNL1Loss=0.107,	
+INFO:root:Epoch 2 Batch 1900	9.8 smp/sec	RPNLogLoss=0.104,	RPNL1Loss=0.0209,	RCNNLogLoss=0.334,	RCNNL1Loss=0.093,	
+INFO:root:Epoch 2 Batch 2000	9.7 smp/sec	RPNLogLoss=0.101,	RPNL1Loss=0.0157,	RCNNLogLoss=0.321,	RCNNL1Loss=0.0936,	
+INFO:root:Epoch 2 Batch 2100	9.8 smp/sec	RPNLogLoss=0.0668,	RPNL1Loss=0.0183,	RCNNLogLoss=0.286,	RCNNL1Loss=0.0949,	
+INFO:root:Epoch 2 Batch 2200	9.7 smp/sec	RPNLogLoss=0.0676,	RPNL1Loss=0.0102,	RCNNLogLoss=0.27,	RCNNL1Loss=0.0843,	
+INFO:root:Epoch[2] Train-RPNLogLoss=0.062941
+INFO:root:Epoch[2] Train-RPNL1Loss=0.009699
+INFO:root:Epoch[2] Train-RCNNLogLoss=0.263585
+INFO:root:Epoch[2] Train-RCNNL1Loss=0.080372
+INFO:root:Epoch[2] Time cost=230.074
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0003.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0003.params
+INFO:root:im_detect: 0/4791 data 0.067s im_detect 0.067s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.048s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.24739104 0.33271946 0.43544097 0.53775322 0.63760999 0.71434418]
+=============================>PR<============================
+precision:
+[0.33541407 0.25338943 0.18172502 0.12059471 0.07518579 0.04355746]
+recall:
+[0.24739104 0.33271946 0.43544097 0.53775322 0.63760999 0.71434418]
+f-measure:
+[0.28475534 0.28768577 0.25643189 0.19700888 0.13451037 0.08210833]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+model/3DCE 1 image 3 slice-0002.params deleted to keep only the best model
+INFO:root:Validate callback: 0.537753
+INFO:root:Returned Validation=0.080372
+INFO:root:Retraining data=0.080372
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 3
+INFO:root:sample boxes filtered, images: 22478 -> 2258, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 3 Batch 0	0.4 smp/sec	RPNLogLoss=0.063,	RPNL1Loss=0.00978,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0803,	
+INFO:root:Epoch 3 Batch 100	9.7 smp/sec	RPNLogLoss=0.101,	RPNL1Loss=0.0133,	RCNNLogLoss=0.332,	RCNNL1Loss=0.0913,	
+INFO:root:Epoch 3 Batch 200	9.5 smp/sec	RPNLogLoss=0.0885,	RPNL1Loss=0.0224,	RCNNLogLoss=0.305,	RCNNL1Loss=0.101,	
+INFO:root:Epoch 3 Batch 300	9.7 smp/sec	RPNLogLoss=0.0852,	RPNL1Loss=0.0139,	RCNNLogLoss=0.315,	RCNNL1Loss=0.0874,	
+INFO:root:Epoch 3 Batch 400	9.3 smp/sec	RPNLogLoss=0.0813,	RPNL1Loss=0.0157,	RCNNLogLoss=0.311,	RCNNL1Loss=0.0964,	
+INFO:root:Epoch 3 Batch 500	9.3 smp/sec	RPNLogLoss=0.0716,	RPNL1Loss=0.0177,	RCNNLogLoss=0.329,	RCNNL1Loss=0.0942,	
+INFO:root:Epoch 3 Batch 600	9.6 smp/sec	RPNLogLoss=0.0608,	RPNL1Loss=0.0167,	RCNNLogLoss=0.31,	RCNNL1Loss=0.0937,	
+INFO:root:Epoch 3 Batch 700	9.7 smp/sec	RPNLogLoss=0.0914,	RPNL1Loss=0.0158,	RCNNLogLoss=0.348,	RCNNL1Loss=0.0821,	
+INFO:root:Epoch 3 Batch 800	9.6 smp/sec	RPNLogLoss=0.0764,	RPNL1Loss=0.022,	RCNNLogLoss=0.348,	RCNNL1Loss=0.097,	
+INFO:root:Epoch 3 Batch 900	9.7 smp/sec	RPNLogLoss=0.0768,	RPNL1Loss=0.0108,	RCNNLogLoss=0.309,	RCNNL1Loss=0.0869,	
+INFO:root:Epoch 3 Batch 1000	9.7 smp/sec	RPNLogLoss=0.0829,	RPNL1Loss=0.0142,	RCNNLogLoss=0.321,	RCNNL1Loss=0.086,	
+INFO:root:Epoch 3 Batch 1100	9.5 smp/sec	RPNLogLoss=0.0747,	RPNL1Loss=0.0126,	RCNNLogLoss=0.314,	RCNNL1Loss=0.0877,	
+INFO:root:Epoch 3 Batch 1200	9.7 smp/sec	RPNLogLoss=0.0833,	RPNL1Loss=0.0198,	RCNNLogLoss=0.317,	RCNNL1Loss=0.0988,	
+INFO:root:Epoch 3 Batch 1300	9.4 smp/sec	RPNLogLoss=0.0614,	RPNL1Loss=0.0105,	RCNNLogLoss=0.31,	RCNNL1Loss=0.0857,	
+INFO:root:Epoch 3 Batch 1400	9.5 smp/sec	RPNLogLoss=0.0596,	RPNL1Loss=0.00974,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0794,	
+INFO:root:Epoch 3 Batch 1500	9.4 smp/sec	RPNLogLoss=0.0552,	RPNL1Loss=0.0117,	RCNNLogLoss=0.319,	RCNNL1Loss=0.094,	
+INFO:root:Epoch 3 Batch 1600	9.6 smp/sec	RPNLogLoss=0.0678,	RPNL1Loss=0.0134,	RCNNLogLoss=0.27,	RCNNL1Loss=0.0744,	
+INFO:root:Epoch 3 Batch 1700	9.4 smp/sec	RPNLogLoss=0.0624,	RPNL1Loss=0.0119,	RCNNLogLoss=0.289,	RCNNL1Loss=0.0849,	
+INFO:root:Epoch 3 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0741,	RPNL1Loss=0.0109,	RCNNLogLoss=0.328,	RCNNL1Loss=0.0957,	
+INFO:root:Epoch 3 Batch 1900	9.9 smp/sec	RPNLogLoss=0.0841,	RPNL1Loss=0.0112,	RCNNLogLoss=0.324,	RCNNL1Loss=0.0988,	
+INFO:root:Epoch 3 Batch 2000	9.6 smp/sec	RPNLogLoss=0.0618,	RPNL1Loss=0.00871,	RCNNLogLoss=0.293,	RCNNL1Loss=0.094,	
+INFO:root:Epoch 3 Batch 2100	9.5 smp/sec	RPNLogLoss=0.056,	RPNL1Loss=0.0167,	RCNNLogLoss=0.289,	RCNNL1Loss=0.0883,	
+INFO:root:Epoch 3 Batch 2200	9.8 smp/sec	RPNLogLoss=0.0832,	RPNL1Loss=0.0172,	RCNNLogLoss=0.302,	RCNNL1Loss=0.102,	
+INFO:root:Epoch[3] Train-RPNLogLoss=0.067447
+INFO:root:Epoch[3] Train-RPNL1Loss=0.014406
+INFO:root:Epoch[3] Train-RCNNLogLoss=0.310271
+INFO:root:Epoch[3] Train-RCNNL1Loss=0.097570
+INFO:root:Epoch[3] Time cost=236.370
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0004.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0004.params
+INFO:root:im_detect: 0/4791 data 0.003s im_detect 0.075s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.008s im_detect 0.049s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.3271946  0.42357274 0.52690812 0.61714753 0.69572335 0.75158584]
+=============================>PR<============================
+precision:
+[0.40030042 0.30170529 0.21181212 0.13597836 0.08148006 0.04572446]
+recall:
+[0.3271946  0.42357274 0.52690812 0.61714753 0.69572335 0.75158584]
+f-measure:
+[0.36007431 0.35240041 0.30215912 0.2228544  0.14587579 0.08620447]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+model/3DCE 1 image 3 slice-0003.params deleted to keep only the best model
+INFO:root:Validate callback: 0.617148
+INFO:root:Returned Validation=0.097570
+INFO:root:Retraining data=0.097570
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 4
+INFO:root:sample boxes filtered, images: 22478 -> 2230, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 4 Batch 0	0.3 smp/sec	RPNLogLoss=0.0667,	RPNL1Loss=0.0143,	RCNNLogLoss=0.31,	RCNNL1Loss=0.0979,	
+INFO:root:Update[9061]: Change learning rate to 1.00000e-04
+INFO:root:Epoch 4 Batch 100	9.6 smp/sec	RPNLogLoss=0.0699,	RPNL1Loss=0.0115,	RCNNLogLoss=0.296,	RCNNL1Loss=0.0853,	
+INFO:root:Epoch 4 Batch 200	9.7 smp/sec	RPNLogLoss=0.0574,	RPNL1Loss=0.0155,	RCNNLogLoss=0.275,	RCNNL1Loss=0.0797,	
+INFO:root:Epoch 4 Batch 300	9.2 smp/sec	RPNLogLoss=0.0916,	RPNL1Loss=0.0161,	RCNNLogLoss=0.3,	RCNNL1Loss=0.0949,	
+INFO:root:Epoch 4 Batch 400	9.7 smp/sec	RPNLogLoss=0.0545,	RPNL1Loss=0.00976,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0736,	
+INFO:root:Epoch 4 Batch 500	9.8 smp/sec	RPNLogLoss=0.0684,	RPNL1Loss=0.0108,	RCNNLogLoss=0.282,	RCNNL1Loss=0.0715,	
+INFO:root:Epoch 4 Batch 600	10.0 smp/sec	RPNLogLoss=0.0638,	RPNL1Loss=0.0132,	RCNNLogLoss=0.268,	RCNNL1Loss=0.0771,	
+INFO:root:Epoch 4 Batch 700	10.0 smp/sec	RPNLogLoss=0.0562,	RPNL1Loss=0.0138,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0753,	
+INFO:root:Epoch 4 Batch 800	9.7 smp/sec	RPNLogLoss=0.0656,	RPNL1Loss=0.013,	RCNNLogLoss=0.271,	RCNNL1Loss=0.0789,	
+INFO:root:Epoch 4 Batch 900	9.4 smp/sec	RPNLogLoss=0.0513,	RPNL1Loss=0.009,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0738,	
+INFO:root:Epoch 4 Batch 1000	9.6 smp/sec	RPNLogLoss=0.0597,	RPNL1Loss=0.0186,	RCNNLogLoss=0.266,	RCNNL1Loss=0.0817,	
+INFO:root:Epoch 4 Batch 1100	9.6 smp/sec	RPNLogLoss=0.0418,	RPNL1Loss=0.0107,	RCNNLogLoss=0.228,	RCNNL1Loss=0.0772,	
+INFO:root:Epoch 4 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0606,	RPNL1Loss=0.0102,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0721,	
+INFO:root:Epoch 4 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0626,	RPNL1Loss=0.012,	RCNNLogLoss=0.273,	RCNNL1Loss=0.0798,	
+INFO:root:Epoch 4 Batch 1400	9.5 smp/sec	RPNLogLoss=0.0623,	RPNL1Loss=0.0153,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0754,	
+INFO:root:Epoch 4 Batch 1500	9.7 smp/sec	RPNLogLoss=0.0451,	RPNL1Loss=0.00761,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0755,	
+INFO:root:Epoch 4 Batch 1600	9.7 smp/sec	RPNLogLoss=0.0497,	RPNL1Loss=0.00985,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0688,	
+INFO:root:Epoch 4 Batch 1700	9.7 smp/sec	RPNLogLoss=0.0497,	RPNL1Loss=0.00943,	RCNNLogLoss=0.233,	RCNNL1Loss=0.0781,	
+INFO:root:Epoch 4 Batch 1800	9.7 smp/sec	RPNLogLoss=0.0722,	RPNL1Loss=0.0157,	RCNNLogLoss=0.263,	RCNNL1Loss=0.0664,	
+INFO:root:Epoch 4 Batch 1900	9.5 smp/sec	RPNLogLoss=0.084,	RPNL1Loss=0.013,	RCNNLogLoss=0.228,	RCNNL1Loss=0.0762,	
+INFO:root:Epoch 4 Batch 2000	9.4 smp/sec	RPNLogLoss=0.0502,	RPNL1Loss=0.00837,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0809,	
+INFO:root:Epoch 4 Batch 2100	9.7 smp/sec	RPNLogLoss=0.0459,	RPNL1Loss=0.0118,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0771,	
+INFO:root:Epoch 4 Batch 2200	9.9 smp/sec	RPNLogLoss=0.0712,	RPNL1Loss=0.00965,	RCNNLogLoss=0.293,	RCNNL1Loss=0.0767,	
+INFO:root:Epoch[4] Train-RPNLogLoss=0.062301
+INFO:root:Epoch[4] Train-RPNL1Loss=0.009404
+INFO:root:Epoch[4] Train-RCNNLogLoss=0.258486
+INFO:root:Epoch[4] Train-RCNNL1Loss=0.078298
+INFO:root:Epoch[4] Time cost=232.078
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0005.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0005.params
+INFO:root:im_detect: 0/4791 data 0.012s im_detect 0.092s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.047s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.011s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.36832413 0.48168611 0.58113362 0.67669327 0.7462656  0.79824023]
+=============================>PR<============================
+precision:
+[0.42903111 0.32946116 0.22862663 0.14716746 0.08688505 0.04842534]
+recall:
+[0.36832413 0.48168611 0.58113362 0.67669327 0.7462656  0.79824023]
+f-measure:
+[0.39636664 0.39128989 0.32815298 0.24175744 0.1556485  0.09131127]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+model/3DCE 1 image 3 slice-0004.params deleted to keep only the best model
+INFO:root:Validate callback: 0.676693
+INFO:root:Returned Validation=0.078298
+INFO:root:Retraining data=0.078298
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 5
+INFO:root:sample boxes filtered, images: 22478 -> 2197, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 5 Batch 0	0.3 smp/sec	RPNLogLoss=0.0621,	RPNL1Loss=0.00946,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0783,	
+INFO:root:Update[11326]: Change learning rate to 1.00000e-05
+INFO:root:Epoch 5 Batch 100	9.7 smp/sec	RPNLogLoss=0.0352,	RPNL1Loss=0.00768,	RCNNLogLoss=0.209,	RCNNL1Loss=0.0724,	
+INFO:root:Epoch 5 Batch 200	9.5 smp/sec	RPNLogLoss=0.0529,	RPNL1Loss=0.0136,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0726,	
+INFO:root:Epoch 5 Batch 300	9.4 smp/sec	RPNLogLoss=0.0652,	RPNL1Loss=0.0093,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0766,	
+INFO:root:Epoch 5 Batch 400	9.5 smp/sec	RPNLogLoss=0.0549,	RPNL1Loss=0.00879,	RCNNLogLoss=0.277,	RCNNL1Loss=0.0743,	
+INFO:root:Epoch 5 Batch 500	9.4 smp/sec	RPNLogLoss=0.0475,	RPNL1Loss=0.01,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0787,	
+INFO:root:Epoch 5 Batch 600	9.8 smp/sec	RPNLogLoss=0.0583,	RPNL1Loss=0.00786,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0739,	
+INFO:root:Epoch 5 Batch 700	9.6 smp/sec	RPNLogLoss=0.0584,	RPNL1Loss=0.0101,	RCNNLogLoss=0.258,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 5 Batch 800	9.5 smp/sec	RPNLogLoss=0.0525,	RPNL1Loss=0.0129,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0745,	
+INFO:root:Epoch 5 Batch 900	9.6 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.00805,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0679,	
+INFO:root:Epoch 5 Batch 1000	10.0 smp/sec	RPNLogLoss=0.0382,	RPNL1Loss=0.00972,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0779,	
+INFO:root:Epoch 5 Batch 1100	9.8 smp/sec	RPNLogLoss=0.0426,	RPNL1Loss=0.00526,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0705,	
+INFO:root:Epoch 5 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0428,	RPNL1Loss=0.00878,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0757,	
+INFO:root:Epoch 5 Batch 1300	9.4 smp/sec	RPNLogLoss=0.0368,	RPNL1Loss=0.00658,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0647,	
+INFO:root:Epoch 5 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0488,	RPNL1Loss=0.00845,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0639,	
+INFO:root:Epoch 5 Batch 1500	10.0 smp/sec	RPNLogLoss=0.0725,	RPNL1Loss=0.0126,	RCNNLogLoss=0.299,	RCNNL1Loss=0.0747,	
+INFO:root:Epoch 5 Batch 1600	9.7 smp/sec	RPNLogLoss=0.0473,	RPNL1Loss=0.0077,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 5 Batch 1700	9.3 smp/sec	RPNLogLoss=0.0458,	RPNL1Loss=0.0105,	RCNNLogLoss=0.273,	RCNNL1Loss=0.0782,	
+INFO:root:Epoch 5 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.0167,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0744,	
+INFO:root:Epoch 5 Batch 1900	9.5 smp/sec	RPNLogLoss=0.0732,	RPNL1Loss=0.0196,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0746,	
+INFO:root:Epoch 5 Batch 2000	9.7 smp/sec	RPNLogLoss=0.0632,	RPNL1Loss=0.0106,	RCNNLogLoss=0.27,	RCNNL1Loss=0.0784,	
+INFO:root:Epoch 5 Batch 2100	9.5 smp/sec	RPNLogLoss=0.0396,	RPNL1Loss=0.00785,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0635,	
+INFO:root:Epoch[5] Train-RPNLogLoss=0.044573
+INFO:root:Epoch[5] Train-RPNL1Loss=0.010823
+INFO:root:Epoch[5] Train-RCNNLogLoss=0.232994
+INFO:root:Epoch[5] Train-RCNNL1Loss=0.072640
+INFO:root:Epoch[5] Time cost=229.399
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0006.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0006.params
+INFO:root:im_detect: 0/4791 data 0.044s im_detect 0.083s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.047s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.047s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.38039697 0.49089421 0.59361572 0.68549212 0.75772458 0.80356047]
+=============================>PR<============================
+precision:
+[0.43694912 0.33365786 0.23239606 0.1487963  0.08810164 0.04873236]
+recall:
+[0.38039697 0.49089421 0.59361572 0.68549212 0.75772458 0.80356047]
+f-measure:
+[0.40671662 0.39728409 0.33402418 0.24451662 0.15784987 0.09189189]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+model/3DCE 1 image 3 slice-0005.params deleted to keep only the best model
+INFO:root:Validate callback: 0.685492
+INFO:root:Returned Validation=0.072640
+INFO:root:Retraining data=0.072640
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 6
+INFO:root:sample boxes filtered, images: 22478 -> 2307, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 6 Batch 0	0.3 smp/sec	RPNLogLoss=0.0446,	RPNL1Loss=0.0109,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0735,	
+INFO:root:Epoch 6 Batch 100	9.4 smp/sec	RPNLogLoss=0.0427,	RPNL1Loss=0.011,	RCNNLogLoss=0.233,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 6 Batch 200	9.4 smp/sec	RPNLogLoss=0.0552,	RPNL1Loss=0.00926,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0723,	
+INFO:root:Epoch 6 Batch 300	9.7 smp/sec	RPNLogLoss=0.0453,	RPNL1Loss=0.00908,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 6 Batch 400	9.4 smp/sec	RPNLogLoss=0.0498,	RPNL1Loss=0.00841,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0702,	
+INFO:root:Epoch 6 Batch 500	9.3 smp/sec	RPNLogLoss=0.0675,	RPNL1Loss=0.0153,	RCNNLogLoss=0.271,	RCNNL1Loss=0.0782,	
+INFO:root:Epoch 6 Batch 600	9.5 smp/sec	RPNLogLoss=0.0419,	RPNL1Loss=0.00833,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0717,	
+INFO:root:Epoch 6 Batch 700	9.5 smp/sec	RPNLogLoss=0.0424,	RPNL1Loss=0.00692,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0704,	
+INFO:root:Epoch 6 Batch 800	9.4 smp/sec	RPNLogLoss=0.0459,	RPNL1Loss=0.00837,	RCNNLogLoss=0.277,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 6 Batch 900	9.8 smp/sec	RPNLogLoss=0.0617,	RPNL1Loss=0.0116,	RCNNLogLoss=0.282,	RCNNL1Loss=0.0786,	
+INFO:root:Epoch 6 Batch 1000	9.3 smp/sec	RPNLogLoss=0.0749,	RPNL1Loss=0.0111,	RCNNLogLoss=0.244,	RCNNL1Loss=0.0706,	
+INFO:root:Epoch 6 Batch 1100	9.7 smp/sec	RPNLogLoss=0.0549,	RPNL1Loss=0.0107,	RCNNLogLoss=0.288,	RCNNL1Loss=0.0721,	
+INFO:root:Epoch 6 Batch 1200	9.5 smp/sec	RPNLogLoss=0.055,	RPNL1Loss=0.0109,	RCNNLogLoss=0.244,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 6 Batch 1300	9.7 smp/sec	RPNLogLoss=0.0461,	RPNL1Loss=0.00792,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0746,	
+INFO:root:Epoch 6 Batch 1400	9.5 smp/sec	RPNLogLoss=0.0491,	RPNL1Loss=0.0198,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0641,	
+INFO:root:Epoch 6 Batch 1500	9.7 smp/sec	RPNLogLoss=0.0594,	RPNL1Loss=0.0182,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0756,	
+INFO:root:Epoch 6 Batch 1600	9.5 smp/sec	RPNLogLoss=0.0568,	RPNL1Loss=0.00936,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0721,	
+INFO:root:Epoch 6 Batch 1700	9.5 smp/sec	RPNLogLoss=0.0439,	RPNL1Loss=0.00898,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0781,	
+INFO:root:Epoch 6 Batch 1800	9.4 smp/sec	RPNLogLoss=0.0524,	RPNL1Loss=0.0125,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0787,	
+INFO:root:Epoch 6 Batch 1900	9.5 smp/sec	RPNLogLoss=0.0399,	RPNL1Loss=0.00713,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0758,	
+INFO:root:Epoch 6 Batch 2000	9.5 smp/sec	RPNLogLoss=0.0415,	RPNL1Loss=0.00763,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0637,	
+INFO:root:Epoch 6 Batch 2100	9.3 smp/sec	RPNLogLoss=0.043,	RPNL1Loss=0.00853,	RCNNLogLoss=0.204,	RCNNL1Loss=0.0693,	
+INFO:root:Epoch 6 Batch 2200	9.4 smp/sec	RPNLogLoss=0.042,	RPNL1Loss=0.00668,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0687,	
+INFO:root:Epoch 6 Batch 2300	9.3 smp/sec	RPNLogLoss=0.048,	RPNL1Loss=0.00961,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0722,	
+INFO:root:Epoch[6] Train-RPNLogLoss=0.051253
+INFO:root:Epoch[6] Train-RPNL1Loss=0.009810
+INFO:root:Epoch[6] Train-RCNNLogLoss=0.243565
+INFO:root:Epoch[6] Train-RCNNL1Loss=0.070791
+INFO:root:Epoch[6] Time cost=243.976
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0007.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0007.params
+INFO:root:im_detect: 0/4791 data 0.014s im_detect 0.079s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.048s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.008s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.37845304 0.4949867  0.59648046 0.68835687 0.76243094 0.80949458]
+=============================>PR<============================
+precision:
+[0.43568904 0.33550624 0.23325598 0.14932528 0.08860037 0.04907458]
+recall:
+[0.37845304 0.4949867  0.59648046 0.68835687 0.76243094 0.80949458]
+f-measure:
+[0.40505913 0.39993387 0.33536585 0.2454131  0.15875248 0.09253909]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+model/3DCE 1 image 3 slice-0006.params deleted to keep only the best model
+INFO:root:Validate callback: 0.688357
+INFO:root:Returned Validation=0.070791
+INFO:root:Retraining data=0.070791
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 7
+INFO:root:sample boxes filtered, images: 22478 -> 2235, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 7 Batch 0	0.3 smp/sec	RPNLogLoss=0.0508,	RPNL1Loss=0.00975,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0707,	
+INFO:root:Epoch 7 Batch 100	9.7 smp/sec	RPNLogLoss=0.0413,	RPNL1Loss=0.00633,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 7 Batch 200	9.6 smp/sec	RPNLogLoss=0.0456,	RPNL1Loss=0.0109,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0757,	
+INFO:root:Epoch 7 Batch 300	9.6 smp/sec	RPNLogLoss=0.0588,	RPNL1Loss=0.0124,	RCNNLogLoss=0.281,	RCNNL1Loss=0.0818,	
+INFO:root:Epoch 7 Batch 400	9.5 smp/sec	RPNLogLoss=0.0534,	RPNL1Loss=0.00919,	RCNNLogLoss=0.244,	RCNNL1Loss=0.0744,	
+INFO:root:Epoch 7 Batch 500	9.5 smp/sec	RPNLogLoss=0.0501,	RPNL1Loss=0.008,	RCNNLogLoss=0.286,	RCNNL1Loss=0.0799,	
+INFO:root:Epoch 7 Batch 600	9.6 smp/sec	RPNLogLoss=0.0475,	RPNL1Loss=0.00701,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0751,	
+INFO:root:Epoch 7 Batch 700	9.5 smp/sec	RPNLogLoss=0.0487,	RPNL1Loss=0.00903,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 7 Batch 800	9.6 smp/sec	RPNLogLoss=0.0489,	RPNL1Loss=0.00959,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 7 Batch 900	9.9 smp/sec	RPNLogLoss=0.0474,	RPNL1Loss=0.00801,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 7 Batch 1000	9.7 smp/sec	RPNLogLoss=0.0578,	RPNL1Loss=0.00854,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0737,	
+INFO:root:Epoch 7 Batch 1100	9.6 smp/sec	RPNLogLoss=0.0472,	RPNL1Loss=0.00851,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0652,	
+INFO:root:Epoch 7 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0426,	RPNL1Loss=0.00651,	RCNNLogLoss=0.225,	RCNNL1Loss=0.067,	
+INFO:root:Epoch 7 Batch 1300	9.5 smp/sec	RPNLogLoss=0.04,	RPNL1Loss=0.00896,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0748,	
+INFO:root:Epoch 7 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0381,	RPNL1Loss=0.0093,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 7 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0536,	RPNL1Loss=0.0121,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0761,	
+INFO:root:Epoch 7 Batch 1600	9.7 smp/sec	RPNLogLoss=0.0437,	RPNL1Loss=0.00895,	RCNNLogLoss=0.23,	RCNNL1Loss=0.0747,	
+INFO:root:Epoch 7 Batch 1700	9.7 smp/sec	RPNLogLoss=0.0433,	RPNL1Loss=0.00723,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0724,	
+INFO:root:Epoch 7 Batch 1800	9.5 smp/sec	RPNLogLoss=0.0403,	RPNL1Loss=0.0084,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0667,	
+INFO:root:Epoch 7 Batch 1900	9.3 smp/sec	RPNLogLoss=0.0651,	RPNL1Loss=0.0114,	RCNNLogLoss=0.275,	RCNNL1Loss=0.0826,	
+INFO:root:Epoch 7 Batch 2000	9.6 smp/sec	RPNLogLoss=0.0422,	RPNL1Loss=0.0107,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 7 Batch 2100	9.6 smp/sec	RPNLogLoss=0.0386,	RPNL1Loss=0.0086,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0709,	
+INFO:root:Epoch 7 Batch 2200	9.5 smp/sec	RPNLogLoss=0.0461,	RPNL1Loss=0.0111,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0718,	
+INFO:root:Epoch[7] Train-RPNLogLoss=0.044705
+INFO:root:Epoch[7] Train-RPNL1Loss=0.010483
+INFO:root:Epoch[7] Train-RCNNLogLoss=0.227761
+INFO:root:Epoch[7] Train-RCNNL1Loss=0.067553
+INFO:root:Epoch[7] Time cost=233.970
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0008.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0008.params
+INFO:root:im_detect: 0/4791 data 0.042s im_detect 0.087s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.007s im_detect 0.047s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.046s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.38019235 0.49764682 0.5985267  0.69224473 0.76488643 0.8113362 ]
+=============================>PR<============================
+precision:
+[0.43681675 0.3367022  0.23386903 0.15004213 0.08886036 0.04918073]
+recall:
+[0.38019235 0.49764682 0.5985267  0.69224473 0.76488643 0.8113362 ]
+f-measure:
+[0.40654231 0.40165153 0.33632287 0.24662827 0.15922305 0.09273986]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+model/3DCE 1 image 3 slice-0007.params deleted to keep only the best model
+INFO:root:Validate callback: 0.692245
+INFO:root:Returned Validation=0.067553
+INFO:root:Retraining data=0.067553
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 8
+INFO:root:sample boxes filtered, images: 22478 -> 2265, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 8 Batch 0	0.3 smp/sec	RPNLogLoss=0.0458,	RPNL1Loss=0.0104,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0673,	
+INFO:root:Epoch 8 Batch 100	9.3 smp/sec	RPNLogLoss=0.061,	RPNL1Loss=0.00965,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0787,	
+INFO:root:Epoch 8 Batch 200	9.2 smp/sec	RPNLogLoss=0.0403,	RPNL1Loss=0.00703,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 8 Batch 300	9.7 smp/sec	RPNLogLoss=0.0554,	RPNL1Loss=0.0116,	RCNNLogLoss=0.302,	RCNNL1Loss=0.0771,	
+INFO:root:Epoch 8 Batch 400	9.6 smp/sec	RPNLogLoss=0.0375,	RPNL1Loss=0.00789,	RCNNLogLoss=0.213,	RCNNL1Loss=0.0634,	
+INFO:root:Epoch 8 Batch 500	9.3 smp/sec	RPNLogLoss=0.0435,	RPNL1Loss=0.00992,	RCNNLogLoss=0.236,	RCNNL1Loss=0.0773,	
+INFO:root:Epoch 8 Batch 600	9.5 smp/sec	RPNLogLoss=0.038,	RPNL1Loss=0.00688,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0746,	
+INFO:root:Epoch 8 Batch 700	9.7 smp/sec	RPNLogLoss=0.061,	RPNL1Loss=0.013,	RCNNLogLoss=0.277,	RCNNL1Loss=0.0775,	
+INFO:root:Epoch 8 Batch 800	9.6 smp/sec	RPNLogLoss=0.0492,	RPNL1Loss=0.00741,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0826,	
+INFO:root:Epoch 8 Batch 900	9.6 smp/sec	RPNLogLoss=0.0523,	RPNL1Loss=0.0139,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0736,	
+INFO:root:Epoch 8 Batch 1000	9.6 smp/sec	RPNLogLoss=0.0455,	RPNL1Loss=0.00924,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0643,	
+INFO:root:Epoch 8 Batch 1100	9.7 smp/sec	RPNLogLoss=0.0496,	RPNL1Loss=0.00886,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0706,	
+INFO:root:Epoch 8 Batch 1200	9.6 smp/sec	RPNLogLoss=0.053,	RPNL1Loss=0.0121,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0707,	
+INFO:root:Epoch 8 Batch 1300	9.6 smp/sec	RPNLogLoss=0.0451,	RPNL1Loss=0.00927,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0628,	
+INFO:root:Epoch 8 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0481,	RPNL1Loss=0.0117,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0732,	
+INFO:root:Epoch 8 Batch 1500	9.8 smp/sec	RPNLogLoss=0.0584,	RPNL1Loss=0.0124,	RCNNLogLoss=0.251,	RCNNL1Loss=0.0771,	
+INFO:root:Epoch 8 Batch 1600	9.6 smp/sec	RPNLogLoss=0.0377,	RPNL1Loss=0.00743,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0659,	
+INFO:root:Epoch 8 Batch 1700	9.6 smp/sec	RPNLogLoss=0.046,	RPNL1Loss=0.00898,	RCNNLogLoss=0.208,	RCNNL1Loss=0.0663,	
+INFO:root:Epoch 8 Batch 1800	9.5 smp/sec	RPNLogLoss=0.0423,	RPNL1Loss=0.00832,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0647,	
+INFO:root:Epoch 8 Batch 1900	9.6 smp/sec	RPNLogLoss=0.046,	RPNL1Loss=0.014,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0713,	
+INFO:root:Epoch 8 Batch 2000	9.4 smp/sec	RPNLogLoss=0.0435,	RPNL1Loss=0.00879,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0667,	
+INFO:root:Epoch 8 Batch 2100	9.8 smp/sec	RPNLogLoss=0.0478,	RPNL1Loss=0.00877,	RCNNLogLoss=0.274,	RCNNL1Loss=0.0723,	
+INFO:root:Epoch 8 Batch 2200	9.6 smp/sec	RPNLogLoss=0.0495,	RPNL1Loss=0.0114,	RCNNLogLoss=0.212,	RCNNL1Loss=0.0681,	
+INFO:root:Epoch[8] Train-RPNLogLoss=0.047469
+INFO:root:Epoch[8] Train-RPNL1Loss=0.011329
+INFO:root:Epoch[8] Train-RCNNLogLoss=0.261287
+INFO:root:Epoch[8] Train-RCNNL1Loss=0.069772
+INFO:root:Epoch[8] Time cost=236.945
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0009.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0009.params
+INFO:root:im_detect: 0/4791 data 0.007s im_detect 0.095s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.047s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.011s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.38162472 0.49948844 0.60302844 0.6961326  0.76693268 0.8113362 ]
+=============================>PR<============================
+precision:
+[0.43774206 0.33752765 0.2352143  0.15075778 0.08907691 0.04918073]
+recall:
+[0.38162472 0.49948844 0.60302844 0.6961326  0.76693268 0.8113362 ]
+f-measure:
+[0.40776168 0.40283852 0.33842444 0.24784177 0.15961502 0.09273986]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+model/3DCE 1 image 3 slice-0008.params deleted to keep only the best model
+INFO:root:Validate callback: 0.696133
+INFO:root:Returned Validation=0.069772
+INFO:root:Retraining data=0.069772
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 9
+INFO:root:sample boxes filtered, images: 22478 -> 2177, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 9 Batch 0	0.3 smp/sec	RPNLogLoss=0.0485,	RPNL1Loss=0.0114,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0689,	
+INFO:root:Epoch 9 Batch 100	9.2 smp/sec	RPNLogLoss=0.0438,	RPNL1Loss=0.00869,	RCNNLogLoss=0.256,	RCNNL1Loss=0.0782,	
+INFO:root:Epoch 9 Batch 200	9.5 smp/sec	RPNLogLoss=0.0658,	RPNL1Loss=0.0192,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0791,	
+INFO:root:Epoch 9 Batch 300	9.6 smp/sec	RPNLogLoss=0.0365,	RPNL1Loss=0.0069,	RCNNLogLoss=0.202,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 9 Batch 400	9.3 smp/sec	RPNLogLoss=0.0412,	RPNL1Loss=0.0108,	RCNNLogLoss=0.236,	RCNNL1Loss=0.0734,	
+INFO:root:Epoch 9 Batch 500	9.4 smp/sec	RPNLogLoss=0.0507,	RPNL1Loss=0.0068,	RCNNLogLoss=0.263,	RCNNL1Loss=0.0706,	
+INFO:root:Epoch 9 Batch 600	9.5 smp/sec	RPNLogLoss=0.0503,	RPNL1Loss=0.011,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0676,	
+INFO:root:Epoch 9 Batch 700	9.5 smp/sec	RPNLogLoss=0.035,	RPNL1Loss=0.00993,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0688,	
+INFO:root:Epoch 9 Batch 800	9.4 smp/sec	RPNLogLoss=0.043,	RPNL1Loss=0.00798,	RCNNLogLoss=0.266,	RCNNL1Loss=0.0777,	
+INFO:root:Epoch 9 Batch 900	9.6 smp/sec	RPNLogLoss=0.0448,	RPNL1Loss=0.0101,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0676,	
+INFO:root:Epoch 9 Batch 1000	9.2 smp/sec	RPNLogLoss=0.0597,	RPNL1Loss=0.0103,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0706,	
+INFO:root:Epoch 9 Batch 1100	9.5 smp/sec	RPNLogLoss=0.0454,	RPNL1Loss=0.0104,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0775,	
+INFO:root:Epoch 9 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0434,	RPNL1Loss=0.00757,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0663,	
+INFO:root:Epoch 9 Batch 1300	9.9 smp/sec	RPNLogLoss=0.0578,	RPNL1Loss=0.00972,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0626,	
+INFO:root:Epoch 9 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0406,	RPNL1Loss=0.0103,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0735,	
+INFO:root:Epoch 9 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0299,	RPNL1Loss=0.00599,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0734,	
+INFO:root:Epoch 9 Batch 1600	9.6 smp/sec	RPNLogLoss=0.0559,	RPNL1Loss=0.013,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0817,	
+INFO:root:Epoch 9 Batch 1700	9.4 smp/sec	RPNLogLoss=0.0395,	RPNL1Loss=0.00722,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0661,	
+INFO:root:Epoch 9 Batch 1800	9.5 smp/sec	RPNLogLoss=0.0581,	RPNL1Loss=0.0132,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0784,	
+INFO:root:Epoch 9 Batch 1900	9.5 smp/sec	RPNLogLoss=0.0514,	RPNL1Loss=0.00852,	RCNNLogLoss=0.274,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 9 Batch 2000	9.7 smp/sec	RPNLogLoss=0.0465,	RPNL1Loss=0.00989,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0628,	
+INFO:root:Epoch 9 Batch 2100	9.6 smp/sec	RPNLogLoss=0.05,	RPNL1Loss=0.0107,	RCNNLogLoss=0.247,	RCNNL1Loss=0.069,	
+INFO:root:Epoch[9] Train-RPNLogLoss=0.039243
+INFO:root:Epoch[9] Train-RPNL1Loss=0.009062
+INFO:root:Epoch[9] Train-RCNNLogLoss=0.251821
+INFO:root:Epoch[9] Train-RCNNL1Loss=0.075785
+INFO:root:Epoch[9] Time cost=229.188
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0010.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0010.params
+INFO:root:im_detect: 0/4791 data 0.047s im_detect 0.083s misc 0.002s
+INFO:root:im_detect: 200/4791 data 0.011s im_detect 0.051s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.38326171 0.49928381 0.60527931 0.6953141  0.76938817 0.81154082]
+=============================>PR<============================
+precision:
+[0.43879584 0.33743604 0.23588517 0.15060722 0.08933663 0.04919253]
+recall:
+[0.38326171 0.49928381 0.60527931 0.6953141  0.76938817 0.81154082]
+f-measure:
+[0.40915297 0.40270672 0.33947323 0.24758643 0.16008515 0.09276217]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+model/3DCE 1 image 3 slice-0010.params deleted to keep only the best model
+INFO:root:Validate callback: 0.695314
+INFO:root:Returned Validation=0.075785
+INFO:root:Retraining data=0.075785
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 10
+INFO:root:sample boxes filtered, images: 22478 -> 2231, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 10 Batch 0	0.3 smp/sec	RPNLogLoss=0.0392,	RPNL1Loss=0.00902,	RCNNLogLoss=0.25,	RCNNL1Loss=0.0754,	
+INFO:root:Epoch 10 Batch 100	9.6 smp/sec	RPNLogLoss=0.0494,	RPNL1Loss=0.0137,	RCNNLogLoss=0.274,	RCNNL1Loss=0.0793,	
+INFO:root:Epoch 10 Batch 200	9.5 smp/sec	RPNLogLoss=0.0436,	RPNL1Loss=0.00734,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 10 Batch 300	9.6 smp/sec	RPNLogLoss=0.0502,	RPNL1Loss=0.0117,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0844,	
+INFO:root:Epoch 10 Batch 400	9.6 smp/sec	RPNLogLoss=0.0495,	RPNL1Loss=0.00877,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0695,	
+INFO:root:Epoch 10 Batch 500	9.5 smp/sec	RPNLogLoss=0.0445,	RPNL1Loss=0.0072,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0744,	
+INFO:root:Epoch 10 Batch 600	9.6 smp/sec	RPNLogLoss=0.0324,	RPNL1Loss=0.00896,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0719,	
+INFO:root:Epoch 10 Batch 700	9.7 smp/sec	RPNLogLoss=0.045,	RPNL1Loss=0.00884,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0755,	
+INFO:root:Epoch 10 Batch 800	9.4 smp/sec	RPNLogLoss=0.0335,	RPNL1Loss=0.0065,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0735,	
+INFO:root:Epoch 10 Batch 900	9.9 smp/sec	RPNLogLoss=0.0392,	RPNL1Loss=0.00752,	RCNNLogLoss=0.233,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 10 Batch 1000	9.8 smp/sec	RPNLogLoss=0.0428,	RPNL1Loss=0.00962,	RCNNLogLoss=0.266,	RCNNL1Loss=0.0732,	
+INFO:root:Epoch 10 Batch 1100	9.7 smp/sec	RPNLogLoss=0.0486,	RPNL1Loss=0.00949,	RCNNLogLoss=0.228,	RCNNL1Loss=0.0645,	
+INFO:root:Epoch 10 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0448,	RPNL1Loss=0.0117,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0733,	
+INFO:root:Epoch 10 Batch 1300	10.0 smp/sec	RPNLogLoss=0.0425,	RPNL1Loss=0.00674,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 10 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0515,	RPNL1Loss=0.00726,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0761,	
+INFO:root:Epoch 10 Batch 1500	9.8 smp/sec	RPNLogLoss=0.0286,	RPNL1Loss=0.0067,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0645,	
+INFO:root:Epoch 10 Batch 1600	9.9 smp/sec	RPNLogLoss=0.0456,	RPNL1Loss=0.0096,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0775,	
+INFO:root:Epoch 10 Batch 1700	9.6 smp/sec	RPNLogLoss=0.0411,	RPNL1Loss=0.01,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0787,	
+INFO:root:Epoch 10 Batch 1800	9.8 smp/sec	RPNLogLoss=0.0476,	RPNL1Loss=0.00785,	RCNNLogLoss=0.233,	RCNNL1Loss=0.0637,	
+INFO:root:Epoch 10 Batch 1900	9.5 smp/sec	RPNLogLoss=0.0383,	RPNL1Loss=0.0074,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0652,	
+INFO:root:Epoch 10 Batch 2000	9.8 smp/sec	RPNLogLoss=0.0447,	RPNL1Loss=0.0133,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0666,	
+INFO:root:Epoch 10 Batch 2100	9.7 smp/sec	RPNLogLoss=0.0621,	RPNL1Loss=0.0125,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0765,	
+INFO:root:Epoch 10 Batch 2200	9.8 smp/sec	RPNLogLoss=0.046,	RPNL1Loss=0.0129,	RCNNLogLoss=0.196,	RCNNL1Loss=0.0731,	
+INFO:root:Epoch[10] Train-RPNLogLoss=0.033601
+INFO:root:Epoch[10] Train-RPNL1Loss=0.010256
+INFO:root:Epoch[10] Train-RCNNLogLoss=0.193476
+INFO:root:Epoch[10] Train-RCNNL1Loss=0.074690
+INFO:root:Epoch[10] Time cost=231.567
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0011.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0011.params
+INFO:root:im_detect: 0/4791 data 0.066s im_detect 0.071s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.011s im_detect 0.048s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.011s im_detect 0.047s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.38633108 0.50317168 0.60568856 0.69736034 0.7704113  0.81276857]
+=============================>PR<============================
+precision:
+[0.44076107 0.33917241 0.23600702 0.15098352 0.0894448  0.04926328]
+recall:
+[0.38633108 0.50317168 0.60568856 0.69736034 0.7704113  0.81276857]
+f-measure:
+[0.41175509 0.40520722 0.33966378 0.24822463 0.16028097 0.09289598]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+model/3DCE 1 image 3 slice-0009.params deleted to keep only the best model
+INFO:root:Validate callback: 0.697360
+INFO:root:Returned Validation=0.074690
+INFO:root:Retraining data=0.074690
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 11
+INFO:root:sample boxes filtered, images: 22478 -> 2211, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 11 Batch 0	0.3 smp/sec	RPNLogLoss=0.0336,	RPNL1Loss=0.0102,	RCNNLogLoss=0.195,	RCNNL1Loss=0.0746,	
+INFO:root:Epoch 11 Batch 100	9.2 smp/sec	RPNLogLoss=0.0433,	RPNL1Loss=0.00801,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0695,	
+INFO:root:Epoch 11 Batch 200	9.5 smp/sec	RPNLogLoss=0.0437,	RPNL1Loss=0.00885,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0673,	
+INFO:root:Epoch 11 Batch 300	9.7 smp/sec	RPNLogLoss=0.053,	RPNL1Loss=0.0116,	RCNNLogLoss=0.275,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 11 Batch 400	9.4 smp/sec	RPNLogLoss=0.0786,	RPNL1Loss=0.0139,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0817,	
+INFO:root:Epoch 11 Batch 500	9.8 smp/sec	RPNLogLoss=0.0414,	RPNL1Loss=0.00819,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0755,	
+INFO:root:Epoch 11 Batch 600	9.7 smp/sec	RPNLogLoss=0.0502,	RPNL1Loss=0.0145,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0713,	
+INFO:root:Epoch 11 Batch 700	9.7 smp/sec	RPNLogLoss=0.048,	RPNL1Loss=0.00613,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0684,	
+INFO:root:Epoch 11 Batch 800	9.5 smp/sec	RPNLogLoss=0.058,	RPNL1Loss=0.00879,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0773,	
+INFO:root:Epoch 11 Batch 900	9.8 smp/sec	RPNLogLoss=0.0462,	RPNL1Loss=0.00936,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 11 Batch 1000	10.0 smp/sec	RPNLogLoss=0.0597,	RPNL1Loss=0.00778,	RCNNLogLoss=0.244,	RCNNL1Loss=0.066,	
+INFO:root:Epoch 11 Batch 1100	9.9 smp/sec	RPNLogLoss=0.0442,	RPNL1Loss=0.009,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0675,	
+INFO:root:Epoch 11 Batch 1200	9.8 smp/sec	RPNLogLoss=0.0547,	RPNL1Loss=0.00763,	RCNNLogLoss=0.271,	RCNNL1Loss=0.0662,	
+INFO:root:Epoch 11 Batch 1300	9.8 smp/sec	RPNLogLoss=0.0391,	RPNL1Loss=0.0137,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 11 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0413,	RPNL1Loss=0.00824,	RCNNLogLoss=0.256,	RCNNL1Loss=0.0676,	
+INFO:root:Epoch 11 Batch 1500	9.8 smp/sec	RPNLogLoss=0.0363,	RPNL1Loss=0.00779,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 11 Batch 1600	9.6 smp/sec	RPNLogLoss=0.054,	RPNL1Loss=0.0145,	RCNNLogLoss=0.236,	RCNNL1Loss=0.0812,	
+INFO:root:Epoch 11 Batch 1700	9.6 smp/sec	RPNLogLoss=0.0366,	RPNL1Loss=0.00787,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0702,	
+INFO:root:Epoch 11 Batch 1800	9.9 smp/sec	RPNLogLoss=0.0682,	RPNL1Loss=0.0143,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0698,	
+INFO:root:Epoch 11 Batch 1900	9.9 smp/sec	RPNLogLoss=0.0419,	RPNL1Loss=0.00602,	RCNNLogLoss=0.237,	RCNNL1Loss=0.077,	
+INFO:root:Epoch 11 Batch 2000	9.9 smp/sec	RPNLogLoss=0.0431,	RPNL1Loss=0.00869,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 11 Batch 2100	9.8 smp/sec	RPNLogLoss=0.0449,	RPNL1Loss=0.00755,	RCNNLogLoss=0.27,	RCNNL1Loss=0.0726,	
+INFO:root:Epoch 11 Batch 2200	10.2 smp/sec	RPNLogLoss=0.048,	RPNL1Loss=0.00697,	RCNNLogLoss=0.214,	RCNNL1Loss=0.065,	
+INFO:root:Epoch[11] Train-RPNLogLoss=0.048617
+INFO:root:Epoch[11] Train-RPNL1Loss=0.007107
+INFO:root:Epoch[11] Train-RCNNLogLoss=0.218733
+INFO:root:Epoch[11] Train-RCNNL1Loss=0.065999
+INFO:root:Epoch[11] Time cost=227.657
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0012.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0012.params
+INFO:root:im_detect: 0/4791 data 0.078s im_detect 0.063s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.050s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.38796808 0.50255781 0.60712093 0.69736034 0.7704113  0.81276857]
+=============================>PR<============================
+precision:
+[0.44180357 0.33889885 0.23643318 0.15098352 0.0894448  0.04926328]
+recall:
+[0.38796808 0.50255781 0.60712093 0.69736034 0.7704113  0.81276857]
+f-measure:
+[0.4131394  0.40481292 0.34033035 0.24822463 0.16028097 0.09289598]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+model/3DCE 1 image 3 slice-0012.params deleted to keep only the best model
+INFO:root:Validate callback: 0.697360
+INFO:root:Returned Validation=0.065999
+INFO:root:Retraining data=0.065999
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 12
+INFO:root:sample boxes filtered, images: 22478 -> 2233, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 12 Batch 0	0.3 smp/sec	RPNLogLoss=0.0476,	RPNL1Loss=0.0071,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0667,	
+INFO:root:Epoch 12 Batch 100	9.6 smp/sec	RPNLogLoss=0.0693,	RPNL1Loss=0.0124,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 12 Batch 200	9.6 smp/sec	RPNLogLoss=0.033,	RPNL1Loss=0.00763,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0669,	
+INFO:root:Epoch 12 Batch 300	9.5 smp/sec	RPNLogLoss=0.042,	RPNL1Loss=0.00798,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0688,	
+INFO:root:Epoch 12 Batch 400	9.8 smp/sec	RPNLogLoss=0.0449,	RPNL1Loss=0.00887,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0674,	
+INFO:root:Epoch 12 Batch 500	9.3 smp/sec	RPNLogLoss=0.0376,	RPNL1Loss=0.0092,	RCNNLogLoss=0.208,	RCNNL1Loss=0.0653,	
+INFO:root:Epoch 12 Batch 600	9.7 smp/sec	RPNLogLoss=0.0489,	RPNL1Loss=0.00823,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0699,	
+INFO:root:Epoch 12 Batch 700	9.5 smp/sec	RPNLogLoss=0.0511,	RPNL1Loss=0.0172,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0646,	
+INFO:root:Epoch 12 Batch 800	9.6 smp/sec	RPNLogLoss=0.0484,	RPNL1Loss=0.0091,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0732,	
+INFO:root:Epoch 12 Batch 900	9.7 smp/sec	RPNLogLoss=0.0392,	RPNL1Loss=0.008,	RCNNLogLoss=0.217,	RCNNL1Loss=0.0715,	
+INFO:root:Epoch 12 Batch 1000	9.7 smp/sec	RPNLogLoss=0.0504,	RPNL1Loss=0.0104,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0743,	
+INFO:root:Epoch 12 Batch 1100	9.4 smp/sec	RPNLogLoss=0.0472,	RPNL1Loss=0.00854,	RCNNLogLoss=0.226,	RCNNL1Loss=0.0687,	
+INFO:root:Epoch 12 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0382,	RPNL1Loss=0.00749,	RCNNLogLoss=0.226,	RCNNL1Loss=0.0674,	
+INFO:root:Epoch 12 Batch 1300	9.4 smp/sec	RPNLogLoss=0.0443,	RPNL1Loss=0.00938,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0733,	
+INFO:root:Epoch 12 Batch 1400	9.8 smp/sec	RPNLogLoss=0.0366,	RPNL1Loss=0.00853,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0705,	
+INFO:root:Epoch 12 Batch 1500	9.8 smp/sec	RPNLogLoss=0.0541,	RPNL1Loss=0.0115,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0756,	
+INFO:root:Epoch 12 Batch 1600	9.7 smp/sec	RPNLogLoss=0.0609,	RPNL1Loss=0.0186,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0787,	
+INFO:root:Epoch 12 Batch 1700	9.6 smp/sec	RPNLogLoss=0.0594,	RPNL1Loss=0.0139,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0652,	
+INFO:root:Epoch 12 Batch 1800	9.7 smp/sec	RPNLogLoss=0.0725,	RPNL1Loss=0.0162,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0731,	
+INFO:root:Epoch 12 Batch 1900	9.6 smp/sec	RPNLogLoss=0.0518,	RPNL1Loss=0.00974,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0775,	
+INFO:root:Epoch 12 Batch 2000	9.6 smp/sec	RPNLogLoss=0.037,	RPNL1Loss=0.013,	RCNNLogLoss=0.223,	RCNNL1Loss=0.061,	
+INFO:root:Epoch 12 Batch 2100	9.6 smp/sec	RPNLogLoss=0.0528,	RPNL1Loss=0.0104,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0767,	
+INFO:root:Epoch 12 Batch 2200	10.0 smp/sec	RPNLogLoss=0.0381,	RPNL1Loss=0.01,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0691,	
+INFO:root:Epoch[12] Train-RPNLogLoss=0.034346
+INFO:root:Epoch[12] Train-RPNL1Loss=0.007579
+INFO:root:Epoch[12] Train-RCNNLogLoss=0.220642
+INFO:root:Epoch[12] Train-RCNNL1Loss=0.069506
+INFO:root:Epoch[12] Time cost=232.391
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0013.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0013.params
+INFO:root:im_detect: 0/4791 data 0.013s im_detect 0.086s misc 0.002s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.048s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.047s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39001432 0.50214856 0.61080417 0.69838347 0.77184367 0.81420094]
+=============================>PR<============================
+precision:
+[0.44310125 0.33871636 0.23752686 0.15117155 0.0895962  0.04934582]
+recall:
+[0.39001432 0.50214856 0.61080417 0.69838347 0.77184367 0.81420094]
+f-measure:
+[0.41486641 0.40454995 0.34204194 0.24854355 0.16055505 0.09305208]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+model/3DCE 1 image 3 slice-0011.params deleted to keep only the best model
+INFO:root:Validate callback: 0.698383
+INFO:root:Returned Validation=0.069506
+INFO:root:Retraining data=0.069506
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 13
+INFO:root:sample boxes filtered, images: 22478 -> 2310, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 13 Batch 0	0.3 smp/sec	RPNLogLoss=0.0347,	RPNL1Loss=0.00756,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 13 Batch 100	9.6 smp/sec	RPNLogLoss=0.0574,	RPNL1Loss=0.0106,	RCNNLogLoss=0.266,	RCNNL1Loss=0.0763,	
+INFO:root:Epoch 13 Batch 200	9.4 smp/sec	RPNLogLoss=0.0592,	RPNL1Loss=0.0113,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0751,	
+INFO:root:Epoch 13 Batch 300	9.6 smp/sec	RPNLogLoss=0.0624,	RPNL1Loss=0.0128,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0699,	
+INFO:root:Epoch 13 Batch 400	9.7 smp/sec	RPNLogLoss=0.0401,	RPNL1Loss=0.009,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0666,	
+INFO:root:Epoch 13 Batch 500	9.7 smp/sec	RPNLogLoss=0.0445,	RPNL1Loss=0.00945,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0707,	
+INFO:root:Epoch 13 Batch 600	9.5 smp/sec	RPNLogLoss=0.0407,	RPNL1Loss=0.00937,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0786,	
+INFO:root:Epoch 13 Batch 700	9.7 smp/sec	RPNLogLoss=0.0424,	RPNL1Loss=0.00971,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0688,	
+INFO:root:Epoch 13 Batch 800	9.7 smp/sec	RPNLogLoss=0.0505,	RPNL1Loss=0.00831,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0687,	
+INFO:root:Epoch 13 Batch 900	9.5 smp/sec	RPNLogLoss=0.0299,	RPNL1Loss=0.00772,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0731,	
+INFO:root:Epoch 13 Batch 1000	9.5 smp/sec	RPNLogLoss=0.0466,	RPNL1Loss=0.00716,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0767,	
+INFO:root:Epoch 13 Batch 1100	9.7 smp/sec	RPNLogLoss=0.0519,	RPNL1Loss=0.0095,	RCNNLogLoss=0.251,	RCNNL1Loss=0.0767,	
+INFO:root:Epoch 13 Batch 1200	9.7 smp/sec	RPNLogLoss=0.0596,	RPNL1Loss=0.00976,	RCNNLogLoss=0.256,	RCNNL1Loss=0.0737,	
+INFO:root:Epoch 13 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0423,	RPNL1Loss=0.00939,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0731,	
+INFO:root:Epoch 13 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0362,	RPNL1Loss=0.00638,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 13 Batch 1500	9.6 smp/sec	RPNLogLoss=0.0473,	RPNL1Loss=0.0108,	RCNNLogLoss=0.228,	RCNNL1Loss=0.0716,	
+INFO:root:Epoch 13 Batch 1600	9.5 smp/sec	RPNLogLoss=0.0454,	RPNL1Loss=0.00907,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 13 Batch 1700	9.8 smp/sec	RPNLogLoss=0.0438,	RPNL1Loss=0.00727,	RCNNLogLoss=0.244,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 13 Batch 1800	9.7 smp/sec	RPNLogLoss=0.0424,	RPNL1Loss=0.00846,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0624,	
+INFO:root:Epoch 13 Batch 1900	9.7 smp/sec	RPNLogLoss=0.0747,	RPNL1Loss=0.00815,	RCNNLogLoss=0.219,	RCNNL1Loss=0.0654,	
+INFO:root:Epoch 13 Batch 2000	9.7 smp/sec	RPNLogLoss=0.0368,	RPNL1Loss=0.00685,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0747,	
+INFO:root:Epoch 13 Batch 2100	9.7 smp/sec	RPNLogLoss=0.0444,	RPNL1Loss=0.00744,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0754,	
+INFO:root:Epoch 13 Batch 2200	9.6 smp/sec	RPNLogLoss=0.0384,	RPNL1Loss=0.0102,	RCNNLogLoss=0.225,	RCNNL1Loss=0.072,	
+INFO:root:Epoch 13 Batch 2300	9.7 smp/sec	RPNLogLoss=0.0549,	RPNL1Loss=0.0121,	RCNNLogLoss=0.25,	RCNNL1Loss=0.069,	
+INFO:root:Epoch[13] Train-RPNLogLoss=0.053504
+INFO:root:Epoch[13] Train-RPNL1Loss=0.012179
+INFO:root:Epoch[13] Train-RCNNLogLoss=0.256079
+INFO:root:Epoch[13] Train-RCNNL1Loss=0.072771
+INFO:root:Epoch[13] Time cost=240.536
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0014.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0014.params
+INFO:root:im_detect: 0/4791 data 0.022s im_detect 0.066s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.049s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39021895 0.50624105 0.61223655 0.70206671 0.77675466 0.82013505]
+=============================>PR<============================
+precision:
+[0.44323069 0.34053682 0.23795133 0.15184775 0.0901149  0.04968759]
+recall:
+[0.39021895 0.50624105 0.61223655 0.70206671 0.77675466 0.82013505]
+f-measure:
+[0.4150389  0.40717577 0.3427066  0.24969071 0.16149412 0.0936985 ]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+model/3DCE 1 image 3 slice-0013.params deleted to keep only the best model
+INFO:root:Validate callback: 0.702067
+INFO:root:Returned Validation=0.072771
+INFO:root:Retraining data=0.072771
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 14
+INFO:root:sample boxes filtered, images: 22478 -> 2315, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 14 Batch 0	0.3 smp/sec	RPNLogLoss=0.053,	RPNL1Loss=0.0122,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0727,	
+INFO:root:Epoch 14 Batch 100	9.6 smp/sec	RPNLogLoss=0.0345,	RPNL1Loss=0.00765,	RCNNLogLoss=0.249,	RCNNL1Loss=0.075,	
+INFO:root:Epoch 14 Batch 200	9.4 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.0101,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 14 Batch 300	9.3 smp/sec	RPNLogLoss=0.05,	RPNL1Loss=0.00898,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0724,	
+INFO:root:Epoch 14 Batch 400	9.5 smp/sec	RPNLogLoss=0.035,	RPNL1Loss=0.00695,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0693,	
+INFO:root:Epoch 14 Batch 500	9.6 smp/sec	RPNLogLoss=0.0582,	RPNL1Loss=0.0116,	RCNNLogLoss=0.251,	RCNNL1Loss=0.0698,	
+INFO:root:Epoch 14 Batch 600	9.6 smp/sec	RPNLogLoss=0.0704,	RPNL1Loss=0.0161,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0737,	
+INFO:root:Epoch 14 Batch 700	9.5 smp/sec	RPNLogLoss=0.059,	RPNL1Loss=0.00868,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0753,	
+INFO:root:Epoch 14 Batch 800	9.7 smp/sec	RPNLogLoss=0.0482,	RPNL1Loss=0.00966,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0749,	
+INFO:root:Epoch 14 Batch 900	9.4 smp/sec	RPNLogLoss=0.0423,	RPNL1Loss=0.00917,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0636,	
+INFO:root:Epoch 14 Batch 1000	9.6 smp/sec	RPNLogLoss=0.0405,	RPNL1Loss=0.00641,	RCNNLogLoss=0.216,	RCNNL1Loss=0.073,	
+INFO:root:Epoch 14 Batch 1100	9.8 smp/sec	RPNLogLoss=0.0694,	RPNL1Loss=0.0169,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0753,	
+INFO:root:Epoch 14 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0779,	RPNL1Loss=0.015,	RCNNLogLoss=0.274,	RCNNL1Loss=0.0896,	
+INFO:root:Epoch 14 Batch 1300	9.7 smp/sec	RPNLogLoss=0.0311,	RPNL1Loss=0.00805,	RCNNLogLoss=0.198,	RCNNL1Loss=0.0656,	
+INFO:root:Epoch 14 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0478,	RPNL1Loss=0.00972,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0853,	
+INFO:root:Epoch 14 Batch 1500	9.6 smp/sec	RPNLogLoss=0.0485,	RPNL1Loss=0.00892,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0596,	
+INFO:root:Epoch 14 Batch 1600	9.6 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.00848,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0658,	
+INFO:root:Epoch 14 Batch 1700	9.6 smp/sec	RPNLogLoss=0.0368,	RPNL1Loss=0.00725,	RCNNLogLoss=0.217,	RCNNL1Loss=0.0636,	
+INFO:root:Epoch 14 Batch 1800	9.7 smp/sec	RPNLogLoss=0.0444,	RPNL1Loss=0.00804,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0761,	
+INFO:root:Epoch 14 Batch 1900	9.6 smp/sec	RPNLogLoss=0.0497,	RPNL1Loss=0.00782,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0686,	
+INFO:root:Epoch 14 Batch 2000	9.9 smp/sec	RPNLogLoss=0.0304,	RPNL1Loss=0.00682,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0637,	
+INFO:root:Epoch 14 Batch 2100	9.7 smp/sec	RPNLogLoss=0.0469,	RPNL1Loss=0.0113,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 14 Batch 2200	9.9 smp/sec	RPNLogLoss=0.0558,	RPNL1Loss=0.00631,	RCNNLogLoss=0.228,	RCNNL1Loss=0.0593,	
+INFO:root:Epoch 14 Batch 2300	9.6 smp/sec	RPNLogLoss=0.0489,	RPNL1Loss=0.0109,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0716,	
+INFO:root:Epoch[14] Train-RPNLogLoss=0.044369
+INFO:root:Epoch[14] Train-RPNL1Loss=0.010486
+INFO:root:Epoch[14] Train-RCNNLogLoss=0.237409
+INFO:root:Epoch[14] Train-RCNNL1Loss=0.067924
+INFO:root:Epoch[14] Time cost=240.763
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0015.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0015.params
+INFO:root:im_detect: 0/4791 data 0.040s im_detect 0.070s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.046s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39441375 0.51115204 0.61448742 0.70186208 0.77470841 0.81727031]
+=============================>PR<============================
+precision:
+[0.44587092 0.34270819 0.2386174  0.15181022 0.08989885 0.04952263]
+recall:
+[0.39441375 0.51115204 0.61448742 0.70186208 0.77470841 0.81727031]
+f-measure:
+[0.41856677 0.41031537 0.34375    0.24962702 0.16110296 0.09338649]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+model/3DCE 1 image 3 slice-0015.params deleted to keep only the best model
+INFO:root:Validate callback: 0.701862
+INFO:root:Returned Validation=0.067924
+INFO:root:Retraining data=0.067924
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 15
+INFO:root:sample boxes filtered, images: 22478 -> 2275, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 15 Batch 0	0.3 smp/sec	RPNLogLoss=0.0443,	RPNL1Loss=0.0105,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0688,	
+INFO:root:Epoch 15 Batch 100	9.4 smp/sec	RPNLogLoss=0.042,	RPNL1Loss=0.0072,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0722,	
+INFO:root:Epoch 15 Batch 200	9.5 smp/sec	RPNLogLoss=0.0418,	RPNL1Loss=0.0096,	RCNNLogLoss=0.275,	RCNNL1Loss=0.0771,	
+INFO:root:Epoch 15 Batch 300	9.5 smp/sec	RPNLogLoss=0.05,	RPNL1Loss=0.0114,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 15 Batch 400	9.6 smp/sec	RPNLogLoss=0.0454,	RPNL1Loss=0.0106,	RCNNLogLoss=0.233,	RCNNL1Loss=0.0729,	
+INFO:root:Epoch 15 Batch 500	9.3 smp/sec	RPNLogLoss=0.0573,	RPNL1Loss=0.0153,	RCNNLogLoss=0.25,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 15 Batch 600	9.5 smp/sec	RPNLogLoss=0.0525,	RPNL1Loss=0.0105,	RCNNLogLoss=0.217,	RCNNL1Loss=0.065,	
+INFO:root:Epoch 15 Batch 700	9.4 smp/sec	RPNLogLoss=0.0695,	RPNL1Loss=0.00994,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0774,	
+INFO:root:Epoch 15 Batch 800	9.9 smp/sec	RPNLogLoss=0.0554,	RPNL1Loss=0.0102,	RCNNLogLoss=0.251,	RCNNL1Loss=0.0677,	
+INFO:root:Epoch 15 Batch 900	9.4 smp/sec	RPNLogLoss=0.0588,	RPNL1Loss=0.0115,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0678,	
+INFO:root:Epoch 15 Batch 1000	9.6 smp/sec	RPNLogLoss=0.0494,	RPNL1Loss=0.0129,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0717,	
+INFO:root:Epoch 15 Batch 1100	9.6 smp/sec	RPNLogLoss=0.0503,	RPNL1Loss=0.00833,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0722,	
+INFO:root:Epoch 15 Batch 1200	9.8 smp/sec	RPNLogLoss=0.0341,	RPNL1Loss=0.00812,	RCNNLogLoss=0.236,	RCNNL1Loss=0.063,	
+INFO:root:Epoch 15 Batch 1300	9.7 smp/sec	RPNLogLoss=0.0384,	RPNL1Loss=0.0105,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0711,	
+INFO:root:Epoch 15 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0489,	RPNL1Loss=0.00845,	RCNNLogLoss=0.233,	RCNNL1Loss=0.07,	
+INFO:root:Epoch 15 Batch 1500	9.4 smp/sec	RPNLogLoss=0.0503,	RPNL1Loss=0.00702,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0626,	
+INFO:root:Epoch 15 Batch 1600	9.5 smp/sec	RPNLogLoss=0.0391,	RPNL1Loss=0.00773,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0656,	
+INFO:root:Epoch 15 Batch 1700	9.9 smp/sec	RPNLogLoss=0.0431,	RPNL1Loss=0.00776,	RCNNLogLoss=0.207,	RCNNL1Loss=0.0625,	
+INFO:root:Epoch 15 Batch 1800	9.7 smp/sec	RPNLogLoss=0.0306,	RPNL1Loss=0.0083,	RCNNLogLoss=0.206,	RCNNL1Loss=0.0705,	
+INFO:root:Epoch 15 Batch 1900	9.8 smp/sec	RPNLogLoss=0.0306,	RPNL1Loss=0.00928,	RCNNLogLoss=0.236,	RCNNL1Loss=0.0699,	
+INFO:root:Epoch 15 Batch 2000	9.5 smp/sec	RPNLogLoss=0.0357,	RPNL1Loss=0.00954,	RCNNLogLoss=0.232,	RCNNL1Loss=0.074,	
+INFO:root:Epoch 15 Batch 2100	9.7 smp/sec	RPNLogLoss=0.0567,	RPNL1Loss=0.0114,	RCNNLogLoss=0.26,	RCNNL1Loss=0.071,	
+INFO:root:Epoch 15 Batch 2200	9.8 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.00793,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0736,	
+INFO:root:Epoch[15] Train-RPNLogLoss=0.046379
+INFO:root:Epoch[15] Train-RPNL1Loss=0.008428
+INFO:root:Epoch[15] Train-RCNNLogLoss=0.265196
+INFO:root:Epoch[15] Train-RCNNL1Loss=0.080089
+INFO:root:Epoch[15] Time cost=237.794
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0016.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0016.params
+INFO:root:im_detect: 0/4791 data 0.022s im_detect 0.057s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.048s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.047s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39103745 0.50726417 0.61551054 0.70472683 0.78146102 0.82197667]
+=============================>PR<============================
+precision:
+[0.44374783 0.34099037 0.23891978 0.15233546 0.09061143 0.04979361]
+recall:
+[0.39103745 0.50726417 0.61551054 0.70472683 0.78146102 0.82197667]
+f-measure:
+[0.41572851 0.40783088 0.34422384 0.25051828 0.16239316 0.09389902]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+model/3DCE 1 image 3 slice-0014.params deleted to keep only the best model
+INFO:root:Validate callback: 0.704727
+INFO:root:Returned Validation=0.080089
+INFO:root:Retraining data=0.080089
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 16
+INFO:root:sample boxes filtered, images: 22478 -> 2279, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 16 Batch 0	0.3 smp/sec	RPNLogLoss=0.046,	RPNL1Loss=0.00841,	RCNNLogLoss=0.263,	RCNNL1Loss=0.0797,	
+INFO:root:Epoch 16 Batch 100	9.2 smp/sec	RPNLogLoss=0.0457,	RPNL1Loss=0.0104,	RCNNLogLoss=0.271,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 16 Batch 200	9.5 smp/sec	RPNLogLoss=0.0407,	RPNL1Loss=0.00605,	RCNNLogLoss=0.231,	RCNNL1Loss=0.06,	
+INFO:root:Epoch 16 Batch 300	9.4 smp/sec	RPNLogLoss=0.0511,	RPNL1Loss=0.0125,	RCNNLogLoss=0.286,	RCNNL1Loss=0.0765,	
+INFO:root:Epoch 16 Batch 400	9.6 smp/sec	RPNLogLoss=0.055,	RPNL1Loss=0.0129,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0776,	
+INFO:root:Epoch 16 Batch 500	9.5 smp/sec	RPNLogLoss=0.0642,	RPNL1Loss=0.0114,	RCNNLogLoss=0.253,	RCNNL1Loss=0.067,	
+INFO:root:Epoch 16 Batch 600	9.8 smp/sec	RPNLogLoss=0.0423,	RPNL1Loss=0.009,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0644,	
+INFO:root:Epoch 16 Batch 700	9.7 smp/sec	RPNLogLoss=0.0401,	RPNL1Loss=0.00752,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0719,	
+INFO:root:Epoch 16 Batch 800	9.8 smp/sec	RPNLogLoss=0.0327,	RPNL1Loss=0.0103,	RCNNLogLoss=0.224,	RCNNL1Loss=0.073,	
+INFO:root:Epoch 16 Batch 900	9.3 smp/sec	RPNLogLoss=0.0738,	RPNL1Loss=0.00929,	RCNNLogLoss=0.266,	RCNNL1Loss=0.0663,	
+INFO:root:Epoch 16 Batch 1000	9.7 smp/sec	RPNLogLoss=0.041,	RPNL1Loss=0.00899,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0711,	
+INFO:root:Epoch 16 Batch 1100	9.5 smp/sec	RPNLogLoss=0.0616,	RPNL1Loss=0.00962,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0656,	
+INFO:root:Epoch 16 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0654,	RPNL1Loss=0.00998,	RCNNLogLoss=0.25,	RCNNL1Loss=0.0674,	
+INFO:root:Epoch 16 Batch 1300	9.6 smp/sec	RPNLogLoss=0.033,	RPNL1Loss=0.00999,	RCNNLogLoss=0.208,	RCNNL1Loss=0.0679,	
+INFO:root:Epoch 16 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0417,	RPNL1Loss=0.0102,	RCNNLogLoss=0.213,	RCNNL1Loss=0.0656,	
+INFO:root:Epoch 16 Batch 1500	9.8 smp/sec	RPNLogLoss=0.0478,	RPNL1Loss=0.00898,	RCNNLogLoss=0.24,	RCNNL1Loss=0.073,	
+INFO:root:Epoch 16 Batch 1600	9.5 smp/sec	RPNLogLoss=0.0431,	RPNL1Loss=0.00909,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 16 Batch 1700	9.8 smp/sec	RPNLogLoss=0.0498,	RPNL1Loss=0.00884,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0657,	
+INFO:root:Epoch 16 Batch 1800	9.6 smp/sec	RPNLogLoss=0.047,	RPNL1Loss=0.00825,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0721,	
+INFO:root:Epoch 16 Batch 1900	9.8 smp/sec	RPNLogLoss=0.0444,	RPNL1Loss=0.00917,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0677,	
+INFO:root:Epoch 16 Batch 2000	9.8 smp/sec	RPNLogLoss=0.0376,	RPNL1Loss=0.00758,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 16 Batch 2100	9.6 smp/sec	RPNLogLoss=0.0563,	RPNL1Loss=0.00923,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0695,	
+INFO:root:Epoch 16 Batch 2200	10.0 smp/sec	RPNLogLoss=0.043,	RPNL1Loss=0.0106,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0712,	
+INFO:root:Epoch[16] Train-RPNLogLoss=0.044887
+INFO:root:Epoch[16] Train-RPNL1Loss=0.008027
+INFO:root:Epoch[16] Train-RCNNLogLoss=0.209376
+INFO:root:Epoch[16] Train-RCNNL1Loss=0.071370
+INFO:root:Epoch[16] Time cost=237.372
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0017.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0017.params
+INFO:root:im_detect: 0/4791 data 0.010s im_detect 0.085s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.052s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.050s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39267444 0.50644567 0.61796603 0.70411295 0.77839165 0.82013505]
+=============================>PR<============================
+precision:
+[0.44477924 0.34062758 0.2396445  0.15222296 0.09028767 0.04968759]
+recall:
+[0.39267444 0.50644567 0.61796603 0.70411295 0.77839165 0.82013505]
+f-measure:
+[0.41710591 0.40730684 0.34535994 0.25032737 0.16180693 0.0936985 ]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+model/3DCE 1 image 3 slice-0017.params deleted to keep only the best model
+INFO:root:Validate callback: 0.704113
+INFO:root:Returned Validation=0.071370
+INFO:root:Retraining data=0.071370
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 17
+INFO:root:sample boxes filtered, images: 22478 -> 2345, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 17 Batch 0	0.3 smp/sec	RPNLogLoss=0.0453,	RPNL1Loss=0.00798,	RCNNLogLoss=0.21,	RCNNL1Loss=0.0712,	
+INFO:root:Epoch 17 Batch 100	9.0 smp/sec	RPNLogLoss=0.043,	RPNL1Loss=0.00791,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0671,	
+INFO:root:Epoch 17 Batch 200	9.6 smp/sec	RPNLogLoss=0.0391,	RPNL1Loss=0.0081,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0727,	
+INFO:root:Epoch 17 Batch 300	9.5 smp/sec	RPNLogLoss=0.0376,	RPNL1Loss=0.00844,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 17 Batch 400	9.7 smp/sec	RPNLogLoss=0.0409,	RPNL1Loss=0.00755,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0722,	
+INFO:root:Epoch 17 Batch 500	9.8 smp/sec	RPNLogLoss=0.0451,	RPNL1Loss=0.00892,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0652,	
+INFO:root:Epoch 17 Batch 600	9.6 smp/sec	RPNLogLoss=0.0455,	RPNL1Loss=0.00936,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0675,	
+INFO:root:Epoch 17 Batch 700	9.6 smp/sec	RPNLogLoss=0.0326,	RPNL1Loss=0.0106,	RCNNLogLoss=0.209,	RCNNL1Loss=0.0758,	
+INFO:root:Epoch 17 Batch 800	9.5 smp/sec	RPNLogLoss=0.0379,	RPNL1Loss=0.0126,	RCNNLogLoss=0.217,	RCNNL1Loss=0.0705,	
+INFO:root:Epoch 17 Batch 900	9.6 smp/sec	RPNLogLoss=0.0411,	RPNL1Loss=0.00957,	RCNNLogLoss=0.267,	RCNNL1Loss=0.0717,	
+INFO:root:Epoch 17 Batch 1000	9.6 smp/sec	RPNLogLoss=0.0589,	RPNL1Loss=0.0102,	RCNNLogLoss=0.264,	RCNNL1Loss=0.0719,	
+INFO:root:Epoch 17 Batch 1100	9.5 smp/sec	RPNLogLoss=0.0586,	RPNL1Loss=0.00915,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0735,	
+INFO:root:Epoch 17 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0298,	RPNL1Loss=0.00909,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0712,	
+INFO:root:Epoch 17 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0507,	RPNL1Loss=0.0148,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0664,	
+INFO:root:Epoch 17 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0426,	RPNL1Loss=0.0106,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0689,	
+INFO:root:Epoch 17 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0597,	RPNL1Loss=0.00942,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0734,	
+INFO:root:Epoch 17 Batch 1600	9.5 smp/sec	RPNLogLoss=0.0617,	RPNL1Loss=0.0149,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0645,	
+INFO:root:Epoch 17 Batch 1700	9.8 smp/sec	RPNLogLoss=0.0393,	RPNL1Loss=0.00828,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0782,	
+INFO:root:Epoch 17 Batch 1800	9.2 smp/sec	RPNLogLoss=0.0457,	RPNL1Loss=0.0104,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0715,	
+INFO:root:Epoch 17 Batch 1900	10.1 smp/sec	RPNLogLoss=0.0477,	RPNL1Loss=0.0107,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0686,	
+INFO:root:Epoch 17 Batch 2000	9.8 smp/sec	RPNLogLoss=0.0388,	RPNL1Loss=0.00882,	RCNNLogLoss=0.255,	RCNNL1Loss=0.0767,	
+INFO:root:Epoch 17 Batch 2100	9.8 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.00831,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0756,	
+INFO:root:Epoch 17 Batch 2200	9.5 smp/sec	RPNLogLoss=0.0465,	RPNL1Loss=0.00616,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0686,	
+INFO:root:Epoch 17 Batch 2300	9.9 smp/sec	RPNLogLoss=0.0394,	RPNL1Loss=0.00878,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0617,	
+INFO:root:Epoch[17] Train-RPNLogLoss=0.041732
+INFO:root:Epoch[17] Train-RPNL1Loss=0.009100
+INFO:root:Epoch[17] Train-RCNNLogLoss=0.232995
+INFO:root:Epoch[17] Train-RCNNL1Loss=0.064740
+INFO:root:Epoch[17] Time cost=244.854
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0018.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0018.params
+INFO:root:im_detect: 0/4791 data 0.073s im_detect 0.046s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.012s im_detect 0.047s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.012s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39349294 0.50746879 0.61755678 0.70288521 0.77900552 0.82238592]
+=============================>PR<============================
+precision:
+[0.44529351 0.34108101 0.23952381 0.15199788 0.09035244 0.04981717]
+recall:
+[0.39349294 0.50746879 0.61755678 0.70288521 0.77900552 0.82238592]
+f-measure:
+[0.41779371 0.40796184 0.3451707  0.24994543 0.16192421 0.09394357]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+model/3DCE 1 image 3 slice-0018.params deleted to keep only the best model
+INFO:root:Validate callback: 0.702885
+INFO:root:Returned Validation=0.064740
+INFO:root:Retraining data=0.064740
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 18
+INFO:root:sample boxes filtered, images: 22478 -> 2266, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 18 Batch 0	0.3 smp/sec	RPNLogLoss=0.0422,	RPNL1Loss=0.00945,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0642,	
+INFO:root:Epoch 18 Batch 100	9.4 smp/sec	RPNLogLoss=0.0405,	RPNL1Loss=0.00719,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0708,	
+INFO:root:Epoch 18 Batch 200	9.4 smp/sec	RPNLogLoss=0.0321,	RPNL1Loss=0.00979,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0709,	
+INFO:root:Epoch 18 Batch 300	9.5 smp/sec	RPNLogLoss=0.0418,	RPNL1Loss=0.00962,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0729,	
+INFO:root:Epoch 18 Batch 400	9.5 smp/sec	RPNLogLoss=0.0466,	RPNL1Loss=0.00823,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0645,	
+INFO:root:Epoch 18 Batch 500	9.5 smp/sec	RPNLogLoss=0.0526,	RPNL1Loss=0.0139,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0661,	
+INFO:root:Epoch 18 Batch 600	9.6 smp/sec	RPNLogLoss=0.0388,	RPNL1Loss=0.0124,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0624,	
+INFO:root:Epoch 18 Batch 700	9.6 smp/sec	RPNLogLoss=0.045,	RPNL1Loss=0.00844,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0668,	
+INFO:root:Epoch 18 Batch 800	9.7 smp/sec	RPNLogLoss=0.0419,	RPNL1Loss=0.0105,	RCNNLogLoss=0.216,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 18 Batch 900	9.5 smp/sec	RPNLogLoss=0.0342,	RPNL1Loss=0.00884,	RCNNLogLoss=0.206,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 18 Batch 1000	9.7 smp/sec	RPNLogLoss=0.0348,	RPNL1Loss=0.00601,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0674,	
+INFO:root:Epoch 18 Batch 1100	9.6 smp/sec	RPNLogLoss=0.0362,	RPNL1Loss=0.00808,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0776,	
+INFO:root:Epoch 18 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0504,	RPNL1Loss=0.0089,	RCNNLogLoss=0.265,	RCNNL1Loss=0.0768,	
+INFO:root:Epoch 18 Batch 1300	9.8 smp/sec	RPNLogLoss=0.0702,	RPNL1Loss=0.0154,	RCNNLogLoss=0.226,	RCNNL1Loss=0.08,	
+INFO:root:Epoch 18 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0572,	RPNL1Loss=0.00988,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0754,	
+INFO:root:Epoch 18 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0525,	RPNL1Loss=0.00862,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0764,	
+INFO:root:Epoch 18 Batch 1600	9.3 smp/sec	RPNLogLoss=0.0644,	RPNL1Loss=0.0132,	RCNNLogLoss=0.25,	RCNNL1Loss=0.0783,	
+INFO:root:Epoch 18 Batch 1700	9.5 smp/sec	RPNLogLoss=0.0545,	RPNL1Loss=0.00833,	RCNNLogLoss=0.268,	RCNNL1Loss=0.0758,	
+INFO:root:Epoch 18 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0405,	RPNL1Loss=0.00767,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0702,	
+INFO:root:Epoch 18 Batch 1900	9.7 smp/sec	RPNLogLoss=0.0607,	RPNL1Loss=0.0116,	RCNNLogLoss=0.267,	RCNNL1Loss=0.0679,	
+INFO:root:Epoch 18 Batch 2000	9.5 smp/sec	RPNLogLoss=0.0567,	RPNL1Loss=0.0192,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0677,	
+INFO:root:Epoch 18 Batch 2100	9.5 smp/sec	RPNLogLoss=0.0457,	RPNL1Loss=0.00888,	RCNNLogLoss=0.201,	RCNNL1Loss=0.0637,	
+INFO:root:Epoch 18 Batch 2200	9.5 smp/sec	RPNLogLoss=0.0434,	RPNL1Loss=0.00734,	RCNNLogLoss=0.26,	RCNNL1Loss=0.069,	
+INFO:root:Epoch[18] Train-RPNLogLoss=0.029884
+INFO:root:Epoch[18] Train-RPNL1Loss=0.006907
+INFO:root:Epoch[18] Train-RCNNLogLoss=0.222497
+INFO:root:Epoch[18] Train-RCNNL1Loss=0.069113
+INFO:root:Epoch[18] Time cost=237.674
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0019.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0019.params
+INFO:root:im_detect: 0/4791 data 0.053s im_detect 0.053s misc 0.004s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.050s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.011s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39574381 0.51319828 0.62164927 0.70881932 0.78268877 0.82565991]
+=============================>PR<============================
+precision:
+[0.44670286 0.34360871 0.240729   0.15308467 0.09074087 0.05000558]
+recall:
+[0.39574381 0.51319828 0.62164927 0.70881932 0.78268877 0.82565991]
+f-measure:
+[0.41968209 0.41161989 0.34706118 0.25178993 0.16262755 0.09429994]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+model/3DCE 1 image 3 slice-0016.params deleted to keep only the best model
+INFO:root:Validate callback: 0.708819
+INFO:root:Returned Validation=0.069113
+INFO:root:Retraining data=0.069113
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 19
+INFO:root:sample boxes filtered, images: 22478 -> 2277, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 19 Batch 0	0.3 smp/sec	RPNLogLoss=0.0298,	RPNL1Loss=0.00705,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0712,	
+INFO:root:Epoch 19 Batch 100	9.2 smp/sec	RPNLogLoss=0.0374,	RPNL1Loss=0.00802,	RCNNLogLoss=0.199,	RCNNL1Loss=0.064,	
+INFO:root:Epoch 19 Batch 200	9.2 smp/sec	RPNLogLoss=0.0418,	RPNL1Loss=0.0125,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0772,	
+INFO:root:Epoch 19 Batch 300	9.2 smp/sec	RPNLogLoss=0.0367,	RPNL1Loss=0.00876,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0785,	
+INFO:root:Epoch 19 Batch 400	9.4 smp/sec	RPNLogLoss=0.0493,	RPNL1Loss=0.00855,	RCNNLogLoss=0.251,	RCNNL1Loss=0.086,	
+INFO:root:Epoch 19 Batch 500	9.5 smp/sec	RPNLogLoss=0.0413,	RPNL1Loss=0.00729,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 19 Batch 600	9.7 smp/sec	RPNLogLoss=0.0541,	RPNL1Loss=0.00667,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0707,	
+INFO:root:Epoch 19 Batch 700	9.5 smp/sec	RPNLogLoss=0.0451,	RPNL1Loss=0.0142,	RCNNLogLoss=0.244,	RCNNL1Loss=0.0735,	
+INFO:root:Epoch 19 Batch 800	9.5 smp/sec	RPNLogLoss=0.0539,	RPNL1Loss=0.0143,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0755,	
+INFO:root:Epoch 19 Batch 900	9.4 smp/sec	RPNLogLoss=0.0303,	RPNL1Loss=0.00882,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0764,	
+INFO:root:Epoch 19 Batch 1000	9.5 smp/sec	RPNLogLoss=0.0444,	RPNL1Loss=0.0079,	RCNNLogLoss=0.252,	RCNNL1Loss=0.0721,	
+INFO:root:Epoch 19 Batch 1100	9.3 smp/sec	RPNLogLoss=0.047,	RPNL1Loss=0.00702,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0708,	
+INFO:root:Epoch 19 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0497,	RPNL1Loss=0.00949,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0705,	
+INFO:root:Epoch 19 Batch 1300	9.4 smp/sec	RPNLogLoss=0.0495,	RPNL1Loss=0.00976,	RCNNLogLoss=0.237,	RCNNL1Loss=0.076,	
+INFO:root:Epoch 19 Batch 1400	9.7 smp/sec	RPNLogLoss=0.0444,	RPNL1Loss=0.0108,	RCNNLogLoss=0.217,	RCNNL1Loss=0.0744,	
+INFO:root:Epoch 19 Batch 1500	9.4 smp/sec	RPNLogLoss=0.036,	RPNL1Loss=0.00872,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0631,	
+INFO:root:Epoch 19 Batch 1600	9.5 smp/sec	RPNLogLoss=0.048,	RPNL1Loss=0.0088,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0672,	
+INFO:root:Epoch 19 Batch 1700	9.8 smp/sec	RPNLogLoss=0.053,	RPNL1Loss=0.00777,	RCNNLogLoss=0.272,	RCNNL1Loss=0.0761,	
+INFO:root:Epoch 19 Batch 1800	9.4 smp/sec	RPNLogLoss=0.0429,	RPNL1Loss=0.00962,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0661,	
+INFO:root:Epoch 19 Batch 1900	9.6 smp/sec	RPNLogLoss=0.0538,	RPNL1Loss=0.0109,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0773,	
+INFO:root:Epoch 19 Batch 2000	9.5 smp/sec	RPNLogLoss=0.0476,	RPNL1Loss=0.00936,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0749,	
+INFO:root:Epoch 19 Batch 2100	9.4 smp/sec	RPNLogLoss=0.0406,	RPNL1Loss=0.00939,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0701,	
+INFO:root:Epoch 19 Batch 2200	9.8 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.0086,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0679,	
+INFO:root:Epoch[19] Train-RPNLogLoss=0.041538
+INFO:root:Epoch[19] Train-RPNL1Loss=0.007259
+INFO:root:Epoch[19] Train-RCNNLogLoss=0.255299
+INFO:root:Epoch[19] Train-RCNNL1Loss=0.071125
+INFO:root:Epoch[19] Time cost=240.679
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0020.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0020.params
+INFO:root:im_detect: 0/4791 data 0.018s im_detect 0.062s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.007s im_detect 0.049s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39574381 0.51299366 0.62062615 0.71004706 0.78187027 0.82627379]
+=============================>PR<============================
+precision:
+[0.44670286 0.34351877 0.24042806 0.15330918 0.09065458 0.0500409 ]
+recall:
+[0.39574381 0.51299366 0.62062615 0.71004706 0.78187027 0.82627379]
+f-measure:
+[0.41968209 0.41148954 0.34658896 0.25217107 0.1624713  0.09436674]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+model/3DCE 1 image 3 slice-0019.params deleted to keep only the best model
+INFO:root:Validate callback: 0.710047
+INFO:root:Returned Validation=0.071125
+INFO:root:Retraining data=0.071125
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 20
+INFO:root:sample boxes filtered, images: 22478 -> 2237, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 20 Batch 0	0.3 smp/sec	RPNLogLoss=0.0416,	RPNL1Loss=0.00754,	RCNNLogLoss=0.261,	RCNNL1Loss=0.0724,	
+INFO:root:Epoch 20 Batch 100	9.3 smp/sec	RPNLogLoss=0.0358,	RPNL1Loss=0.00676,	RCNNLogLoss=0.233,	RCNNL1Loss=0.0796,	
+INFO:root:Epoch 20 Batch 200	9.5 smp/sec	RPNLogLoss=0.0431,	RPNL1Loss=0.00577,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0666,	
+INFO:root:Epoch 20 Batch 300	9.6 smp/sec	RPNLogLoss=0.0397,	RPNL1Loss=0.00778,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0695,	
+INFO:root:Epoch 20 Batch 400	9.2 smp/sec	RPNLogLoss=0.0338,	RPNL1Loss=0.00789,	RCNNLogLoss=0.209,	RCNNL1Loss=0.0616,	
+INFO:root:Epoch 20 Batch 500	9.1 smp/sec	RPNLogLoss=0.0598,	RPNL1Loss=0.00895,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0666,	
+INFO:root:Epoch 20 Batch 600	9.6 smp/sec	RPNLogLoss=0.0339,	RPNL1Loss=0.00815,	RCNNLogLoss=0.198,	RCNNL1Loss=0.0654,	
+INFO:root:Epoch 20 Batch 700	9.4 smp/sec	RPNLogLoss=0.0482,	RPNL1Loss=0.00888,	RCNNLogLoss=0.266,	RCNNL1Loss=0.0701,	
+INFO:root:Epoch 20 Batch 800	9.4 smp/sec	RPNLogLoss=0.0695,	RPNL1Loss=0.0156,	RCNNLogLoss=0.251,	RCNNL1Loss=0.0752,	
+INFO:root:Epoch 20 Batch 900	9.6 smp/sec	RPNLogLoss=0.0514,	RPNL1Loss=0.00746,	RCNNLogLoss=0.226,	RCNNL1Loss=0.0668,	
+INFO:root:Epoch 20 Batch 1000	9.6 smp/sec	RPNLogLoss=0.04,	RPNL1Loss=0.00737,	RCNNLogLoss=0.273,	RCNNL1Loss=0.0729,	
+INFO:root:Epoch 20 Batch 1100	9.2 smp/sec	RPNLogLoss=0.049,	RPNL1Loss=0.0101,	RCNNLogLoss=0.29,	RCNNL1Loss=0.0816,	
+INFO:root:Epoch 20 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0412,	RPNL1Loss=0.00969,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0706,	
+INFO:root:Epoch 20 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0394,	RPNL1Loss=0.00829,	RCNNLogLoss=0.256,	RCNNL1Loss=0.0636,	
+INFO:root:Epoch 20 Batch 1400	9.5 smp/sec	RPNLogLoss=0.0562,	RPNL1Loss=0.00731,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 20 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0483,	RPNL1Loss=0.00938,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0709,	
+INFO:root:Epoch 20 Batch 1600	9.8 smp/sec	RPNLogLoss=0.0553,	RPNL1Loss=0.0182,	RCNNLogLoss=0.26,	RCNNL1Loss=0.0758,	
+INFO:root:Epoch 20 Batch 1700	9.6 smp/sec	RPNLogLoss=0.028,	RPNL1Loss=0.00609,	RCNNLogLoss=0.191,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 20 Batch 1800	9.7 smp/sec	RPNLogLoss=0.044,	RPNL1Loss=0.00892,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0702,	
+INFO:root:Epoch 20 Batch 1900	9.6 smp/sec	RPNLogLoss=0.0603,	RPNL1Loss=0.00941,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 20 Batch 2000	9.3 smp/sec	RPNLogLoss=0.051,	RPNL1Loss=0.012,	RCNNLogLoss=0.238,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 20 Batch 2100	9.6 smp/sec	RPNLogLoss=0.0381,	RPNL1Loss=0.00862,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0666,	
+INFO:root:Epoch 20 Batch 2200	9.7 smp/sec	RPNLogLoss=0.0448,	RPNL1Loss=0.00784,	RCNNLogLoss=0.257,	RCNNL1Loss=0.065,	
+INFO:root:Epoch[20] Train-RPNLogLoss=0.035566
+INFO:root:Epoch[20] Train-RPNL1Loss=0.007395
+INFO:root:Epoch[20] Train-RCNNLogLoss=0.230486
+INFO:root:Epoch[20] Train-RCNNL1Loss=0.063544
+INFO:root:Epoch[20] Time cost=236.106
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0021.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0021.params
+INFO:root:im_detect: 0/4791 data 0.021s im_detect 0.085s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.052s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.011s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.40433804 0.52097401 0.62594639 0.71434418 0.78453039 0.82729691]
+=============================>PR<============================
+precision:
+[0.45201876 0.34700831 0.24199035 0.15409402 0.09093497 0.05009975]
+recall:
+[0.40433804 0.52097401 0.62594639 0.71434418 0.78453039 0.82729691]
+f-measure:
+[0.426851   0.41655759 0.34904153 0.25350374 0.16297902 0.09447807]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+model/3DCE 1 image 3 slice-0020.params deleted to keep only the best model
+INFO:root:Validate callback: 0.714344
+INFO:root:Returned Validation=0.063544
+INFO:root:Retraining data=0.063544
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 21
+INFO:root:sample boxes filtered, images: 22478 -> 2268, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 21 Batch 0	0.3 smp/sec	RPNLogLoss=0.0357,	RPNL1Loss=0.00744,	RCNNLogLoss=0.23,	RCNNL1Loss=0.0636,	
+INFO:root:Epoch 21 Batch 100	9.3 smp/sec	RPNLogLoss=0.0495,	RPNL1Loss=0.01,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0741,	
+INFO:root:Epoch 21 Batch 200	9.3 smp/sec	RPNLogLoss=0.0468,	RPNL1Loss=0.0122,	RCNNLogLoss=0.243,	RCNNL1Loss=0.075,	
+INFO:root:Epoch 21 Batch 300	9.3 smp/sec	RPNLogLoss=0.0433,	RPNL1Loss=0.0113,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0708,	
+INFO:root:Epoch 21 Batch 400	9.3 smp/sec	RPNLogLoss=0.0352,	RPNL1Loss=0.00755,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0769,	
+INFO:root:Epoch 21 Batch 500	9.5 smp/sec	RPNLogLoss=0.0386,	RPNL1Loss=0.0112,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0693,	
+INFO:root:Epoch 21 Batch 600	9.1 smp/sec	RPNLogLoss=0.0483,	RPNL1Loss=0.0101,	RCNNLogLoss=0.239,	RCNNL1Loss=0.0676,	
+INFO:root:Epoch 21 Batch 700	9.3 smp/sec	RPNLogLoss=0.0328,	RPNL1Loss=0.00734,	RCNNLogLoss=0.191,	RCNNL1Loss=0.0624,	
+INFO:root:Epoch 21 Batch 800	9.6 smp/sec	RPNLogLoss=0.046,	RPNL1Loss=0.00865,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 21 Batch 900	9.6 smp/sec	RPNLogLoss=0.0425,	RPNL1Loss=0.00716,	RCNNLogLoss=0.237,	RCNNL1Loss=0.0708,	
+INFO:root:Epoch 21 Batch 1000	9.5 smp/sec	RPNLogLoss=0.0477,	RPNL1Loss=0.0106,	RCNNLogLoss=0.267,	RCNNL1Loss=0.0757,	
+INFO:root:Epoch 21 Batch 1100	9.5 smp/sec	RPNLogLoss=0.0555,	RPNL1Loss=0.0109,	RCNNLogLoss=0.259,	RCNNL1Loss=0.078,	
+INFO:root:Epoch 21 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0595,	RPNL1Loss=0.0114,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0665,	
+INFO:root:Epoch 21 Batch 1300	9.3 smp/sec	RPNLogLoss=0.034,	RPNL1Loss=0.0063,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0684,	
+INFO:root:Epoch 21 Batch 1400	9.5 smp/sec	RPNLogLoss=0.0399,	RPNL1Loss=0.00623,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0734,	
+INFO:root:Epoch 21 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0451,	RPNL1Loss=0.00701,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0655,	
+INFO:root:Epoch 21 Batch 1600	9.4 smp/sec	RPNLogLoss=0.0453,	RPNL1Loss=0.00641,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0663,	
+INFO:root:Epoch 21 Batch 1700	9.4 smp/sec	RPNLogLoss=0.0523,	RPNL1Loss=0.00952,	RCNNLogLoss=0.223,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 21 Batch 1800	9.5 smp/sec	RPNLogLoss=0.0394,	RPNL1Loss=0.00857,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0686,	
+INFO:root:Epoch 21 Batch 1900	9.5 smp/sec	RPNLogLoss=0.0555,	RPNL1Loss=0.0147,	RCNNLogLoss=0.234,	RCNNL1Loss=0.0721,	
+INFO:root:Epoch 21 Batch 2000	9.4 smp/sec	RPNLogLoss=0.046,	RPNL1Loss=0.00928,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0669,	
+INFO:root:Epoch 21 Batch 2100	9.4 smp/sec	RPNLogLoss=0.0415,	RPNL1Loss=0.00924,	RCNNLogLoss=0.197,	RCNNL1Loss=0.0637,	
+INFO:root:Epoch 21 Batch 2200	9.5 smp/sec	RPNLogLoss=0.0441,	RPNL1Loss=0.0101,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0751,	
+INFO:root:Epoch[21] Train-RPNLogLoss=0.038432
+INFO:root:Epoch[21] Train-RPNL1Loss=0.009266
+INFO:root:Epoch[21] Train-RCNNLogLoss=0.221019
+INFO:root:Epoch[21] Train-RCNNL1Loss=0.073633
+INFO:root:Epoch[21] Time cost=241.325
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0022.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0022.params
+INFO:root:im_detect: 0/4791 data 0.021s im_detect 0.095s misc 0.002s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.049s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.047s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39502762 0.51319828 0.62390014 0.71332106 0.78555351 0.82995703]
+=============================>PR<============================
+precision:
+[0.4462552  0.34360871 0.24139023 0.15390728 0.09104276 0.05025275]
+recall:
+[0.39502762 0.51319828 0.62390014 0.71332106 0.78555351 0.82995703]
+f-measure:
+[0.41908173 0.41161989 0.3480991  0.25318662 0.16317423 0.09476746]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+model/3DCE 1 image 3 slice-0022.params deleted to keep only the best model
+INFO:root:Validate callback: 0.713321
+INFO:root:Returned Validation=0.073633
+INFO:root:Retraining data=0.073633
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 22
+INFO:root:sample boxes filtered, images: 22478 -> 2266, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 22 Batch 0	0.3 smp/sec	RPNLogLoss=0.0393,	RPNL1Loss=0.00936,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0729,	
+INFO:root:Epoch 22 Batch 100	9.1 smp/sec	RPNLogLoss=0.0577,	RPNL1Loss=0.0114,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0775,	
+INFO:root:Epoch 22 Batch 200	9.3 smp/sec	RPNLogLoss=0.0465,	RPNL1Loss=0.0164,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0734,	
+INFO:root:Epoch 22 Batch 300	9.4 smp/sec	RPNLogLoss=0.0406,	RPNL1Loss=0.00718,	RCNNLogLoss=0.25,	RCNNL1Loss=0.0756,	
+INFO:root:Epoch 22 Batch 400	9.4 smp/sec	RPNLogLoss=0.0489,	RPNL1Loss=0.00921,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0733,	
+INFO:root:Epoch 22 Batch 500	9.3 smp/sec	RPNLogLoss=0.038,	RPNL1Loss=0.00755,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0723,	
+INFO:root:Epoch 22 Batch 600	9.2 smp/sec	RPNLogLoss=0.0363,	RPNL1Loss=0.00817,	RCNNLogLoss=0.257,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 22 Batch 700	9.3 smp/sec	RPNLogLoss=0.0388,	RPNL1Loss=0.0141,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0713,	
+INFO:root:Epoch 22 Batch 800	9.6 smp/sec	RPNLogLoss=0.0342,	RPNL1Loss=0.00682,	RCNNLogLoss=0.217,	RCNNL1Loss=0.0639,	
+INFO:root:Epoch 22 Batch 900	9.3 smp/sec	RPNLogLoss=0.0705,	RPNL1Loss=0.014,	RCNNLogLoss=0.268,	RCNNL1Loss=0.0727,	
+INFO:root:Epoch 22 Batch 1000	9.7 smp/sec	RPNLogLoss=0.041,	RPNL1Loss=0.0102,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0624,	
+INFO:root:Epoch 22 Batch 1100	9.4 smp/sec	RPNLogLoss=0.0308,	RPNL1Loss=0.00639,	RCNNLogLoss=0.203,	RCNNL1Loss=0.0655,	
+INFO:root:Epoch 22 Batch 1200	9.2 smp/sec	RPNLogLoss=0.045,	RPNL1Loss=0.00812,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0816,	
+INFO:root:Epoch 22 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0396,	RPNL1Loss=0.00651,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0658,	
+INFO:root:Epoch 22 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0488,	RPNL1Loss=0.00877,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0674,	
+INFO:root:Epoch 22 Batch 1500	9.6 smp/sec	RPNLogLoss=0.0351,	RPNL1Loss=0.00702,	RCNNLogLoss=0.226,	RCNNL1Loss=0.0747,	
+INFO:root:Epoch 22 Batch 1600	9.4 smp/sec	RPNLogLoss=0.0409,	RPNL1Loss=0.00926,	RCNNLogLoss=0.233,	RCNNL1Loss=0.0698,	
+INFO:root:Epoch 22 Batch 1700	9.6 smp/sec	RPNLogLoss=0.05,	RPNL1Loss=0.0104,	RCNNLogLoss=0.27,	RCNNL1Loss=0.076,	
+INFO:root:Epoch 22 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0347,	RPNL1Loss=0.00594,	RCNNLogLoss=0.21,	RCNNL1Loss=0.0661,	
+INFO:root:Epoch 22 Batch 1900	9.3 smp/sec	RPNLogLoss=0.044,	RPNL1Loss=0.012,	RCNNLogLoss=0.24,	RCNNL1Loss=0.075,	
+INFO:root:Epoch 22 Batch 2000	9.4 smp/sec	RPNLogLoss=0.0363,	RPNL1Loss=0.00926,	RCNNLogLoss=0.23,	RCNNL1Loss=0.0748,	
+INFO:root:Epoch 22 Batch 2100	9.3 smp/sec	RPNLogLoss=0.033,	RPNL1Loss=0.00903,	RCNNLogLoss=0.229,	RCNNL1Loss=0.0682,	
+INFO:root:Epoch 22 Batch 2200	9.4 smp/sec	RPNLogLoss=0.0484,	RPNL1Loss=0.00983,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0689,	
+INFO:root:Epoch[22] Train-RPNLogLoss=0.058182
+INFO:root:Epoch[22] Train-RPNL1Loss=0.013607
+INFO:root:Epoch[22] Train-RCNNLogLoss=0.222824
+INFO:root:Epoch[22] Train-RCNNL1Loss=0.062585
+INFO:root:Epoch[22] Time cost=241.741
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0023.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0023.params
+INFO:root:im_detect: 0/4791 data 0.012s im_detect 0.064s misc 0.002s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.050s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.049s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.39942705 0.51892777 0.62615101 0.71270718 0.78596276 0.82750153]
+=============================>PR<============================
+precision:
+[0.44899368 0.3461171  0.24205031 0.1537952  0.09108587 0.05011152]
+recall:
+[0.39942705 0.51892777 0.62615101 0.71270718 0.78596276 0.82750153]
+f-measure:
+[0.42276247 0.41526118 0.34913572 0.2529963  0.1632523  0.09450033]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+Iter 23: 0.7127
+model/3DCE 1 image 3 slice-0023.params deleted to keep only the best model
+INFO:root:Validate callback: 0.712707
+INFO:root:Returned Validation=0.062585
+INFO:root:Retraining data=0.062585
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 23
+INFO:root:sample boxes filtered, images: 22478 -> 2297, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 23 Batch 0	0.3 smp/sec	RPNLogLoss=0.0583,	RPNL1Loss=0.0137,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0629,	
+INFO:root:Epoch 23 Batch 100	9.2 smp/sec	RPNLogLoss=0.0632,	RPNL1Loss=0.0137,	RCNNLogLoss=0.247,	RCNNL1Loss=0.0661,	
+INFO:root:Epoch 23 Batch 200	9.2 smp/sec	RPNLogLoss=0.0304,	RPNL1Loss=0.00697,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0677,	
+INFO:root:Epoch 23 Batch 300	9.3 smp/sec	RPNLogLoss=0.0315,	RPNL1Loss=0.00725,	RCNNLogLoss=0.196,	RCNNL1Loss=0.0684,	
+INFO:root:Epoch 23 Batch 400	9.5 smp/sec	RPNLogLoss=0.0454,	RPNL1Loss=0.0109,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0792,	
+INFO:root:Epoch 23 Batch 500	9.4 smp/sec	RPNLogLoss=0.0526,	RPNL1Loss=0.011,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0725,	
+INFO:root:Epoch 23 Batch 600	9.5 smp/sec	RPNLogLoss=0.0559,	RPNL1Loss=0.00967,	RCNNLogLoss=0.263,	RCNNL1Loss=0.0733,	
+INFO:root:Epoch 23 Batch 700	9.6 smp/sec	RPNLogLoss=0.0433,	RPNL1Loss=0.00978,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0756,	
+INFO:root:Epoch 23 Batch 800	9.6 smp/sec	RPNLogLoss=0.045,	RPNL1Loss=0.0128,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0742,	
+INFO:root:Epoch 23 Batch 900	9.4 smp/sec	RPNLogLoss=0.0412,	RPNL1Loss=0.00756,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 23 Batch 1000	9.4 smp/sec	RPNLogLoss=0.0447,	RPNL1Loss=0.00938,	RCNNLogLoss=0.226,	RCNNL1Loss=0.066,	
+INFO:root:Epoch 23 Batch 1100	9.4 smp/sec	RPNLogLoss=0.0637,	RPNL1Loss=0.0151,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0757,	
+INFO:root:Epoch 23 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0447,	RPNL1Loss=0.00931,	RCNNLogLoss=0.234,	RCNNL1Loss=0.077,	
+INFO:root:Epoch 23 Batch 1300	9.7 smp/sec	RPNLogLoss=0.0488,	RPNL1Loss=0.00769,	RCNNLogLoss=0.253,	RCNNL1Loss=0.0689,	
+INFO:root:Epoch 23 Batch 1400	9.4 smp/sec	RPNLogLoss=0.0377,	RPNL1Loss=0.00684,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0753,	
+INFO:root:Epoch 23 Batch 1500	9.6 smp/sec	RPNLogLoss=0.0405,	RPNL1Loss=0.00891,	RCNNLogLoss=0.225,	RCNNL1Loss=0.072,	
+INFO:root:Epoch 23 Batch 1600	9.6 smp/sec	RPNLogLoss=0.0572,	RPNL1Loss=0.00966,	RCNNLogLoss=0.258,	RCNNL1Loss=0.0698,	
+INFO:root:Epoch 23 Batch 1700	9.4 smp/sec	RPNLogLoss=0.0439,	RPNL1Loss=0.00671,	RCNNLogLoss=0.21,	RCNNL1Loss=0.0554,	
+INFO:root:Epoch 23 Batch 1800	9.4 smp/sec	RPNLogLoss=0.0473,	RPNL1Loss=0.00772,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0664,	
+INFO:root:Epoch 23 Batch 1900	9.2 smp/sec	RPNLogLoss=0.0539,	RPNL1Loss=0.00952,	RCNNLogLoss=0.221,	RCNNL1Loss=0.066,	
+INFO:root:Epoch 23 Batch 2000	9.6 smp/sec	RPNLogLoss=0.0415,	RPNL1Loss=0.0114,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0745,	
+INFO:root:Epoch 23 Batch 2100	9.4 smp/sec	RPNLogLoss=0.0625,	RPNL1Loss=0.00769,	RCNNLogLoss=0.256,	RCNNL1Loss=0.0701,	
+INFO:root:Epoch 23 Batch 2200	9.4 smp/sec	RPNLogLoss=0.042,	RPNL1Loss=0.00865,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0701,	
+INFO:root:Epoch[23] Train-RPNLogLoss=0.031718
+INFO:root:Epoch[23] Train-RPNL1Loss=0.007959
+INFO:root:Epoch[23] Train-RCNNLogLoss=0.209531
+INFO:root:Epoch[23] Train-RCNNL1Loss=0.065512
+INFO:root:Epoch[23] Time cost=244.018
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0024.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0024.params
+INFO:root:im_detect: 0/4791 data 0.002s im_detect 0.070s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.010s im_detect 0.052s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.051s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.40024555 0.52281563 0.62860651 0.71475343 0.78207489 0.82606916]
+=============================>PR<============================
+precision:
+[0.44950018 0.34780833 0.24276908 0.15416869 0.09067616 0.05002912]
+recall:
+[0.40024555 0.52281563 0.62860651 0.71475343 0.78207489 0.82606916]
+f-measure:
+[0.42344537 0.41772255 0.35026509 0.25363055 0.16251036 0.09434447]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+Iter 23: 0.7127
+Iter 24: 0.7148
+model/3DCE 1 image 3 slice-0021.params deleted to keep only the best model
+INFO:root:Validate callback: 0.714753
+INFO:root:Returned Validation=0.065512
+INFO:root:Retraining data=0.065512
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 24
+INFO:root:sample boxes filtered, images: 22478 -> 2273, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 24 Batch 0	0.3 smp/sec	RPNLogLoss=0.0311,	RPNL1Loss=0.00801,	RCNNLogLoss=0.209,	RCNNL1Loss=0.0666,	
+INFO:root:Epoch 24 Batch 100	9.5 smp/sec	RPNLogLoss=0.0423,	RPNL1Loss=0.0131,	RCNNLogLoss=0.243,	RCNNL1Loss=0.075,	
+INFO:root:Epoch 24 Batch 200	9.5 smp/sec	RPNLogLoss=0.0431,	RPNL1Loss=0.00881,	RCNNLogLoss=0.259,	RCNNL1Loss=0.0652,	
+INFO:root:Epoch 24 Batch 300	9.2 smp/sec	RPNLogLoss=0.0467,	RPNL1Loss=0.00656,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0667,	
+INFO:root:Epoch 24 Batch 400	9.7 smp/sec	RPNLogLoss=0.0461,	RPNL1Loss=0.00855,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0766,	
+INFO:root:Epoch 24 Batch 500	9.5 smp/sec	RPNLogLoss=0.0429,	RPNL1Loss=0.00891,	RCNNLogLoss=0.251,	RCNNL1Loss=0.0645,	
+INFO:root:Epoch 24 Batch 600	9.4 smp/sec	RPNLogLoss=0.0439,	RPNL1Loss=0.0108,	RCNNLogLoss=0.228,	RCNNL1Loss=0.0756,	
+INFO:root:Epoch 24 Batch 700	9.3 smp/sec	RPNLogLoss=0.0442,	RPNL1Loss=0.0113,	RCNNLogLoss=0.224,	RCNNL1Loss=0.076,	
+INFO:root:Epoch 24 Batch 800	9.5 smp/sec	RPNLogLoss=0.0645,	RPNL1Loss=0.0187,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0681,	
+INFO:root:Epoch 24 Batch 900	9.6 smp/sec	RPNLogLoss=0.0314,	RPNL1Loss=0.00594,	RCNNLogLoss=0.224,	RCNNL1Loss=0.072,	
+INFO:root:Epoch 24 Batch 1000	9.4 smp/sec	RPNLogLoss=0.0466,	RPNL1Loss=0.00774,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0694,	
+INFO:root:Epoch 24 Batch 1100	9.4 smp/sec	RPNLogLoss=0.028,	RPNL1Loss=0.00686,	RCNNLogLoss=0.206,	RCNNL1Loss=0.0662,	
+INFO:root:Epoch 24 Batch 1200	9.5 smp/sec	RPNLogLoss=0.0333,	RPNL1Loss=0.00785,	RCNNLogLoss=0.216,	RCNNL1Loss=0.0679,	
+INFO:root:Epoch 24 Batch 1300	9.7 smp/sec	RPNLogLoss=0.0389,	RPNL1Loss=0.0123,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0743,	
+INFO:root:Epoch 24 Batch 1400	9.5 smp/sec	RPNLogLoss=0.0433,	RPNL1Loss=0.00812,	RCNNLogLoss=0.23,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 24 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0387,	RPNL1Loss=0.0105,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0728,	
+INFO:root:Epoch 24 Batch 1600	9.3 smp/sec	RPNLogLoss=0.0523,	RPNL1Loss=0.00955,	RCNNLogLoss=0.267,	RCNNL1Loss=0.0726,	
+INFO:root:Epoch 24 Batch 1700	9.5 smp/sec	RPNLogLoss=0.037,	RPNL1Loss=0.00714,	RCNNLogLoss=0.217,	RCNNL1Loss=0.0664,	
+INFO:root:Epoch 24 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0382,	RPNL1Loss=0.00789,	RCNNLogLoss=0.248,	RCNNL1Loss=0.072,	
+INFO:root:Epoch 24 Batch 1900	9.6 smp/sec	RPNLogLoss=0.043,	RPNL1Loss=0.0077,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0669,	
+INFO:root:Epoch 24 Batch 2000	9.7 smp/sec	RPNLogLoss=0.0348,	RPNL1Loss=0.00815,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0636,	
+INFO:root:Epoch 24 Batch 2100	9.5 smp/sec	RPNLogLoss=0.0403,	RPNL1Loss=0.00629,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0671,	
+INFO:root:Epoch 24 Batch 2200	9.8 smp/sec	RPNLogLoss=0.0932,	RPNL1Loss=0.0145,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0774,	
+INFO:root:Epoch[24] Train-RPNLogLoss=0.094603
+INFO:root:Epoch[24] Train-RPNL1Loss=0.013752
+INFO:root:Epoch[24] Train-RCNNLogLoss=0.233637
+INFO:root:Epoch[24] Train-RCNNL1Loss=0.070555
+INFO:root:Epoch[24] Time cost=240.041
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0025.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0025.params
+INFO:root:im_detect: 0/4791 data 0.020s im_detect 0.066s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.008s im_detect 0.050s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.050s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.40536116 0.52281563 0.62758338 0.71720892 0.78555351 0.82872928]
+=============================>PR<============================
+precision:
+[0.45264481 0.34780833 0.24246976 0.15461644 0.09104276 0.05018214]
+recall:
+[0.40536116 0.52281563 0.62758338 0.71720892 0.78555351 0.82872928]
+f-measure:
+[0.42770011 0.41772255 0.34979471 0.25439106 0.16317423 0.09463391]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+Iter 23: 0.7127
+Iter 24: 0.7148
+Iter 25: 0.7172
+model/3DCE 1 image 3 slice-0024.params deleted to keep only the best model
+INFO:root:Validate callback: 0.717209
+INFO:root:Returned Validation=0.070555
+INFO:root:Retraining data=0.070555
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 25
+INFO:root:sample boxes filtered, images: 22478 -> 2285, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 25 Batch 0	0.3 smp/sec	RPNLogLoss=0.0592,	RPNL1Loss=0.00731,	RCNNLogLoss=0.23,	RCNNL1Loss=0.0707,	
+INFO:root:Epoch 25 Batch 100	9.2 smp/sec	RPNLogLoss=0.0538,	RPNL1Loss=0.00891,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0734,	
+INFO:root:Epoch 25 Batch 200	9.4 smp/sec	RPNLogLoss=0.0416,	RPNL1Loss=0.0088,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0746,	
+INFO:root:Epoch 25 Batch 300	9.6 smp/sec	RPNLogLoss=0.0323,	RPNL1Loss=0.00624,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 25 Batch 400	9.3 smp/sec	RPNLogLoss=0.0292,	RPNL1Loss=0.00617,	RCNNLogLoss=0.198,	RCNNL1Loss=0.0616,	
+INFO:root:Epoch 25 Batch 500	9.6 smp/sec	RPNLogLoss=0.0401,	RPNL1Loss=0.00899,	RCNNLogLoss=0.213,	RCNNL1Loss=0.0643,	
+INFO:root:Epoch 25 Batch 600	9.4 smp/sec	RPNLogLoss=0.0479,	RPNL1Loss=0.00635,	RCNNLogLoss=0.276,	RCNNL1Loss=0.0685,	
+INFO:root:Epoch 25 Batch 700	9.4 smp/sec	RPNLogLoss=0.0529,	RPNL1Loss=0.0138,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0764,	
+INFO:root:Epoch 25 Batch 800	9.6 smp/sec	RPNLogLoss=0.0421,	RPNL1Loss=0.0101,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0654,	
+INFO:root:Epoch 25 Batch 900	9.6 smp/sec	RPNLogLoss=0.0434,	RPNL1Loss=0.0109,	RCNNLogLoss=0.228,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 25 Batch 1000	9.3 smp/sec	RPNLogLoss=0.0386,	RPNL1Loss=0.00659,	RCNNLogLoss=0.214,	RCNNL1Loss=0.0701,	
+INFO:root:Epoch 25 Batch 1100	9.4 smp/sec	RPNLogLoss=0.0389,	RPNL1Loss=0.00649,	RCNNLogLoss=0.223,	RCNNL1Loss=0.0683,	
+INFO:root:Epoch 25 Batch 1200	9.6 smp/sec	RPNLogLoss=0.0314,	RPNL1Loss=0.0074,	RCNNLogLoss=0.206,	RCNNL1Loss=0.069,	
+INFO:root:Epoch 25 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0441,	RPNL1Loss=0.0108,	RCNNLogLoss=0.227,	RCNNL1Loss=0.0732,	
+INFO:root:Epoch 25 Batch 1400	9.4 smp/sec	RPNLogLoss=0.033,	RPNL1Loss=0.00662,	RCNNLogLoss=0.237,	RCNNL1Loss=0.074,	
+INFO:root:Epoch 25 Batch 1500	9.5 smp/sec	RPNLogLoss=0.0391,	RPNL1Loss=0.00885,	RCNNLogLoss=0.254,	RCNNL1Loss=0.0714,	
+INFO:root:Epoch 25 Batch 1600	9.5 smp/sec	RPNLogLoss=0.0478,	RPNL1Loss=0.0123,	RCNNLogLoss=0.213,	RCNNL1Loss=0.0635,	
+INFO:root:Epoch 25 Batch 1700	9.7 smp/sec	RPNLogLoss=0.041,	RPNL1Loss=0.0116,	RCNNLogLoss=0.215,	RCNNL1Loss=0.0702,	
+INFO:root:Epoch 25 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0393,	RPNL1Loss=0.00851,	RCNNLogLoss=0.235,	RCNNL1Loss=0.0693,	
+INFO:root:Epoch 25 Batch 1900	9.4 smp/sec	RPNLogLoss=0.0311,	RPNL1Loss=0.00926,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0698,	
+INFO:root:Epoch 25 Batch 2000	9.7 smp/sec	RPNLogLoss=0.0396,	RPNL1Loss=0.00745,	RCNNLogLoss=0.259,	RCNNL1Loss=0.069,	
+INFO:root:Epoch 25 Batch 2100	9.3 smp/sec	RPNLogLoss=0.0496,	RPNL1Loss=0.00961,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0718,	
+INFO:root:Epoch 25 Batch 2200	9.4 smp/sec	RPNLogLoss=0.0643,	RPNL1Loss=0.0119,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0671,	
+INFO:root:Epoch[25] Train-RPNLogLoss=0.036981
+INFO:root:Epoch[25] Train-RPNL1Loss=0.008032
+INFO:root:Epoch[25] Train-RCNNLogLoss=0.245499
+INFO:root:Epoch[25] Train-RCNNL1Loss=0.071015
+INFO:root:Epoch[25] Time cost=241.562
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0026.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0026.params
+INFO:root:im_detect: 0/4791 data 0.038s im_detect 0.067s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.051s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.009s im_detect 0.050s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.40638428 0.527522   0.63413137 0.72048291 0.78862288 0.83159402]
+=============================>PR<============================
+precision:
+[0.45326943 0.34984394 0.24438136 0.1552127  0.09136599 0.05034688]
+recall:
+[0.40638428 0.527522   0.63413137 0.72048291 0.78862288 0.83159402]
+f-measure:
+[0.42854831 0.42069191 0.35280055 0.25540403 0.16375959 0.09494551]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+Iter 23: 0.7127
+Iter 24: 0.7148
+Iter 25: 0.7172
+Iter 26: 0.7205
+model/3DCE 1 image 3 slice-0025.params deleted to keep only the best model
+INFO:root:Validate callback: 0.720483
+INFO:root:Returned Validation=0.071015
+INFO:root:Retraining data=0.071015
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 26
+INFO:root:sample boxes filtered, images: 22478 -> 2265, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 26 Batch 0	0.3 smp/sec	RPNLogLoss=0.0365,	RPNL1Loss=0.00769,	RCNNLogLoss=0.245,	RCNNL1Loss=0.0699,	
+INFO:root:Epoch 26 Batch 100	9.1 smp/sec	RPNLogLoss=0.025,	RPNL1Loss=0.00673,	RCNNLogLoss=0.203,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 26 Batch 200	9.4 smp/sec	RPNLogLoss=0.0532,	RPNL1Loss=0.00792,	RCNNLogLoss=0.25,	RCNNL1Loss=0.0664,	
+INFO:root:Epoch 26 Batch 300	9.5 smp/sec	RPNLogLoss=0.036,	RPNL1Loss=0.00706,	RCNNLogLoss=0.216,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 26 Batch 400	9.5 smp/sec	RPNLogLoss=0.0378,	RPNL1Loss=0.00806,	RCNNLogLoss=0.239,	RCNNL1Loss=0.065,	
+INFO:root:Epoch 26 Batch 500	9.7 smp/sec	RPNLogLoss=0.0355,	RPNL1Loss=0.00845,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0669,	
+INFO:root:Epoch 26 Batch 600	9.4 smp/sec	RPNLogLoss=0.0293,	RPNL1Loss=0.00762,	RCNNLogLoss=0.192,	RCNNL1Loss=0.0641,	
+INFO:root:Epoch 26 Batch 700	9.4 smp/sec	RPNLogLoss=0.053,	RPNL1Loss=0.00856,	RCNNLogLoss=0.249,	RCNNL1Loss=0.0733,	
+INFO:root:Epoch 26 Batch 800	9.4 smp/sec	RPNLogLoss=0.04,	RPNL1Loss=0.0105,	RCNNLogLoss=0.261,	RCNNL1Loss=0.0696,	
+INFO:root:Epoch 26 Batch 900	9.6 smp/sec	RPNLogLoss=0.0392,	RPNL1Loss=0.00658,	RCNNLogLoss=0.227,	RCNNL1Loss=0.071,	
+INFO:root:Epoch 26 Batch 1000	9.8 smp/sec	RPNLogLoss=0.0446,	RPNL1Loss=0.00746,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0723,	
+INFO:root:Epoch 26 Batch 1100	9.5 smp/sec	RPNLogLoss=0.0399,	RPNL1Loss=0.0106,	RCNNLogLoss=0.232,	RCNNL1Loss=0.073,	
+INFO:root:Epoch 26 Batch 1200	9.4 smp/sec	RPNLogLoss=0.0592,	RPNL1Loss=0.0127,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0676,	
+INFO:root:Epoch 26 Batch 1300	9.5 smp/sec	RPNLogLoss=0.0374,	RPNL1Loss=0.0089,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 26 Batch 1400	9.3 smp/sec	RPNLogLoss=0.0508,	RPNL1Loss=0.0131,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0697,	
+INFO:root:Epoch 26 Batch 1500	9.4 smp/sec	RPNLogLoss=0.0342,	RPNL1Loss=0.00739,	RCNNLogLoss=0.224,	RCNNL1Loss=0.0665,	
+INFO:root:Epoch 26 Batch 1600	9.4 smp/sec	RPNLogLoss=0.0335,	RPNL1Loss=0.00812,	RCNNLogLoss=0.203,	RCNNL1Loss=0.064,	
+INFO:root:Epoch 26 Batch 1700	9.6 smp/sec	RPNLogLoss=0.0472,	RPNL1Loss=0.00856,	RCNNLogLoss=0.244,	RCNNL1Loss=0.0676,	
+INFO:root:Epoch 26 Batch 1800	9.6 smp/sec	RPNLogLoss=0.0416,	RPNL1Loss=0.00941,	RCNNLogLoss=0.221,	RCNNL1Loss=0.0722,	
+INFO:root:Epoch 26 Batch 1900	9.6 smp/sec	RPNLogLoss=0.0531,	RPNL1Loss=0.00954,	RCNNLogLoss=0.25,	RCNNL1Loss=0.069,	
+INFO:root:Epoch 26 Batch 2000	9.4 smp/sec	RPNLogLoss=0.0348,	RPNL1Loss=0.00783,	RCNNLogLoss=0.21,	RCNNL1Loss=0.0668,	
+INFO:root:Epoch 26 Batch 2100	9.4 smp/sec	RPNLogLoss=0.0419,	RPNL1Loss=0.00806,	RCNNLogLoss=0.243,	RCNNL1Loss=0.0751,	
+INFO:root:Epoch 26 Batch 2200	9.4 smp/sec	RPNLogLoss=0.0467,	RPNL1Loss=0.00673,	RCNNLogLoss=0.226,	RCNNL1Loss=0.066,	
+INFO:root:Epoch[26] Train-RPNLogLoss=0.037713
+INFO:root:Epoch[26] Train-RPNL1Loss=0.006411
+INFO:root:Epoch[26] Train-RCNNLogLoss=0.211456
+INFO:root:Epoch[26] Train-RCNNL1Loss=0.065253
+INFO:root:Epoch[26] Time cost=239.816
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0027.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0027.params
+INFO:root:im_detect: 0/4791 data 0.017s im_detect 0.083s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.052s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.051s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.40188255 0.52649887 0.63044813 0.71905054 0.79148762 0.83179865]
+=============================>PR<============================
+precision:
+[0.45051039 0.3494025  0.24330727 0.15495194 0.09166746 0.05035864]
+recall:
+[0.40188255 0.52649887 0.63044813 0.71905054 0.79148762 0.83179865]
+f-measure:
+[0.42480939 0.42004734 0.35111111 0.254961   0.16430559 0.09496776]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+Iter 23: 0.7127
+Iter 24: 0.7148
+Iter 25: 0.7172
+Iter 26: 0.7205
+Iter 27: 0.7191
+model/3DCE 1 image 3 slice-0027.params deleted to keep only the best model
+INFO:root:Validate callback: 0.719051
+INFO:root:Returned Validation=0.065253
+INFO:root:Retraining data=0.065253
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 27
+INFO:root:sample boxes filtered, images: 22478 -> 2197, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+INFO:root:Epoch 27 Batch 0	0.3 smp/sec	RPNLogLoss=0.0369,	RPNL1Loss=0.00714,	RCNNLogLoss=0.209,	RCNNL1Loss=0.0653,	
+INFO:root:Epoch 27 Batch 100	9.3 smp/sec	RPNLogLoss=0.0389,	RPNL1Loss=0.00884,	RCNNLogLoss=0.227,	RCNNL1Loss=0.068,	
+INFO:root:Epoch 27 Batch 200	9.5 smp/sec	RPNLogLoss=0.042,	RPNL1Loss=0.00738,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0667,	
+INFO:root:Epoch 27 Batch 300	9.1 smp/sec	RPNLogLoss=0.0525,	RPNL1Loss=0.0104,	RCNNLogLoss=0.231,	RCNNL1Loss=0.0731,	
+INFO:root:Epoch 27 Batch 400	9.6 smp/sec	RPNLogLoss=0.0344,	RPNL1Loss=0.00797,	RCNNLogLoss=0.22,	RCNNL1Loss=0.0692,	
+INFO:root:Epoch 27 Batch 500	9.5 smp/sec	RPNLogLoss=0.036,	RPNL1Loss=0.0061,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0705,	
+INFO:root:Epoch 27 Batch 600	9.4 smp/sec	RPNLogLoss=0.0606,	RPNL1Loss=0.0139,	RCNNLogLoss=0.238,	RCNNL1Loss=0.0737,	
+INFO:root:Epoch 27 Batch 700	9.5 smp/sec	RPNLogLoss=0.0463,	RPNL1Loss=0.00997,	RCNNLogLoss=0.226,	RCNNL1Loss=0.0723,	
+INFO:root:Epoch 27 Batch 800	9.5 smp/sec	RPNLogLoss=0.0446,	RPNL1Loss=0.0104,	RCNNLogLoss=0.208,	RCNNL1Loss=0.073,	
+INFO:root:Epoch 27 Batch 900	9.5 smp/sec	RPNLogLoss=0.0341,	RPNL1Loss=0.00792,	RCNNLogLoss=0.225,	RCNNL1Loss=0.0616,	
+INFO:root:Epoch 27 Batch 1000	9.5 smp/sec	RPNLogLoss=0.0398,	RPNL1Loss=0.00791,	RCNNLogLoss=0.222,	RCNNL1Loss=0.0674,	
+INFO:root:Epoch 27 Batch 1100	9.4 smp/sec	RPNLogLoss=0.0285,	RPNL1Loss=0.00799,	RCNNLogLoss=0.206,	RCNNL1Loss=0.0602,	
+INFO:root:Epoch 27 Batch 1200	9.3 smp/sec	RPNLogLoss=0.0491,	RPNL1Loss=0.014,	RCNNLogLoss=0.248,	RCNNL1Loss=0.0781,	
+INFO:root:Epoch 27 Batch 1300	9.4 smp/sec	RPNLogLoss=0.0612,	RPNL1Loss=0.0131,	RCNNLogLoss=0.246,	RCNNL1Loss=0.0731,	
+INFO:root:Epoch 27 Batch 1400	9.6 smp/sec	RPNLogLoss=0.0452,	RPNL1Loss=0.0203,	RCNNLogLoss=0.232,	RCNNL1Loss=0.0673,	
+INFO:root:Epoch 27 Batch 1500	9.7 smp/sec	RPNLogLoss=0.0439,	RPNL1Loss=0.00671,	RCNNLogLoss=0.218,	RCNNL1Loss=0.0737,	
+INFO:root:Epoch 27 Batch 1600	9.5 smp/sec	RPNLogLoss=0.052,	RPNL1Loss=0.0081,	RCNNLogLoss=0.24,	RCNNL1Loss=0.0732,	
+INFO:root:Epoch 27 Batch 1700	9.5 smp/sec	RPNLogLoss=0.0405,	RPNL1Loss=0.00959,	RCNNLogLoss=0.237,	RCNNL1Loss=0.075,	
+INFO:root:Epoch 27 Batch 1800	9.4 smp/sec	RPNLogLoss=0.0399,	RPNL1Loss=0.00862,	RCNNLogLoss=0.262,	RCNNL1Loss=0.0716,	
+INFO:root:Epoch 27 Batch 1900	9.4 smp/sec	RPNLogLoss=0.0446,	RPNL1Loss=0.0118,	RCNNLogLoss=0.232,	RCNNL1Loss=0.069,	
+INFO:root:Epoch 27 Batch 2000	9.4 smp/sec	RPNLogLoss=0.0466,	RPNL1Loss=0.00865,	RCNNLogLoss=0.241,	RCNNL1Loss=0.0699,	
+INFO:root:Epoch 27 Batch 2100	10.0 smp/sec	RPNLogLoss=0.0536,	RPNL1Loss=0.00805,	RCNNLogLoss=0.242,	RCNNL1Loss=0.0768,	
+INFO:root:Epoch[27] Train-RPNLogLoss=0.040131
+INFO:root:Epoch[27] Train-RPNL1Loss=0.010306
+INFO:root:Epoch[27] Train-RCNNLogLoss=0.202659
+INFO:root:Epoch[27] Train-RCNNL1Loss=0.069589
+INFO:root:Epoch[27] Time cost=232.034
+INFO:root:Saved checkpoint to "model/3DCE 1 image 3 slice-0028.params"
+INFO:root:Validating ...
+INFO:root:DeepLesion_val num_images 4793
+INFO:root:DeepLesion_val gt roidb loaded from /home/pulido/CADLab/lesion_detector_3DCE/images/cache/DeepLesion_val_gt_roidb.pkl
+INFO:root:noisy boxes filtered, images: 4793 -> 4791, bboxes: 4889 -> 4887
+INFO:root:Loading images with 4 threads.
+INFO:root:loading parameters from model/3DCE 1 image 3 slice-0028.params
+INFO:root:im_detect: 0/4791 data 0.010s im_detect 0.072s misc 0.003s
+INFO:root:im_detect: 200/4791 data 0.009s im_detect 0.047s misc 0.003s
+INFO:root:im_detect: 400/4791 data 0.010s im_detect 0.048s misc 0.003s
+600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600
+Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.40577041 0.52363413 0.632699   0.71864129 0.78923675 0.82893391]
+=============================>PR<============================
+precision:
+[0.45289483 0.34816327 0.24396402 0.1548774  0.0914306  0.05019391]
+recall:
+[0.40577041 0.52363413 0.632699   0.71864129 0.78923675 0.82893391]
+f-measure:
+[0.4280395  0.41823976 0.35214396 0.25483438 0.16387661 0.09465617]
+=============================>PR<============================
+Iter 1: 0.2189
+Iter 2: 0.4117
+Iter 3: 0.5378
+Iter 4: 0.6171
+Iter 5: 0.6767
+Iter 6: 0.6855
+Iter 7: 0.6884
+Iter 8: 0.6922
+Iter 9: 0.6961
+Iter 10: 0.6953
+Iter 11: 0.6974
+Iter 12: 0.6974
+Iter 13: 0.6984
+Iter 14: 0.7021
+Iter 15: 0.7019
+Iter 16: 0.7047
+Iter 17: 0.7041
+Iter 18: 0.7029
+Iter 19: 0.7088
+Iter 20: 0.7100
+Iter 21: 0.7143
+Iter 22: 0.7133
+Iter 23: 0.7127
+Iter 24: 0.7148
+Iter 25: 0.7172
+Iter 26: 0.7205
+Iter 27: 0.7191
+Iter 28: 0.7186
+model/3DCE 1 image 3 slice-0028.params deleted to keep only the best model
+INFO:root:Validate callback: 0.718641
+INFO:root:Returned Validation=0.069589
+INFO:root:Retraining data=0.069589
+INFO:root:Loading images with 4 threads.
+INFO:root:Redoing training to meet criteria = 28
+INFO:root:sample boxes filtered, images: 22478 -> 2280, bboxes: 22901 -> 22901
+INFO:root:Loading images with 4 threads.
+OMP: Error #34: System unable to allocate necessary resources for OMP thread:
+OMP: System error #11: Resource temporarily unavailable
+OMP: Hint Try decreasing the value of OMP_NUM_THREADS.
+./train.sh: line 16:  4245 Aborted                 (core dumped) python $DIR/rcnn/tools/train.py
