@@ -2,6 +2,7 @@
 
 3DCE using mxnet, implementing sampling with simulated annealing
 
-#Training Workflow
-![Training workflow](workflow.png)
+# Training Workflow
+
+![Workflow](workflow.png)
 
