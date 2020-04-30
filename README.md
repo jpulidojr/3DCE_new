@@ -4,5 +4,5 @@
 
 # Training Workflow
 
-![Workflow](workflow.png)
+![Workflow](workflow2.png)
 
