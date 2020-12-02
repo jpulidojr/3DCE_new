@@ -15,7 +15,7 @@ from rcnn.symbol import *
 from rcnn.core import callback, metric
 from rcnn.core.loader import AnchorLoader
 from rcnn.core.module import MutableModule
-from rcnn.utils.load_data import load_gt_roidb, merge_roidb, filter_roidb, sample_roidb
+from rcnn.utils.load_data import load_gt_roidb, merge_roidb, filter_roidb, sample_roidb, append_roidb
 from rcnn.utils.load_model import load_param
 
 os.environ['MXNET_CUDNN_AUTOTUNE_DEFAULT'] = '0'
@@ -44,11 +44,13 @@ def get_optimizer(args, arg_names, num_iter_per_epoch, iter_size):
             wd_dict[arg_name] = 0
             lr_dict[arg_name] = 2
 
+    print( "rescale_grad ", str(num_iter_per_epoch), " " , str(iter_size))
     optimizer_params = {'momentum': 0.9,
                         'wd': args.weight_decay,
                         'learning_rate': lr,
                         'lr_scheduler': lr_scheduler,
-                        # 'rescale_grad': (1.0 / batch_size),  # rescale_grad is done in loss functions
+                        #'rescale_grad': (1.0 / iter_size / 8 ), #/ num_iter_per_epoch), #An attempt to get 8 gpus working
+                        # 'rescale_grad': (1.0 / batch_size),  # rescale_grad is done in loss functions # Commented out by orig code
                         'param_idx2name': param_idx2name,
                         'clip_gradient': 5}
 
@@ -156,9 +158,21 @@ def train_net(args):
               for image_set in image_sets]
     roidb = merge_roidb(roidbs)
     roidb = filter_roidb(roidb)
-    samplepcnt = 15
-    sroidb = sample_roidb(roidb, samplepcnt)  # Sample by percentage of all images
+
+    samplepcnt = args.begin_sample
+
+    if samplepcnt == 100:
+        sroidb = roidb
+    else:
+        sroidb = sample_roidb(roidb, samplepcnt)  # Sample by percentage of all images
     logger.info('Sampling %d pcnt : %d training slices' % (samplepcnt, len(sroidb)))
+
+    # Debug to see if we can concatenate ROIDB's
+    #print(sroidb)
+    #dir(sroidb)
+    #newroidb = sroidb + roidb
+    #newroidb = append_roidb(sroidb, roidb)
+    #print( "--Append test: " + str(len(sroidb)) +" " + str(len(roidb)) + " = " + str(len(newroidb)) ) 
 
     # load symbol
     sym = eval('get_' + args.network)(is_train=True, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCHORS)
