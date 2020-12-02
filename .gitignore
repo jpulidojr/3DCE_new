@@ -1,3 +1,11 @@
+# Ignore output files
+log.*
+core.*
+slurm-*
+
+# Ignore folders with large data sizes
+imagenet_models/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
