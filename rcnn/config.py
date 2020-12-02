@@ -22,6 +22,10 @@ config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
 
 config.TRAIN = edict()
 
+# Training behavior to enable random sampling at percentage
+config.TRAIN.RANDOM = True
+config.TRAIN.RAND_PCNT = 20
+
 # R-CNN and RPN
 config.TRAIN.SAMPLES_PER_BATCH = 1
 # e2e changes behavior of anchor loader and metric
@@ -114,6 +118,7 @@ default.root_path = '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data'
 default.dataset_path = '/home/pulido/CADLab/lesion_detector_3DCE/images/'
 
 # default training
+default.begin_sample = 100
 default.frequent = 20
 default.kvstore = 'device'
 # default e2e

@@ -1,0 +1,40 @@
+exp_name: '3DCEn 1 image 3 slice'
+gpus: '0' #'0,1,2,3,4,5,6,7'  # '': auto select one idle gpu
+dataset: 'DeepLesion'
+image_set: 'train'
+rand_seed: 23  # -1: don't fix random seed
+prefetch_thread_num: 4  # 0: no prefetch
+begin_epoch: 0  # if > 0, resume from previously trained model according to exp_name; if =0, initialize from pretrained model
+shuffle: True
+use_roidb_cache: True
+begin_sample: 10 #25 # if this is not 100, it will begin sampling by initial pcnt
+
+dataset_path: '/home/pulido/CADLab/lesion_detector_3DCE/images/'
+#groundtruth_file: 'DL_info.csv'
+image_path: '/home/pulido/CADLab/lesion_detector_3DCE/images/Images_png/' 
+#dataset_path: '/media/zcx/ZhengPassport/3DCE/data/DeepLesion/'
+#groundtruth_file: '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data/DeepLesion/DL_info_train5000.csv'
+groundtruth_file: '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data/DeepLesion/DL_info.csv'
+#image_path: '/media/zcx/ZhengPassport/3DCE/data/DeepLesion/images_png/'
+
+# optimizer
+e2e_lr: 0.001
+e2e_lr_step: '4,5'  # decrease lr after e2e_lr_step epochs
+e2e_epoch: 30 #1 #30 #6 #原来作者写的参数为6
+lr_factor: 0.1
+weight_decay: 0.0005
+frequent: 100  # show loss after "frequent" iterations
+show_avg_loss: 100  # average the loss in show_avg_loss iterations
+iter_size: 1  # if iter_size > 1, gradients will be cumulated in iter_size iterations, so maybe lr should be reduced
+
+# validation
+val_image_set: 'val'
+val_max_box: 5
+val_thresh: 0
+validate_at_begin: False  # do validation before start training, may be useful if begin_epoch > 0
+keep_best_model: True  # only keep the model w best acc to save disk space
+val_avg_fp: [.5,1,2,4,8,16]  # compute the sensitivity at val_avg_fp FPs per image
+#val_gpu: '3'
+
+# for test.py
+test_image_set: 'test'

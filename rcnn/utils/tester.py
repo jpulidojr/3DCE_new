@@ -143,6 +143,7 @@ def im_detect(predictor, data_batch, data_names, scale):
 
 
 from rcnn.utils.evaluation import sens_at_FP
+from rcnn.utils.evaluation import computeIDs
 def my_evaluate_detections(all_boxes, all_gts):
     
     print 'Sensitivity @', default.val_avg_fp, 'average FPs per image:',
@@ -158,8 +159,10 @@ def my_evaluate_detections(all_boxes, all_gts):
     print 'f-measure:'
     print res4
     print '=============================>PR<============================'
+    sens_at_FP(all_boxes[1], all_gts[1], default.val_avg_fp, default.val_iou_th)
     return res1[3]  # sens@4FP
 #======================cwh========================
+    computeIDs(all_boxes[1], all_gts[1], default.val_iou_th)
 
 
 def pred_eval(predictor, test_data, imdb, vis=False, max_box=-1, thresh=1e-3):
