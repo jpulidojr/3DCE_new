@@ -2,6 +2,7 @@
 log.*
 core.*
 slurm-*
+model/
 
 # Ignore folders with large data sizes
 imagenet_models/
