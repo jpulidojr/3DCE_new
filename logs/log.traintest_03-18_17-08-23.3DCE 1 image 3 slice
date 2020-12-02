@@ -1061,4 +1061,3 @@ INFO:root:im_detect: 0/4817 data 0.024s im_detect 0.066s misc 0.006s
 INFO:root:im_detect: 200/4817 data 0.011s im_detect 0.048s misc 0.004s
 INFO:root:im_detect: 400/4817 data 0.010s im_detect 0.048s misc 0.004s
 600 800 1000 1200 1400 1600 1800 2000 2200 2400 2600 2800 3000 3200 3400 3600 3800 4000 4200 4400 4600 4800
-Sensitivity @ [0.5, 1, 2, 4, 8, 16] average FPs per image: [0.4590798  0.57675081 0.68098534 0.76038274 0.81229642 0.84771987]
