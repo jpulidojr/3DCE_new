@@ -118,6 +118,7 @@ default.root_path = '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data'
 default.dataset_path = '/home/pulido/CADLab/lesion_detector_3DCE/images/'
 
 # default training
+default.begin_sample = 100
 default.frequent = 20
 default.kvstore = 'device'
 # default e2e
