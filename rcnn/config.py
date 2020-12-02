@@ -22,10 +22,6 @@ config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
 
 config.TRAIN = edict()
 
-# Training behavior to enable random sampling at percentage
-config.TRAIN.RANDOM = True
-config.TRAIN.RAND_PCNT = 20
-
 # R-CNN and RPN
 config.TRAIN.SAMPLES_PER_BATCH = 1
 # e2e changes behavior of anchor loader and metric
@@ -106,19 +102,26 @@ config.TEST.NMS = 0.3
 default = edict()
 
 # default network
-default.network = 'vgg'
-#default.pretrained = '/media/zcx/ZhengPassport/3DCE/data/imagenet_models/MXNet/vgg16'
-default.pretrained = '/home/pulido/CADLab/lesion_detector_3DCE/vgg16'
+#cwh
+default.network = 'resnet'
+#default.network = 'vgg'
+default.pretrained = '/home/pulido/CADLab/lesion_detector_3DCE/3dce_new_resnet/imagenet_models/MXNet/resnet-18'
+#default.pretrained = '/media/zcx/ZhengPassport/3DCE_new/data/imagenet_models/MXNet/resnet-18'
+#default.pretrained = '/media/zcx/ZhengPassport/3DCE_new/data/imagenet_models/MXNet/vgg16'
+#default.pretrained = '/home/pulido/CADLab/lesion_detector_3DCE/vgg16'
 default.pretrained_epoch = 0
 default.base_lr = 0.001
 
 default.dataset = 'DeepLesion'
 default.image_set = 'train'
-default.root_path = '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data'
+#default.root_path = '/home/pulido/CADLab/lesion_detector_3DCE/3DCE_new/data'
+#default.dataset_path = '/home/pulido/CADLab/lesion_detector_3DCE/images/'
+#default.root_path = '/media/zcx/ZhengPassport/3DCE_new/data'
+#default.dataset_path = '/media/zcx/ZhengPassport/3DCE_new/data/DeepLesion/'
+default.root_path = '/home/pulido/CADLab/lesion_detector_3DCE/3dce_new_resnet/data'
 default.dataset_path = '/home/pulido/CADLab/lesion_detector_3DCE/images/'
 
 # default training
-default.begin_sample = 100
 default.frequent = 20
 default.kvstore = 'device'
 # default e2e
@@ -150,7 +153,7 @@ default.val_iou_th = .5
 default.val_thresh = 0
 default.weight_decay = .0005
 default.groundtruth_file = 'DL_info.csv'
-default.image_path = '/media/zcx/ZhengPassport/3DCE/'
+default.image_path = '/media/zcx/ZhengPassport/3DCE_new/data/DeepLesion/images_png/'
 default.validate_at_begin = True
 default.testing = False
 

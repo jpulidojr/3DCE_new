@@ -8,23 +8,32 @@ import mxnet as mx
 import numpy as np
 import os
 import random
-
+from mxnet import gluon, autograd
+from mxnet.gluon import nn
+#===================>cwh new<===============================
+from mxboard import SummaryWriter
+#===================>cwh new<===============================
 from rcnn.logger import logger
 from rcnn.config import config, default, cfg_from_file, merge_a_into_b
 from rcnn.symbol import *
 from rcnn.core import callback, metric
 from rcnn.core.loader import AnchorLoader
 from rcnn.core.module import MutableModule
-from rcnn.utils.load_data import load_gt_roidb, merge_roidb, filter_roidb, sample_roidb, append_roidb
+from rcnn.utils.load_data import load_gt_roidb, merge_roidb, filter_roidb, sample_roidb
 from rcnn.utils.load_model import load_param
 
 os.environ['MXNET_CUDNN_AUTOTUNE_DEFAULT'] = '0'
 os.chdir(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir)) # go to root dir of this project
 
+#===================>cwh new<===============================
+#sw = SummaryWriter(logdir='./logs', flush_secs=5)
+#===================>cwh new<===============================
 
 def get_optimizer(args, arg_names, num_iter_per_epoch, iter_size):
     # decide learning rate
     base_lr = args.e2e_lr
+    #print('@@@@@@@@@@@@@@@@@@@@@')
+    #print(base_lr)
     lr_factor = args.lr_factor
     lr_epoch = [float(ep) for ep in args.e2e_lr_step.split(',')]
     lr_epoch_diff = [ep - args.begin_epoch for ep in lr_epoch if ep > args.begin_epoch]
@@ -44,13 +53,11 @@ def get_optimizer(args, arg_names, num_iter_per_epoch, iter_size):
             wd_dict[arg_name] = 0
             lr_dict[arg_name] = 2
 
-    print( "rescale_grad ", str(num_iter_per_epoch), " " , str(iter_size))
     optimizer_params = {'momentum': 0.9,
                         'wd': args.weight_decay,
                         'learning_rate': lr,
                         'lr_scheduler': lr_scheduler,
-                        #'rescale_grad': (1.0 / iter_size / 8 ), #/ num_iter_per_epoch), #An attempt to get 8 gpus working
-                        # 'rescale_grad': (1.0 / batch_size),  # rescale_grad is done in loss functions # Commented out by orig code
+                        # 'rescale_grad': (1.0 / batch_size),  # rescale_grad is done in loss functions
                         'param_idx2name': param_idx2name,
                         'clip_gradient': 5}
 
@@ -66,6 +73,8 @@ def init_params(args, sym, train_data):
     data_shape_dict = dict(train_data.provide_data + train_data.provide_label)
     arg_shape, out_shape, aux_shape = sym.infer_shape(**data_shape_dict)
     arg_shape_dict = dict(zip(sym.list_arguments(), arg_shape))
+    #print('!!!!!!!!!!!!!!!!!!!!!!!')
+    #print(arg_shape_dict)
     out_shape_dict = dict(zip(sym.list_outputs(), out_shape))
     aux_shape_dict = dict(zip(sym.list_auxiliary_states(), aux_shape))
     logger.info('output shape %s' % pprint.pformat(out_shape_dict))
@@ -79,13 +88,20 @@ def init_params(args, sym, train_data):
         # if NUM_SLICES = 3, pretrained weights won't be changed
         # if NUM_SLICES > 3, extra input channels in conv1_1 will be initialized to 0
         nCh = config.NUM_SLICES
-        w1 = arg_params['conv1_1_weight'].asnumpy()
-        w1_new = np.zeros((64, nCh, 3, 3), dtype=float)
+        #===================cwh=================
+        w1 = arg_params['conv0_weight'].asnumpy()
+        #w1 = arg_params['conv1_1_weight'].asnumpy()
+        w1_new = np.zeros((64, nCh, 7, 7), dtype=float)
+        #w1_new = np.zeros((64, nCh, 3, 3), dtype=float)
         w1_new[:, (nCh - 3) / 2:(nCh - 3) / 2 + 3, :, :] = w1
 
         arg_params['conv1_1_new_weight'] = mx.nd.array(w1_new)
-        arg_params['conv1_1_new_bias'] = arg_params['conv1_1_bias']
-        del arg_params['conv1_1_weight']
+       
+        arg_params['conv0_new_bias_gamma'] = arg_params['bn0_gamma']
+        arg_params['conv1_1_new_bias_beta'] = arg_params['bn0_beta']
+        #arg_params['conv1_1_new_bias'] = arg_params['conv1_1_bias']
+        #del arg_params['conv0_weight']
+        #del arg_params['conv1_1_weight']
 
         arg_params['rpn_conv_3x3_weight'] = mx.random.normal(0, 0.01, shape=arg_shape_dict['rpn_conv_3x3_weight'])
         arg_params['rpn_conv_3x3_bias'] = mx.nd.zeros(shape=arg_shape_dict['rpn_conv_3x3_bias'])
@@ -97,6 +113,7 @@ def init_params(args, sym, train_data):
         if config.FRAMEWORK == '3DCE':
             arg_params['conv_new_1_weight'] = mx.random.normal(0, 0.01, shape=arg_shape_dict['conv_new_1_weight'])
             arg_params['conv_new_1_bias'] = mx.nd.zeros(shape=arg_shape_dict['conv_new_1_bias'])
+            
             arg_params['fc6_weight'] = mx.random.normal(0, 0.001, shape=arg_shape_dict['fc6_weight'])
             arg_params['fc6_bias'] = mx.nd.zeros(shape=arg_shape_dict['fc6_bias'])
 
@@ -129,6 +146,7 @@ def init_params(args, sym, train_data):
         if k in data_shape_dict:
             continue
         assert k in arg_params, k + ' not initialized'
+
         assert arg_params[k].shape == arg_shape_dict[k], \
             'shape inconsistent for ' + k + ' inferred ' + str(arg_shape_dict[k]) + ' provided ' + str(arg_params[k].shape)
     for k in sym.list_auxiliary_states():
@@ -158,21 +176,9 @@ def train_net(args):
               for image_set in image_sets]
     roidb = merge_roidb(roidbs)
     roidb = filter_roidb(roidb)
-
-    samplepcnt = args.begin_sample
-
-    if samplepcnt == 100:
-        sroidb = roidb
-    else:
-        sroidb = sample_roidb(roidb, samplepcnt)  # Sample by percentage of all images
+    samplepcnt = 15
+    sroidb = sample_roidb(roidb, samplepcnt)  # Sample by percentage of all images
     logger.info('Sampling %d pcnt : %d training slices' % (samplepcnt, len(sroidb)))
-
-    # Debug to see if we can concatenate ROIDB's
-    #print(sroidb)
-    #dir(sroidb)
-    #newroidb = sroidb + roidb
-    #newroidb = append_roidb(sroidb, roidb)
-    #print( "--Append test: " + str(len(sroidb)) +" " + str(len(roidb)) + " = " + str(len(newroidb)) ) 
 
     # load symbol
     sym = eval('get_' + args.network)(is_train=True, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCHORS)
@@ -182,6 +188,8 @@ def train_net(args):
     ctx = [mx.gpu(int(i)) for i in args.gpus.split(',')]
     batch_size = len(ctx)
     input_batch_size = config.TRAIN.SAMPLES_PER_BATCH * batch_size
+    
+
 
     # load training data
     train_data = AnchorLoader(feat_sym, sroidb, batch_size=input_batch_size, shuffle=args.shuffle,
@@ -193,6 +201,7 @@ def train_net(args):
     # infer max shape
     max_data_shape = [('data', (input_batch_size*config.NUM_IMAGES_3DCE, config.NUM_SLICES, config.MAX_SIZE, config.MAX_SIZE))]
     max_data_shape, max_label_shape = train_data.infer_shape(max_data_shape)
+
     max_data_shape.append(('gt_boxes', (input_batch_size*config.NUM_IMAGES_3DCE, 5, 5)))
     logger.info('providing maximum shape %s %s' % (max_data_shape, max_label_shape))
 
@@ -240,6 +249,8 @@ def train_net(args):
 
 
 if __name__ == '__main__':
+
+    
     config_file = cfg_from_file('config.yml')
     merge_a_into_b(config_file, config)
     config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
@@ -267,7 +278,11 @@ if __name__ == '__main__':
     # default.prefetch_thread_num = min(default.prefetch_thread_num, config.TRAIN.SAMPLES_PER_BATCH)
 
     train_net(default)
-
+    print('finished training')
     # test the best model on the test set
     from test import test_net
     test_net(default.e2e_prefix, default.best_epoch)
+
+#===================>cwh new<===============================
+#    sw.close()
+#===================>cwh new<===============================

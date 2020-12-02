@@ -19,6 +19,8 @@ from rcnn.utils.timer import Timer
 
 from rcnn.utils.evaluation import recall_all
 
+from mxboard import SummaryWriter
+
 #======================cwh========================
 # print the different metrics
 from rcnn.utils.evaluation import IOU
@@ -158,7 +160,7 @@ def my_evaluate_detections(all_boxes, all_gts):
     print 'f-measure:'
     print res4
     print '=============================>PR<============================'
-    return res1[3]  # sens@4FP
+    return res1[3], res2, res3, res4  # sens@4FP  # ===>cwh<===
 #======================cwh========================
 
 
@@ -263,9 +265,9 @@ def pred_eval(predictor, test_data, imdb, vis=False, max_box=-1, thresh=1e-3):
     default.res_dict = {'imname': all_imnames, 'boxes': all_boxes[1], 'gts': all_gts[1]}
     # default.res_dict = {'imname': all_imnames, 'im_info': all_iminfos, 'crops': all_crops, 'boxes': all_boxes[1], 'gts': all_gts[1]}
     
-    acc = my_evaluate_detections(all_boxes, all_gts)
+    acc,pre,rec,f = my_evaluate_detections(all_boxes, all_gts)
     sys.stdout.flush()
-    return acc
+    return acc,pre,rec,f
 
 
 def vis_all_boxes(im_array, boxes):

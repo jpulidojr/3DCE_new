@@ -3,67 +3,58 @@ import proposal
 import proposal_target
 from rcnn.config import config
 
+#cwh
+eps=2e-5
+use_global_stats=True
+workspace=1024
 
-def get_vgg_conv(data):
-    """
-    shared convolutional layers
-    :param data: Symbol
-    :return: Symbol
-    """
-    # group 1
-    conv1_1 = mx.symbol.Convolution(
-        data=data, kernel=(3, 3), pad=(1, 1), num_filter=64, workspace=2048, name="conv1_1_new")
-    relu1_1 = mx.symbol.Activation(data=conv1_1, act_type="relu", name="relu1_1")
-    conv1_2 = mx.symbol.Convolution(
-        data=relu1_1, kernel=(3, 3), pad=(1, 1), num_filter=64, workspace=2048, name="conv1_2")
-    relu1_2 = mx.symbol.Activation(data=conv1_2, act_type="relu", name="relu1_2")
-    pool1 = mx.symbol.Pooling(
-        data=relu1_2, pool_type="max", kernel=(2, 2), stride=(2, 2), name="pool1")
-    # group 2
-    conv2_1 = mx.symbol.Convolution(
-        data=pool1, kernel=(3, 3), pad=(1, 1), num_filter=128, workspace=2048, name="conv2_1")
-    relu2_1 = mx.symbol.Activation(data=conv2_1, act_type="relu", name="relu2_1")
-    conv2_2 = mx.symbol.Convolution(
-        data=relu2_1, kernel=(3, 3), pad=(1, 1), num_filter=128, workspace=2048, name="conv2_2")
-    relu2_2 = mx.symbol.Activation(data=conv2_2, act_type="relu", name="relu2_2")
-    pool2 = mx.symbol.Pooling(
-        data=relu2_2, pool_type="max", kernel=(2, 2), stride=(2, 2), name="pool2")
-    # group 3
-    conv3_1 = mx.symbol.Convolution(
-        data=pool2, kernel=(3, 3), pad=(1, 1), num_filter=256, workspace=2048, name="conv3_1")
-    relu3_1 = mx.symbol.Activation(data=conv3_1, act_type="relu", name="relu3_1")
-    conv3_2 = mx.symbol.Convolution(
-        data=relu3_1, kernel=(3, 3), pad=(1, 1), num_filter=256, workspace=2048, name="conv3_2")
-    relu3_2 = mx.symbol.Activation(data=conv3_2, act_type="relu", name="relu3_2")
-    conv3_3 = mx.symbol.Convolution(
-        data=relu3_2, kernel=(3, 3), pad=(1, 1), num_filter=256, workspace=2048, name="conv3_3")
-    relu3_3 = mx.symbol.Activation(data=conv3_3, act_type="relu", name="relu3_3")
-    pool3 = mx.symbol.Pooling(
-        data=relu3_3, pool_type="max", kernel=(2, 2), stride=(2, 2), name="pool3")
-    # group 4
-    conv4_1 = mx.symbol.Convolution(
-        data=pool3, kernel=(3, 3), pad=(1, 1), num_filter=512, workspace=2048, name="conv4_1")
-    relu4_1 = mx.symbol.Activation(data=conv4_1, act_type="relu", name="relu4_1")
-    conv4_2 = mx.symbol.Convolution(
-        data=relu4_1, kernel=(3, 3), pad=(1, 1), num_filter=512, workspace=2048, name="conv4_2")
-    relu4_2 = mx.symbol.Activation(data=conv4_2, act_type="relu", name="relu4_2")
-    conv4_3 = mx.symbol.Convolution(
-        data=relu4_2, kernel=(3, 3), pad=(1, 1), num_filter=512, workspace=2048, name="conv4_3")
-    relu4_3 = mx.symbol.Activation(data=conv4_3, act_type="relu", name="relu4_3")
-    # pool4 = mx.symbol.Pooling(  # remove pool4 to increase size of feature map
-    #     data=relu4_3, pool_type="max", kernel=(2, 2), stride=(2, 2), name="pool4")
-    # group 5
-    conv5_1 = mx.symbol.Convolution(
-        data=relu4_3, kernel=(3, 3), pad=(1, 1), num_filter=512, workspace=2048, name="conv5_1")
-    relu5_1 = mx.symbol.Activation(data=conv5_1, act_type="relu", name="relu5_1")
-    conv5_2 = mx.symbol.Convolution(
-        data=relu5_1, kernel=(3, 3), pad=(1, 1), num_filter=512, workspace=2048, name="conv5_2")
-    relu5_2 = mx.symbol.Activation(data=conv5_2, act_type="relu", name="relu5_2")
-    conv5_3 = mx.symbol.Convolution(
-        data=relu5_2, kernel=(3, 3), pad=(1, 1), num_filter=512, workspace=2048, name="conv5_3")
-    relu5_3 = mx.symbol.Activation(data=conv5_3, act_type="relu", name="relu5_3")
 
-    return relu5_3
+def residual_unit(data, num_filter, stride, dim_match, name):
+    bn1 = mx.sym.BatchNorm(data=data, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn1')
+    act1 = mx.sym.Activation(data=bn1, act_type='relu', name=name + '_relu1')
+    conv1 = mx.sym.Convolution(data=act1, num_filter=num_filter, kernel=(3, 3), stride=(1, 1), pad=(1, 1),
+                               no_bias=True, workspace=workspace, name=name + '_conv1')
+    bn2 = mx.sym.BatchNorm(data=conv1, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn2')
+    act2 = mx.sym.Activation(data=bn2, act_type='relu', name=name + '_relu2')
+    conv2 = mx.sym.Convolution(data=act2, num_filter=num_filter, kernel=(3, 3), stride=stride, pad=(1, 1),
+                               no_bias=True, workspace=workspace, name=name + '_conv2')
+    
+    if dim_match:
+        shortcut = data
+    else:
+        shortcut = mx.sym.Convolution(data=act1, num_filter=num_filter, kernel=(1, 1), stride=stride, no_bias=True,
+                                      workspace=workspace, name=name + '_sc')
+    sum = mx.sym.ElementWiseSum(*[conv2, shortcut], name=name + '_plus')
+    return sum
+
+
+def get_resnet_feature(data, units, filter_list):
+    # res1
+    data_bn = mx.sym.BatchNorm(data=data, fix_gamma=True, eps=eps, use_global_stats=use_global_stats, name='bn_data')
+    conv0 = mx.sym.Convolution(data=data_bn, num_filter=64, kernel=(7, 7), stride=(2, 2), pad=(3, 3),
+                               no_bias=True, name="conv0", workspace=workspace)
+    bn0 = mx.sym.BatchNorm(data=conv0, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name='bn0')
+    relu0 = mx.sym.Activation(data=bn0, act_type='relu', name='relu0')
+    #cwh (increase size of feature map)
+    pool0 = mx.symbol.Pooling(data=relu0, kernel=(3, 3), stride=(1, 1), pad=(1, 1), pool_type='max', name='pool0')
+
+    # res2
+    unit = residual_unit(data=pool0, num_filter=filter_list[0], stride=(1, 1), dim_match=False, name='stage1_unit1')
+    for i in range(2, units[0] + 1):
+        unit = residual_unit(data=unit, num_filter=filter_list[0], stride=(1, 1), dim_match=True, name='stage1_unit%s' % i)
+
+    # res3
+    unit = residual_unit(data=unit, num_filter=filter_list[1], stride=(2, 2), dim_match=False, name='stage2_unit1')
+    for i in range(2, units[1] + 1):
+        unit = residual_unit(data=unit, num_filter=filter_list[1], stride=(1, 1), dim_match=True, name='stage2_unit%s' % i)
+
+    # res4
+    unit = residual_unit(data=unit, num_filter=filter_list[2], stride=(2, 2), dim_match=False, name='stage3_unit1')
+    for i in range(2, units[2] + 1):
+        unit = residual_unit(data=unit, num_filter=filter_list[2], stride=(1, 1), dim_match=True, name='stage3_unit%s' % i)
+    return unit
+
+
 
 
 def _get_rpn(is_train, ft_map, im_info, num_anchors, rpn_label=None, rpn_bbox_target=None, rpn_bbox_weight=None):
@@ -76,6 +67,9 @@ def _get_rpn(is_train, ft_map, im_info, num_anchors, rpn_label=None, rpn_bbox_ta
     rpn_bbox_pred = mx.symbol.Convolution(
         data=rpn_relu, kernel=(1, 1), pad=(0, 0), num_filter=4 * num_anchors, name="rpn_bbox_pred")
     
+
+    
+
     # prepare rpn data
     rpn_cls_score_reshape = mx.symbol.Reshape(data=rpn_cls_score, shape=(0, 2, -1, 0), name="rpn_cls_score_reshape")
 
@@ -106,6 +100,7 @@ def _get_rpn(is_train, ft_map, im_info, num_anchors, rpn_label=None, rpn_bbox_ta
             rpn_pre_nms_top_n=cfg1.RPN_PRE_NMS_TOP_N, rpn_post_nms_top_n=cfg1.RPN_POST_NMS_TOP_N,
             threshold=cfg1.RPN_NMS_THRESH, rpn_min_size=cfg1.RPN_MIN_SIZE)
 
+
     if is_train:
         return rois, rpn_cls_prob, rpn_bbox_loss
     else:
@@ -121,12 +116,11 @@ def _get_3DCE_head(is_train, ft_map, rois, num_classes):
     conv_new_cat = mx.sym.reshape(conv_new_1, shape=(cfg1.SAMPLES_PER_BATCH, -1, 0,0), name='conv_new_cat')
 
     # rfcn_cls/rfcn_bbox
+
     psroipool5 = mx.contrib.sym.PSROIPooling(name='psroipool5', data=conv_new_cat, rois=rois,
                                             group_size=S, pooled_size=S,
                                             output_dim=num_rfcn_chn*config.NUM_IMAGES_3DCE, spatial_scale=1.0 / config.RCNN_FEAT_STRIDE)
 
-    
-    #fc6 = mx.symbol.FullyConnected(name='fc6', data=top_feat, num_hidden=2048, lr_mult=2.0)
     fc6 = mx.symbol.FullyConnected(name='fc6', data=psroipool5, num_hidden=2048, lr_mult=2.0)
     relu6 = mx.sym.Activation(data=fc6, act_type='relu', name='relu6')
 
@@ -186,7 +180,7 @@ def _get_Faster_head(is_train, ft_map, rois, num_classes):
     return cls_score, bbox_pred
 
 
-def get_vgg(is_train, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCHORS):
+def get_resnet(is_train, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCHORS):
     """
     end-to-end train with VGG 16 conv layers with RPN
     :param num_classes: used to determine output size
@@ -203,7 +197,11 @@ def get_vgg(is_train, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANC
         rpn_bbox_weight = mx.symbol.Variable(name='bbox_weight')
 
     # shared convolutional layers
-    relu5_3 = get_vgg_conv(data)
+    
+    #cwh
+    units=(2, 2, 2, 2)
+    filter_list=(64,128,256,512)
+    relu5_3 = get_resnet_feature(data, units=units, filter_list=filter_list)
 
     # RPN
     if is_train:
@@ -214,6 +212,7 @@ def get_vgg(is_train, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANC
                                  num_classes=num_classes, batch_images=config.TRAIN.SAMPLES_PER_BATCH,
                                  batch_rois=config.TRAIN.BATCH_ROIS, fg_fraction=config.TRAIN.FG_FRACTION)
         rois, label, bbox_target, bbox_weight = group
+
     else:
         rois = _get_rpn(is_train, relu5_3, im_info, num_anchors)
 
@@ -242,3 +241,4 @@ def get_vgg(is_train, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANC
         group = mx.symbol.Group([rois, cls_prob, bbox_pred])
 
     return group
+

@@ -71,23 +71,26 @@ def test_rcnn(network, dataset, image_set,
                           provide_data=test_data.provide_data, #provide_label=test_data.provide_label,
                           arg_params=arg_params, aux_params=aux_params)
 
+    # ===>cwh new<===
     # start detection
-    acc = pred_eval(predictor, test_data, imdb, vis=vis, max_box=max_box, thresh=thresh)
+    acc,pre,rec,f = pred_eval(predictor, test_data, imdb, vis=vis, max_box=max_box, thresh=thresh)
 
-    return acc
-
+    return acc,pre,rec,f
+    # ===>cwh new<===
 
 def test_net(prefix, iter_no):
     logger.info('Testing ...')
     default.testing = True
     # ctx = mx.gpu(int(default.val_gpu))
     ctx = mx.gpu(int(default.gpus.split(',')[0]))
-    acc = test_rcnn(default.network, default.dataset, default.test_image_set,
+    # ===>cwh new<===
+    acc,pre,rec,f = test_rcnn(default.network, default.dataset, default.test_image_set,
                       default.dataset_path,
                       ctx, prefix, iter_no,
                       default.val_vis, default.val_shuffle,
                       default.val_has_rpn, default.proposal,
                       default.val_max_box, default.val_thresh)
+    # ===>cwh new<===
 
     prop_file = 'proposals_%s_%s.mat' % (default.test_image_set, default.exp_name)
     savemat(prop_file, default.res_dict)

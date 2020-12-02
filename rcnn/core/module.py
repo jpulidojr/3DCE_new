@@ -2,7 +2,9 @@
 varying with training iterations. If shapes vary, executors will rebind,
 using shared arrays from the initial module binded with maximum shape.
 """
-
+#==============CWH=====================
+import gc
+#==============CWH=====================
 import logging
 import time
 
@@ -15,7 +17,8 @@ from mxnet.model import BatchEndParam
 from mxnet.base import _as_list
 from rcnn.core.loader import AnchorLoader
 from rcnn.config import config, default
-from rcnn.utils.load_data import sample_roidb, append_roidb
+from rcnn.utils.load_data import sample_roidb
+from mxboard import SummaryWriter
 
 class MutableModule(BaseModule):
     """A mutable module is a module that supports variable input data.
@@ -230,7 +233,7 @@ class MutableModule(BaseModule):
 
     def fit(self, train_data,ogdb, eval_data=None, eval_metric='acc',
             epoch_end_callback=None, batch_end_callback=None, kvstore='local',
-            optimizer='sgd', optimizer_params=(('learning_rate', 0.01),),#,('rescale_grad', 1.0/8.0),), #8 gpu attempt
+            optimizer='sgd', optimizer_params=(('learning_rate', 0.01),),
             eval_end_callback=None, iter_size=1,
             eval_batch_end_callback=None, initializer=Uniform(0.01),
             arg_params=None, aux_params=None, allow_missing=False,
@@ -334,7 +337,13 @@ class MutableModule(BaseModule):
         ################################################################################
         # training loop
         ################################################################################
+        
+
+        
         for epoch in range(begin_epoch, num_epoch):
+            #==============CWH=====================
+            gc.collect()
+            #==============CWH=====================
             tic = time.time()
             eval_metric.reset()
             nbatch = 0
@@ -343,50 +352,21 @@ class MutableModule(BaseModule):
                 self.logger.info( 'Redoing training to meet criteria = %d', annealing_steps)
                 #sroidb = train_data.roidb #passthrough test
 
-                atick = time.time()
-
-                iterdiff = 1.0
-                # Check if we've stagnated
-                if len(val_list) > 2:
-                    itermean = (val_list[-1]+val_list[-2]+val_list[-3])/3
-                    iterdiff = abs(itermean-val_list[-1])
-                    self.logger.info('Last 3 samples have diff of: %f', iterdiff)
-
-                if iterdiff < 0.01:
-                    self.logger.info('Reached a stagnated annealing criteria, dumping current samples')
-                    # Do something drastic
-                    # Lets try to instantly use the original db
-                    sroidb = ogdb
-
-                    # Try to read in another random subset
-                    #sroidb = sample_roidb(ogdb, 25) # Sample with removal
-                else:
-                    # Continue as usual
-                    # Select a new random subset
-                    newroidb = sample_roidb(ogdb, 15) # Without removal, this is 10%
-                    
-                    # Append old with new
-                    sroidb = append_roidb(train_data.roidb, newroidb)
-
+                # Select a new random subset
+                sroidb = sample_roidb(ogdb, 15)
                 # Create new training data instance by passing most of previous arguments and new random db
                 train_data2 = AnchorLoader(train_data.feat_sym, sroidb, train_data.batch_size, train_data.shuffle,
                               train_data.ctx, train_data.work_load_list,
                               train_data.feat_stride, train_data.anchor_scales,
                               train_data.anchor_ratios, train_data.aspect_grouping,
-                              nThreads=default.prefetch_thread_num)               
-
-                # Overwrite old train_data with the new one
-                train_data=train_data2
-                data_iter = iter(train_data)
-
-                atock = time.time()
-                self.logger.info('Annealing[%d] Time cost=%.3f', annealing_steps, (atock-atick))
+                              nThreads=default.prefetch_thread_num)
+                data_iter = iter(train_data2)
+                train_data=train_data2 #maybe?
             else:
                 data_iter = iter(train_data)
                 annealing_steps = 0
                 val_list = []
-                #target_prec=cur_val+5
-                target_prec=target_prec+5
+                target_prec=cur_val+5
             end_of_batch = False
             next_data_batch = next(data_iter)
 
@@ -423,7 +403,6 @@ class MutableModule(BaseModule):
                     for callback in _as_list(batch_end_callback):
                         callback(batch_end_params)
                 nbatch += 1
-
             # one epoch of training is finished
             for name, val in eval_metric.get_name_value():
                 self.logger.info('Epoch[%d] Train-%s=%f', epoch, name, val)
@@ -456,7 +435,6 @@ class MutableModule(BaseModule):
             if cur_val < target_prec:
                 # Evaluate list of precision/validation results first
                 #val_list
-                print(eval_data)
 
                 #else
                 redo_training = 1
@@ -464,7 +442,7 @@ class MutableModule(BaseModule):
             else:
                 redo_training = 0
 
-            self.logger.info('Annealing steps=%f', annealing_steps)
-
             # end of 1 epoch, reset the data-iter for another epoch
             train_data.reset()
+        
+

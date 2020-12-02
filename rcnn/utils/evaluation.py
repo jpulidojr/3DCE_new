@@ -63,47 +63,6 @@ def recall_all(boxes_all, gts_all, num_box, iou_th):
 	recs /= nGt
 	return recs
 
-def computeIDs(boxes_all, gts_all, iou_th):
-	# Compute the ID's of box elements that are True Positive and Negative and return them
-	nImg = len(boxes_all)
-	img_idxs = np.hstack([[i]*len(boxes_all[i]) for i in range(nImg)])
-	boxes_cat = np.vstack(boxes_all)
-	scores = boxes_cat[:, -1]
-	ord = np.argsort(scores)[::-1]
-	boxes_cat = boxes_cat[ord, :4]
-	img_idxs = img_idxs[ord]
-	hits = [np.zeros((len(gts),), dtype=bool) for gts in gts_all]
-
-	nHits = 0
-	nMiss = 0
-
-	tps = []
-	fps = []
-
-	for i in range(len(boxes_cat)):
-		overlaps = IOU(boxes_cat[i, :], gts_all[img_idxs[i]])
-		if overlaps.max() < iou_th:
-			nMiss += 1
-			fps.append(i)
-		else:
-			for j in range(len(overlaps)):
-				if overlaps[j] >= iou_th and not hits[img_idxs[i]][j]:
-					hits[img_idxs[i]][j] = True
-					nHits += 1
-					tps.append(i)
-                               
-
-	print( "---False positive ids: ")
-	print(fps)
-
-	print( "---True positive ids: ")
-	print(tps)	
-		
-	nGt = len(np.vstack(gts_all))
-	print( "---Amount in GT: " , nGt )
-
-    # Filter out boxes here and return array to feed into data loader
-	
 
 def FROC(boxes_all, gts_all, iou_th):
 	# Compute the FROC curve, for single class only
@@ -116,7 +75,7 @@ def FROC(boxes_all, gts_all, iou_th):
 	img_idxs = img_idxs[ord]
 	hits = [np.zeros((len(gts),), dtype=bool) for gts in gts_all]
 
-	nHits = 0
+        nHits = 0
 	nMiss = 0
 
 	tps = []
@@ -137,18 +96,18 @@ def FROC(boxes_all, gts_all, iou_th):
 		fps.append(nMiss)
 
 
-	nGt = len(np.vstack(gts_all))
+        nGt = len(np.vstack(gts_all))
 	sens = np.array(tps, dtype=float) / nGt
 	fp_per_img = np.array(fps, dtype=float) / nImg
         
 #====================cwh=======================
-	#add evaluation metric
-	tps = np.array(tps, dtype=float)
-	fps = np.array(fps, dtype=float)
-	pre = tps/(tps + fps)
-	pre = np.array(pre, dtype=float)  #precision
-	rec = sens   #recall
-	f = 2*pre*rec/(pre+rec)  #f-measure
+        #add evaluation metric
+        tps = np.array(tps, dtype=float)
+        fps = np.array(fps, dtype=float)
+        pre = tps/(tps + fps)
+        pre = np.array(pre, dtype=float)  #precision
+        rec = sens   #recall
+        f = 2*pre*rec/(pre+rec)  #f-measure
 
 	return sens, fp_per_img, pre, rec, f
 
@@ -160,14 +119,14 @@ def sens_at_FP(boxes_all, gts_all, avgFP, iou_th):
 	f1 = interpolate.interp1d(fp_per_img, sens, fill_value='extrapolate')
 	
 
-	# Similar to the interpolation of f1
-	f2 = interpolate.interp1d(fp_per_img, pre, fill_value='extrapolate')
-	f3 = interpolate.interp1d(fp_per_img, rec, fill_value='extrapolate')
-	f4 = interpolate.interp1d(fp_per_img, f, fill_value='extrapolate')
-	res1 = f1(np.array(avgFP))
-	# Output the different metrics
-	res2 = f2(np.array(avgFP))
-	res3 = f3(np.array(avgFP))
-	res4 = f4(np.array(avgFP))
+        # Similar to the interpolation of f1
+        f2 = interpolate.interp1d(fp_per_img, pre, fill_value='extrapolate')
+        f3 = interpolate.interp1d(fp_per_img, rec, fill_value='extrapolate')
+        f4 = interpolate.interp1d(fp_per_img, f, fill_value='extrapolate')
+        res1 = f1(np.array(avgFP))
+        # Output the different metrics
+        res2 = f2(np.array(avgFP))
+        res3 = f3(np.array(avgFP))
+        res4 = f4(np.array(avgFP))
 	return res1, res2, res3, res4
 #========================cwh======================
