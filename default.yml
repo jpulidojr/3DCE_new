@@ -1,4 +1,4 @@
-exp_name: '3DCE 1 image 3 slice'
+exp_name: 'res3DCE 1 image 3 slice'
 gpus: '0'  # '': auto select one idle gpu
 dataset: 'DeepLesion'
 image_set: 'train'

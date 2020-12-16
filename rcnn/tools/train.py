@@ -19,7 +19,7 @@ from rcnn.symbol import *
 from rcnn.core import callback, metric
 from rcnn.core.loader import AnchorLoader
 from rcnn.core.module import MutableModule
-from rcnn.utils.load_data import load_gt_roidb, merge_roidb, filter_roidb, sample_roidb
+from rcnn.utils.load_data import load_gt_roidb, merge_roidb, filter_roidb, sample_roidb, append_roidb
 from rcnn.utils.load_model import load_param
 
 os.environ['MXNET_CUDNN_AUTOTUNE_DEFAULT'] = '0'
@@ -53,11 +53,13 @@ def get_optimizer(args, arg_names, num_iter_per_epoch, iter_size):
             wd_dict[arg_name] = 0
             lr_dict[arg_name] = 2
 
+    print( "rescale_grad ", str(num_iter_per_epoch), " " , str(iter_size))
     optimizer_params = {'momentum': 0.9,
                         'wd': args.weight_decay,
                         'learning_rate': lr,
                         'lr_scheduler': lr_scheduler,
-                        # 'rescale_grad': (1.0 / batch_size),  # rescale_grad is done in loss functions
+                        #'rescale_grad': (1.0 / iter_size / 8 ), #/ num_iter_per_epoch), #An attempt to get 8 gpus working
+                        # 'rescale_grad': (1.0 / batch_size),  # rescale_grad is done in loss functions # Commented out by orig code
                         'param_idx2name': param_idx2name,
                         'clip_gradient': 5}
 
@@ -90,18 +92,18 @@ def init_params(args, sym, train_data):
         nCh = config.NUM_SLICES
         #===================cwh=================
         w1 = arg_params['conv0_weight'].asnumpy()
-        #w1 = arg_params['conv1_1_weight'].asnumpy()
+        #w1 = arg_params['conv1_1_weight'].asnumpy() #For MXNet
         w1_new = np.zeros((64, nCh, 7, 7), dtype=float)
-        #w1_new = np.zeros((64, nCh, 3, 3), dtype=float)
+        #w1_new = np.zeros((64, nCh, 3, 3), dtype=float) #For MXNet
         w1_new[:, (nCh - 3) / 2:(nCh - 3) / 2 + 3, :, :] = w1
 
         arg_params['conv1_1_new_weight'] = mx.nd.array(w1_new)
        
         arg_params['conv0_new_bias_gamma'] = arg_params['bn0_gamma']
         arg_params['conv1_1_new_bias_beta'] = arg_params['bn0_beta']
-        #arg_params['conv1_1_new_bias'] = arg_params['conv1_1_bias']
-        #del arg_params['conv0_weight']
-        #del arg_params['conv1_1_weight']
+        #arg_params['conv1_1_new_bias'] = arg_params['conv1_1_bias'] #For MXNet
+        #del arg_params['conv0_weight'] #For MXNet
+        #del arg_params['conv1_1_weight'] #For MXNet
 
         arg_params['rpn_conv_3x3_weight'] = mx.random.normal(0, 0.01, shape=arg_shape_dict['rpn_conv_3x3_weight'])
         arg_params['rpn_conv_3x3_bias'] = mx.nd.zeros(shape=arg_shape_dict['rpn_conv_3x3_bias'])
@@ -176,9 +178,20 @@ def train_net(args):
               for image_set in image_sets]
     roidb = merge_roidb(roidbs)
     roidb = filter_roidb(roidb)
-    samplepcnt = 15
-    sroidb = sample_roidb(roidb, samplepcnt)  # Sample by percentage of all images
+    samplepcnt = args.begin_sample
+
+    if samplepcnt == 100:
+        sroidb = roidb
+    else:
+        sroidb = sample_roidb(roidb, samplepcnt)  # Sample by percentage of all images
     logger.info('Sampling %d pcnt : %d training slices' % (samplepcnt, len(sroidb)))
+
+    # Debug to see if we can concatenate ROIDB's
+    #print(sroidb)
+    #dir(sroidb)
+    #newroidb = sroidb + roidb
+    #newroidb = append_roidb(sroidb, roidb)
+    #print( "--Append test: " + str(len(sroidb)) +" " + str(len(roidb)) + " = " + str(len(newroidb)) ) 
 
     # load symbol
     sym = eval('get_' + args.network)(is_train=True, num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCHORS)
