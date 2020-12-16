@@ -7,7 +7,7 @@ prefetch_thread_num: 4  # 0: no prefetch
 begin_epoch: 0  # if > 0, resume from previously trained model according to exp_name; if =0, initialize from pretrained model
 shuffle: True
 use_roidb_cache: True
-#begin_sample: 10 #25 # if this is not 100, it will begin sampling by initial pcnt
+begin_sample: 10 #25 # if this is not 100, it will begin sampling by initial pcnt
 
 #dataset_path: '/media/zcx/ZhengPassport/3DCE_new/data/DeepLesion/'
 dataset_path: '/home/pulido/CADLab/lesion_detector_3DCE/images/'
